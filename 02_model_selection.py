@@ -18,6 +18,19 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from sklearn.metrics import accuracy_score, f1_score, precision_score
 from datetime import datetime
+import logging
+
+# Configure logging
+log_filename = f"02_model_selection_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_filename),
+        logging.StreamHandler()  # Also log to console
+    ]
+)
+logger = logging.getLogger(__name__)
 
 SEED = 16
 torch.manual_seed(SEED)
@@ -58,12 +71,12 @@ if torch.cuda.is_available():
     device = torch.device("cuda")
     num_gpus = torch.cuda.device_count()
     use_multi_gpu = num_gpus > 1
-    print(f"Found {num_gpus} GPU(s)")
+    logger.info(f"Found {num_gpus} GPU(s)")
 else:
     device = torch.device("cpu")
     use_multi_gpu = False
-print(f"Using device: {device}")
-print(f"Multi-GPU training: {use_multi_gpu}")
+logger.info(f"Using device: {device}")
+logger.info(f"Multi-GPU training: {use_multi_gpu}")
 
 
 class FocalLoss(nn.Module):
@@ -110,16 +123,16 @@ def find_optimal_batch_size(model, input_shape, device, start_batch=1, safety_fa
             available_memory = total_memory * safety_factor
             optimal_batch = int(available_memory / memory_per_image)
             
-            print(f"\n{'='*60}")
-            print(f"VRAM Analysis:")
-            print(f"  Total VRAM: {total_memory:.2f} GB")
-            print(f"  Used for batch={start_batch}: {memory_used:.2f} GB")
-            print(f"  Memory per image: {memory_per_image:.3f} GB")
-            print(f"  Available (with {safety_factor:.0%} safety): {available_memory:.2f} GB")
-            print(f"  Calculated optimal batch size: {optimal_batch}")
-            print(f"{'='*60}\n")
+            logger.info(f"\n{'='*60}")
+            logger.info(f"VRAM Analysis:")
+            logger.info(f"  Total VRAM: {total_memory:.2f} GB")
+            logger.info(f"  Used for batch={start_batch}: {memory_used:.2f} GB")
+            logger.info(f"  Memory per image: {memory_per_image:.3f} GB")
+            logger.info(f"  Available (with {safety_factor:.0%} safety): {available_memory:.2f} GB")
+            logger.info(f"  Calculated optimal batch size: {optimal_batch}")
+            logger.info(f"{'='*60}\n")
     except RuntimeError as e:
-        print(f"Error during memory test: {e}")
+        logger.error(f"Error during memory test: {e}")
         optimal_batch = 1
         
     finally:
@@ -138,9 +151,9 @@ model_stats = []
 
 # Training + evaluation loop
 def train_and_eval(model_name):
-    print(f"\n{'#'*60}")
-    print(f"Training {model_name}...")
-    print(f"{'#'*60}")
+    logger.info(f"\n{'#'*60}")
+    logger.info(f"Training {model_name}...")
+    logger.info(f"{'#'*60}")
 
     # Get model-specific configuration
     m = timm.create_model(model_name, pretrained=True, num_classes=4)
@@ -150,9 +163,9 @@ def train_and_eval(model_name):
     transform_mean = model_info['mean']
     transform_std = model_info['std']
 
-    print(f"Model input shape: {input_shape}")
-    print(f"Model mean: {transform_mean}")
-    print(f"Model std: {transform_std}")
+    logger.info(f"Model input shape: {input_shape}")
+    logger.info(f"Model mean: {transform_mean}")
+    logger.info(f"Model std: {transform_std}")
 
     # Calculate optimal batch size
     batch_size = find_optimal_batch_size(m, input_shape, device, start_batch=1, safety_factor=0.88)
@@ -178,10 +191,10 @@ def train_and_eval(model_name):
     train_dataset = datasets.ImageFolder(root=train_data_dir, transform=train_transform)
     test_dataset = datasets.ImageFolder(root=test_data_dir, transform=test_transform)
 
-    print("TRAIN SET CLASS MAPPING")
-    print(train_dataset.class_to_idx)
-    print("TEST SET CLASS MAPPING")
-    print(test_dataset.class_to_idx)
+    logger.info("TRAIN SET CLASS MAPPING")
+    logger.info(train_dataset.class_to_idx)
+    logger.info("TEST SET CLASS MAPPING")
+    logger.info(test_dataset.class_to_idx)
 
     # Optimized DataLoaders with parallel workers and pinned memory
     num_workers = 4  # Parallel data loading (adjust based on CPU cores)
@@ -216,7 +229,7 @@ def train_and_eval(model_name):
     # Compile model for faster execution (PyTorch 2.0+)
     if hasattr(torch, 'compile') and device.type == 'cuda':
         model = torch.compile(model)
-        print("Model compiled with torch.compile()")
+        logger.info("Model compiled with torch.compile()")
 
     criterion = FocalLoss()
     optimizer = optim.Adam(model.parameters(), lr=initial_lr)
@@ -270,7 +283,7 @@ def train_and_eval(model_name):
         train_acc = 100. * correct / total
         avg_loss = running_loss/len(train_loader)
         current_lr = optimizer.param_groups[0]['lr']
-        print(f"Epoch {epoch+1}/{epochs}, Loss: {avg_loss:.4f}, Train Acc: {train_acc:.2f}%, LR: {current_lr:.6f}")
+        logger.info(f"Epoch {epoch+1}/{epochs}, Loss: {avg_loss:.4f}, Train Acc: {train_acc:.2f}%, LR: {current_lr:.6f}")
         
         # Evaluate on test set after each epoch
         model.eval()
@@ -288,7 +301,7 @@ def train_and_eval(model_name):
         test_f1 = f1_score(y_true_epoch, y_pred_epoch, average="macro")
         test_precision = precision_score(y_true_epoch, y_pred_epoch, average="macro")
         
-        print(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
+        logger.debug(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
         
         # Track best F1 score
         if test_f1 > best_f1 + early_stop_min_delta:
@@ -302,7 +315,7 @@ def train_and_eval(model_name):
         
         # Check early stopping condition
         if use_early_stopping and epochs_without_improvement >= early_stop_patience:
-            print(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
+            logger.warning(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
             early_stopped = True
             break
 
@@ -324,9 +337,9 @@ def train_and_eval(model_name):
 
     # Save the best metrics
     if early_stopped:
-        print(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.warning(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
     else:
-        print(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.info(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
 
     model_stats.append(
         {"model_name": model_name, "best_epoch": best_epoch, "accuracy": best_accuracy, "precision": best_precision, "f1": best_f1, "training_time": training_time, "avg_time_per_epoch": avg_time_per_epoch, "early_stopped": early_stopped}
@@ -344,9 +357,9 @@ for m in model_list:
     train_and_eval(m)
 
 # print output
-print("\n\n\nmodel_name, best_epoch, accuracy, precision, f1, training_time, avg_time_per_epoch, early_stopped")
+logger.info("\n\n\nmodel_name, best_epoch, accuracy, precision, f1, training_time, avg_time_per_epoch, early_stopped")
 for i in model_stats:
-    print(
+    logger.info(
         f"{i['model_name']}, {i['best_epoch']}, {i['accuracy']:.4f}, {i['precision']:.4f}, {i['f1']:.4f}, {i['training_time']:.2f}s, {i['avg_time_per_epoch']:.2f}s, {i['early_stopped']}"
     )
 

@@ -12,6 +12,20 @@ import numpy as np
 import pandas as pd
 from torch.amp import autocast, GradScaler
 import gc
+import logging
+from datetime import datetime
+
+# Configure logging
+log_filename = f"01_model_arch_comparision_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_filename),
+        logging.StreamHandler()  # Also log to console
+    ]
+)
+logger = logging.getLogger(__name__)
 
 
 # Set random seeds for reproducibility
@@ -67,14 +81,14 @@ if torch.cuda.is_available():
     # Check if multiple GPUs are available
     num_gpus = torch.cuda.device_count()
     use_multi_gpu = num_gpus > 1
-    print(f"Found {num_gpus} GPU(s)")
+    logger.info(f"Found {num_gpus} GPU(s)")
 else:
     device = torch.device("cpu")
     use_multi_gpu = False
     use_amp = False  # AMP only works on CUDA
-print(f"Using device: {device}")
-print(f"Multi-GPU training: {use_multi_gpu}")
-print(f"Mixed Precision: {use_amp}")
+logger.info(f"Using device: {device}")
+logger.info(f"Multi-GPU training: {use_multi_gpu}")
+logger.info(f"Mixed Precision: {use_amp}")
 
 model_names = [
     "tiny_vit_5m_224",
@@ -138,7 +152,7 @@ if samples_per_class is not None:
     
     # Create subset
     train_dataset = Subset(train_dataset, selected_indices)
-    print(f"Limited training set to {samples_per_class} samples per class (or all available if fewer)")
+    logger.info(f"Limited training set to {samples_per_class} samples per class (or all available if fewer)")
 
 # Optimized DataLoaders with parallel workers and pinned memory
 train_loader = DataLoader(
@@ -158,15 +172,15 @@ test_loader = DataLoader(
     persistent_workers=True if num_workers > 0 else False
 )
 
-print(f"Train set size: {len(train_dataset)}")
-print(f"Test set size: {len(test_dataset)}")
+logger.info(f"Train set size: {len(train_dataset)}")
+logger.info(f"Test set size: {len(test_dataset)}")
 # Access classes from the underlying dataset if it's a Subset
 if hasattr(train_dataset, 'dataset'):
-    print(f"Number of classes: {len(train_dataset.dataset.classes)}")
-    print(f"Classes: {train_dataset.dataset.classes}")
+    logger.info(f"Number of classes: {len(train_dataset.dataset.classes)}")
+    logger.info(f"Classes: {train_dataset.dataset.classes}")
 else:
-    print(f"Number of classes: {len(train_dataset.classes)}")
-    print(f"Classes: {train_dataset.classes}")
+    logger.info(f"Number of classes: {len(train_dataset.classes)}")
+    logger.info(f"Classes: {train_dataset.classes}")
 
 model_stats = []
 
@@ -180,16 +194,16 @@ def train_and_eval(model_name):
     
     # Enable multi-GPU training if available
     if use_multi_gpu:
-        print(f"Using DataParallel across {torch.cuda.device_count()} GPUs")
+        logger.info(f"Using DataParallel across {torch.cuda.device_count()} GPUs")
         model = nn.DataParallel(model)
     
     # Compile model for faster execution (PyTorch 2.0+)
     if hasattr(torch, 'compile') and device.type == 'cuda':
         try:
             model = torch.compile(model)
-            print("Model compiled with torch.compile()")
+            logger.info("Model compiled with torch.compile()")
         except Exception as e:
-            print(f"Could not compile model: {e}")
+            logger.warning(f"Could not compile model: {e}")
 
     criterion = FocalLoss()
     optimizer = optim.Adam(model.parameters(), lr=initial_lr)
@@ -199,13 +213,13 @@ def train_and_eval(model_name):
     if use_scheduler:
         if scheduler_type == "cosine":
             scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs, eta_min=min_lr)
-            print(f"Using CosineAnnealingLR scheduler (min_lr={min_lr})")
+            logger.info(f"Using CosineAnnealingLR scheduler (min_lr={min_lr})")
         elif scheduler_type == "step":
             scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=step_size, gamma=gamma)
-            print(f"Using StepLR scheduler (step_size={step_size}, gamma={gamma})")
+            logger.info(f"Using StepLR scheduler (step_size={step_size}, gamma={gamma})")
         elif scheduler_type == "plateau":
             scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=gamma, patience=2, verbose=True)
-            print("Using ReduceLROnPlateau scheduler")
+            logger.info("Using ReduceLROnPlateau scheduler")
     
     # Mixed precision scaler
     scaler = GradScaler() if use_amp else None
@@ -254,7 +268,7 @@ def train_and_eval(model_name):
         train_acc = 100. * correct / total
         avg_loss = running_loss/len(train_loader)
         current_lr = optimizer.param_groups[0]['lr']
-        print(f"Epoch {epoch+1}/{epochs}, Loss: {avg_loss:.4f}, Train Acc: {train_acc:.2f}%, LR: {current_lr:.6f}")
+        logger.info(f"Epoch {epoch+1}/{epochs}, Loss: {avg_loss:.4f}, Train Acc: {train_acc:.2f}%, LR: {current_lr:.6f}")
         
         # Evaluate on test set after each epoch
         model.eval()
@@ -278,7 +292,7 @@ def train_and_eval(model_name):
         test_f1 = f1_score(y_true, y_pred, average="macro")
         test_precision = precision_score(y_true, y_pred, average="macro")
         
-        print(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
+        logger.debug(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
         
         # Track best F1 score
         if test_f1 > best_f1 + early_stop_min_delta:
@@ -287,19 +301,17 @@ def train_and_eval(model_name):
             best_precision = test_precision
             best_epoch = epoch + 1
             epochs_without_improvement = 0
-            print(f"*** New best F1 score: {best_f1:.4f} at epoch {best_epoch} ***")
+            logger.warning(f"*** New best F1 score: {best_f1:.4f} at epoch {best_epoch} ***")
         else:
             epochs_without_improvement += 1
             if use_early_stopping:
-                print(f"No improvement for {epochs_without_improvement} epoch(s)")
+                logger.info(f"No improvement for {epochs_without_improvement} epoch(s)")
         
         # Check early stopping condition
         if use_early_stopping and epochs_without_improvement >= early_stop_patience:
-            print(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
+            logger.warning(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
             early_stopped = True
             break
-        
-        print()  # Empty line for readability
         
         # Step the scheduler
         if scheduler is not None:
@@ -310,9 +322,9 @@ def train_and_eval(model_name):
 
     # Save the best metrics
     if early_stopped:
-        print(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.warning(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
     else:
-        print(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.info(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
     
     model_stats.append(
         {"model_name": model_name, "best_epoch": best_epoch, "accuracy": best_accuracy, "precision": best_precision, "f1": best_f1, "early_stopped": early_stopped}
@@ -328,8 +340,8 @@ def train_and_eval(model_name):
 
 # Run for all models
 for i in range(len(model_names)):
-    print(f"Training model {i+1} of {len(model_names)}")
-    print(model_names[i])
+    logger.info(f"Training model {i+1} of {len(model_names)}")
+    logger.info(model_names[i])
     train_and_eval(model_names[i])
 
 
@@ -337,6 +349,6 @@ for i in range(len(model_names)):
 df = pd.DataFrame(model_stats)
 df.to_csv("model_comparision_results.csv", index=False)
 
-print("TRAINING COMPLETED")
+logger.info("TRAINING COMPLETED")
 
-print(df)
+logger.info(f"Final Results:\n{df}")

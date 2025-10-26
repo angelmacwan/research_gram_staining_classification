@@ -2,6 +2,8 @@ import os
 from collections import defaultdict
 import gc
 import time
+import logging
+from datetime import datetime
 
 import torch
 from torch import nn
@@ -23,6 +25,18 @@ from sklearn.metrics import (
 
 from sklearn.model_selection import StratifiedKFold
 
+# Configure logging
+log_filename = f"03_kfold_pipeline_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_filename),
+        logging.StreamHandler()  # Also log to console
+    ]
+)
+logger = logging.getLogger(__name__)
+
 
 SEED = 16
 torch.manual_seed(SEED)
@@ -31,11 +45,11 @@ torch.set_float32_matmul_precision('high')
 
 # Check for CUDA device
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-print(DEVICE)
+logger.info(DEVICE)
 
 # Enable multi-GPU training if available
 use_multi_gpu = torch.cuda.device_count() > 1 if DEVICE == 'cuda' else False
-print(f"Multi-GPU training: {use_multi_gpu}")
+logger.info(f"Multi-GPU training: {use_multi_gpu}")
 
 # DATA SET PATH
 train_data_dir = "./TRAIN"
@@ -95,16 +109,16 @@ def find_optimal_batch_size(model, input_shape, device, start_batch=1, safety_fa
             available_memory = total_memory * safety_factor
             optimal_batch = int(available_memory / memory_per_image)
             
-            print(f"\n{'='*60}")
-            print(f"VRAM Analysis:")
-            print(f"  Total VRAM: {total_memory:.2f} GB")
-            print(f"  Used for batch={start_batch}: {memory_used:.2f} GB")
-            print(f"  Memory per image: {memory_per_image:.3f} GB")
-            print(f"  Available (with {safety_factor:.0%} safety): {available_memory:.2f} GB")
-            print(f"  Calculated optimal batch size: {optimal_batch}")
-            print(f"{'='*60}\n")
+            logger.info(f"\n{'='*60}")
+            logger.info(f"VRAM Analysis:")
+            logger.info(f"  Total VRAM: {total_memory:.2f} GB")
+            logger.info(f"  Used for batch={start_batch}: {memory_used:.2f} GB")
+            logger.info(f"  Memory per image: {memory_per_image:.3f} GB")
+            logger.info(f"  Available (with {safety_factor:.0%} safety): {available_memory:.2f} GB")
+            logger.info(f"  Calculated optimal batch size: {optimal_batch}")
+            logger.info(f"{'='*60}\n")
     except RuntimeError as e:
-        print(f"Error during memory test: {e}")
+        logger.error(f"Error during memory test: {e}")
         optimal_batch = 1
         
     finally:
@@ -126,11 +140,11 @@ transform_mean = model_info['mean']
 transform_std = model_info['std']
 batch_size = find_optimal_batch_size(m, input_shape, torch.device(DEVICE), start_batch=1, safety_factor=0.88)
 
-print(f"USING MODEL ARCHITECTURE {model_info['architecture']} ")
-print(f"INPUT SHAPE = {input_shape}")
-print(f"       MEAN = {transform_mean}")
-print(f"        STD = {transform_std}")
-print(f" BATCH SIZE = {batch_size}")
+logger.info(f"USING MODEL ARCHITECTURE {model_info['architecture']} ")
+logger.info(f"INPUT SHAPE = {input_shape}")
+logger.info(f"       MEAN = {transform_mean}")
+logger.info(f"        STD = {transform_std}")
+logger.info(f" BATCH SIZE = {batch_size}")
 
 del m
 
@@ -145,8 +159,8 @@ transform = transforms.Compose([
 
 dataset = datasets.ImageFolder(root=train_data_dir, transform=transform)
 
-print("CLASS MAPPING TRAIN")
-print(dataset.class_to_idx)
+logger.info("CLASS MAPPING TRAIN")
+logger.info(dataset.class_to_idx)
 
 
 class FocalLoss(nn.Module):
@@ -169,9 +183,9 @@ fold_results = []
 
 # K-Fold Loop
 for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets)):
-    print('\n--------------------------------')
-    print(f'FOLD {fold+1}/{k_folds}')
-    print('--------------------------------')
+    logger.info('\n--------------------------------')
+    logger.info(f'FOLD {fold+1}/{k_folds}')
+    logger.info('--------------------------------')
 
     # Create data loaders for this fold
     train_subsampler = torch.utils.data.SubsetRandomSampler(train_idx)
@@ -205,7 +219,7 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
     # Compile model for faster execution (PyTorch 2.0+)
     if hasattr(torch, 'compile') and DEVICE == 'cuda':
         model = torch.compile(model)
-        print("Model compiled with torch.compile()")
+        logger.info("Model compiled with torch.compile()")
     
     criterion = FocalLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=initial_lr)
@@ -233,7 +247,7 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
     fold_start_time = time.time()
     for epoch in range(num_epochs):
         epoch_start_time = time.time()
-        print(f'Epoch {epoch+1}/{num_epochs}')
+        logger.info(f'Epoch {epoch+1}/{num_epochs}')
         model.train()
         running_loss = 0.0
         correct = 0
@@ -301,7 +315,7 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
         val_loss_avg = val_loss/len(val_loader)
         
         epoch_time = time.time() - epoch_start_time
-        print(f'Loss: {avg_loss:.4f}, Train Acc: {train_acc:.4f}, Val Loss: {val_loss_avg:.4f}, Val Accuracy: {val_acc:.4f}, Val F1: {val_f1:.4f}, LR: {current_lr:.6f}, Time: {epoch_time:.2f}s')
+        logger.debug(f'Loss: {avg_loss:.4f}, Train Acc: {train_acc:.4f}, Val Loss: {val_loss_avg:.4f}, Val Accuracy: {val_acc:.4f}, Val F1: {val_f1:.4f}, LR: {current_lr:.6f}, Time: {epoch_time:.2f}s')
 
         # Check for improvement
         if val_f1 > best_f1 + early_stop_min_delta:
@@ -314,7 +328,7 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
 
         # Check early stopping condition
         if use_early_stopping and epochs_without_improvement >= early_stop_patience:
-            print(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
+            logger.warning(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
             early_stopped = True
             break
 
@@ -327,11 +341,11 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
     
     fold_time = time.time() - fold_start_time
     
-    print(f'Best Val Accuracy for fold {fold+1}: {best_acc:.4f}')
-    print(f'Best Val F1 for fold {fold+1}: {best_f1:.4f}')
-    print(f'Best epoch: {best_epoch}')
-    print(f'Early stopped: {early_stopped}')
-    print(f'Fold training time: {fold_time:.2f}s')
+    logger.info(f'Best Val Accuracy for fold {fold+1}: {best_acc:.4f}')
+    logger.info(f'Best Val F1 for fold {fold+1}: {best_f1:.4f}')
+    logger.info(f'Best epoch: {best_epoch}')
+    logger.info(f'Early stopped: {early_stopped}')
+    logger.info(f'Fold training time: {fold_time:.2f}s')
     
     fold_results.append({
         'fold': fold+1,
@@ -351,16 +365,16 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
 # Save fold training results
 fold_df = pd.DataFrame(fold_results)
 fold_df.to_csv('fold_training_results.csv', index=False)
-print("\nFold Training Results:")
-print(fold_df)
+logger.info("\nFold Training Results:")
+logger.info(fold_df)
 
 # Calculate and print overall K-fold results
-print(f"\nK-Fold Cross-Validation Summary ({k_folds} folds):")
-print(f"Average Best Validation Accuracy: {fold_df['best_val_acc'].mean():.4f} ± {fold_df['best_val_acc'].std():.4f}")
-print(f"Average Best Validation F1: {fold_df['best_val_f1'].mean():.4f} ± {fold_df['best_val_f1'].std():.4f}")
-print(f"Average Best Epoch: {fold_df['best_epoch'].mean():.1f} ± {fold_df['best_epoch'].std():.1f}")
-print(f"Average Training Time: {fold_df['training_time'].mean():.2f}s ± {fold_df['training_time'].std():.2f}s")
-print(f"Early Stopping Rate: {fold_df['early_stopped'].sum()}/{k_folds} folds ({100*fold_df['early_stopped'].mean():.1f}%)")
+logger.info(f"\nK-Fold Cross-Validation Summary ({k_folds} folds):")
+logger.info(f"Average Best Validation Accuracy: {fold_df['best_val_acc'].mean():.4f} ± {fold_df['best_val_acc'].std():.4f}")
+logger.info(f"Average Best Validation F1: {fold_df['best_val_f1'].mean():.4f} ± {fold_df['best_val_f1'].std():.4f}")
+logger.info(f"Average Best Epoch: {fold_df['best_epoch'].mean():.1f} ± {fold_df['best_epoch'].std():.1f}")
+logger.info(f"Average Training Time: {fold_df['training_time'].mean():.2f}s ± {fold_df['training_time'].std():.2f}s")
+logger.info(f"Early Stopping Rate: {fold_df['early_stopped'].sum()}/{k_folds} folds ({100*fold_df['early_stopped'].mean():.1f}%)")
 
 # Create final summary
 summary_stats = {
@@ -379,10 +393,10 @@ summary_stats = {
 # Save final summary
 summary_df = pd.DataFrame([summary_stats])
 summary_df.to_csv('kfold_summary.csv', index=False)
-print("\nK-Fold validation completed successfully!")
-print("Results saved to:")
-print("  - fold_training_results.csv (detailed results per fold)")
-print("  - kfold_summary.csv (overall summary)")
+logger.info("\nK-Fold validation completed successfully!")
+logger.info("Results saved to:")
+logger.info("  - fold_training_results.csv (detailed results per fold)")
+logger.info("  - kfold_summary.csv (overall summary)")
 
 # Clean up any remaining memory
 if DEVICE == 'cuda':

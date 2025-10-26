@@ -11,6 +11,20 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 import pandas as pd
 import numpy as np
 import json
+import logging
+from datetime import datetime
+
+# Configure logging
+log_filename = f"04_final_model_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_filename),
+        logging.StreamHandler()  # Also log to console
+    ]
+)
+logger = logging.getLogger(__name__)
 
 SEED = 16
 torch.manual_seed(SEED)
@@ -25,7 +39,7 @@ elif torch.cuda.is_available():
 else: 
     device = torch.device("cpu")
 
-print(f"Using device: {device}")
+logger.info(f"Using device: {device}")
 
 
 # -------------------- CONFIG --------------------
@@ -57,7 +71,7 @@ use_mixed_precision = True
 
 # Enable multi-GPU training if available
 use_multi_gpu = torch.cuda.device_count() > 1 if device.type == 'cuda' else False
-print(f"Multi-GPU training: {use_multi_gpu}")
+logger.info(f"Multi-GPU training: {use_multi_gpu}")
 
 
 
@@ -173,16 +187,16 @@ def find_optimal_batch_size(model, input_shape, device, start_batch=1, safety_fa
             available_memory = total_memory * safety_factor
             optimal_batch = int(available_memory / memory_per_image)
             
-            print(f"\n{'='*60}")
-            print(f"VRAM Analysis:")
-            print(f"  Total VRAM: {total_memory:.2f} GB")
-            print(f"  Used for batch={start_batch}: {memory_used:.2f} GB")
-            print(f"  Memory per image: {memory_per_image:.3f} GB")
-            print(f"  Available (with {safety_factor:.0%} safety): {available_memory:.2f} GB")
-            print(f"  Calculated optimal batch size: {optimal_batch}")
-            print(f"{'='*60}\n")
+            logger.info(f"\n{'='*60}")
+            logger.info(f"VRAM Analysis:")
+            logger.info(f"  Total VRAM: {total_memory:.2f} GB")
+            logger.info(f"  Used for batch={start_batch}: {memory_used:.2f} GB")
+            logger.info(f"  Memory per image: {memory_per_image:.3f} GB")
+            logger.info(f"  Available (with {safety_factor:.0%} safety): {available_memory:.2f} GB")
+            logger.info(f"  Calculated optimal batch size: {optimal_batch}")
+            logger.info(f"{'='*60}\n")
     except RuntimeError as e:
-        print(f"Error during memory test: {e}")
+        logger.error(f"Error during memory test: {e}")
         optimal_batch = 1
         
     finally:
@@ -206,11 +220,11 @@ transform_mean = model_info['mean']
 transform_std = model_info['std']
 batch_size = find_optimal_batch_size(m, input_shape, device, start_batch=1, safety_factor=0.88)
 
-print(f"USING MODEL ARCHITECTURE {model_info['architecture']}")
-print(f"INPUT SHAPE = {input_shape}")
-print(f"       MEAN = {transform_mean}")
-print(f"        STD = {transform_std}")
-print(f" BATCH SIZE = {batch_size}")
+logger.info(f"USING MODEL ARCHITECTURE {model_info['architecture']}")
+logger.info(f"INPUT SHAPE = {input_shape}")
+logger.info(f"       MEAN = {transform_mean}")
+logger.info(f"        STD = {transform_std}")
+logger.info(f" BATCH SIZE = {batch_size}")
 
 del m
 
@@ -256,10 +270,10 @@ test_transform = transforms.Compose([
 train_dataset = datasets.ImageFolder(root=train_data_dir, transform=train_transform)
 test_dataset = datasets.ImageFolder(root=test_data_dir, transform=test_transform)
 
-print("TRAIN SET CLASS MAPPING")
-print(train_dataset.class_to_idx)
-print("TEST SET CLASS MAPPING")
-print(test_dataset.class_to_idx)
+logger.info("TRAIN SET CLASS MAPPING")
+logger.info(train_dataset.class_to_idx)
+logger.info("TEST SET CLASS MAPPING")
+logger.info(test_dataset.class_to_idx)
 
 train_loader = DataLoader(
     train_dataset, 
@@ -292,7 +306,7 @@ if use_multi_gpu:
 # Compile model for faster execution (PyTorch 2.0+)
 if hasattr(torch, 'compile') and device.type == 'cuda':
     model = torch.compile(model)
-    print("Model compiled with torch.compile()")
+    logger.info("Model compiled with torch.compile()")
 
 criterion = FocalLoss()
 optimizer = optim.Adam(model.parameters(), lr=initial_lr)
@@ -320,7 +334,7 @@ early_stopped = False
 training_start_time = time.time()
 for epoch in range(epochs):
     epoch_start_time = time.time()
-    print(f'Epoch {epoch+1}/{epochs}')
+    logger.info(f'Epoch {epoch+1}/{epochs}')
     
     # Training phase
     model.train()
@@ -388,7 +402,7 @@ for epoch in range(epochs):
     val_loss_avg = val_loss/len(test_loader)
     
     epoch_time = time.time() - epoch_start_time
-    print(f'Loss: {avg_loss:.4f}, Train Acc: {train_acc:.4f}, Val Loss: {val_loss_avg:.4f}, Val Accuracy: {val_acc:.4f}, Val F1: {val_f1:.4f}, LR: {current_lr:.6f}, Time: {epoch_time:.2f}s')
+    logger.debug(f'Loss: {avg_loss:.4f}, Train Acc: {train_acc:.4f}, Val Loss: {val_loss_avg:.4f}, Val Accuracy: {val_acc:.4f}, Val F1: {val_f1:.4f}, LR: {current_lr:.6f}, Time: {epoch_time:.2f}s')
 
     # Check for improvement and save best model
     if val_f1 > best_f1 + early_stop_min_delta:
@@ -402,13 +416,13 @@ for epoch in range(epochs):
             torch.save(model.module.state_dict(), f'{model_name}_best.pth')
         else:
             torch.save(model.state_dict(), f'{model_name}_best.pth')
-        print(f"*** New best model saved! F1: {best_f1:.4f} ***")
+        logger.warning(f"*** New best model saved! F1: {best_f1:.4f} ***")
     else:
         epochs_without_improvement += 1
 
     # Check early stopping condition
     if use_early_stopping and epochs_without_improvement >= early_stop_patience:
-        print(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
+        logger.warning(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
         early_stopped = True
         break
 
@@ -421,12 +435,12 @@ for epoch in range(epochs):
 
 total_training_time = time.time() - training_start_time
 
-print(f'\nTraining completed!')
-print(f'Best Validation Accuracy: {best_acc:.4f}')
-print(f'Best Validation F1: {best_f1:.4f}')
-print(f'Best epoch: {best_epoch}')
-print(f'Early stopped: {early_stopped}')
-print(f'Total training time: {total_training_time:.2f}s')
+logger.info(f'\nTraining completed!')
+logger.info(f'Best Validation Accuracy: {best_acc:.4f}')
+logger.info(f'Best Validation F1: {best_f1:.4f}')
+logger.info(f'Best epoch: {best_epoch}')
+logger.info(f'Early stopped: {early_stopped}')
+logger.info(f'Total training time: {total_training_time:.2f}s')
 
 # Load best model for final evaluation
 if use_multi_gpu:
@@ -434,7 +448,7 @@ if use_multi_gpu:
 else:
     model.load_state_dict(torch.load(f'{model_name}_best.pth'))
 
-print(f"\nLoaded best model for final evaluation...")
+logger.info(f"\nLoaded best model for final evaluation...")
 
 # Final evaluation on test set
 model.eval()
@@ -453,40 +467,40 @@ with torch.no_grad():
         y_true.extend(labels.cpu().numpy())
         y_pred.extend(preds.cpu().numpy())
 
-print("\nFinal Test Results:")
-print(classification_report(y_true, y_pred, target_names=test_dataset.classes))
+logger.info("\nFinal Test Results:")
+logger.info(classification_report(y_true, y_pred, target_names=test_dataset.classes))
 
 # Calculate comprehensive metrics
 comprehensive_metrics = calculate_comprehensive_metrics(y_true, y_pred, test_dataset.classes)
 
 # Display comprehensive metrics
-print("\n" + "="*80)
-print("COMPREHENSIVE EVALUATION METRICS")
-print("="*80)
+logger.info("\n" + "="*80)
+logger.info("COMPREHENSIVE EVALUATION METRICS")
+logger.info("="*80)
 
-print(f"\nOVERALL METRICS:")
-print(f"  Accuracy: {comprehensive_metrics['overall_metrics']['accuracy']:.4f}")
-print(f"  F1 Score (Weighted): {comprehensive_metrics['overall_metrics']['f1_weighted']:.4f}")
-print(f"  F1 Score (Macro): {comprehensive_metrics['overall_metrics']['f1_macro']:.4f}")
-print(f"  Precision (Weighted): {comprehensive_metrics['overall_metrics']['precision_weighted']:.4f}")
-print(f"  Precision (Macro): {comprehensive_metrics['overall_metrics']['precision_macro']:.4f}")
-print(f"  Recall (Weighted): {comprehensive_metrics['overall_metrics']['recall_weighted']:.4f}")
-print(f"  Recall (Macro): {comprehensive_metrics['overall_metrics']['recall_macro']:.4f}")
+logger.info(f"\nOVERALL METRICS:")
+logger.info(f"  Accuracy: {comprehensive_metrics['overall_metrics']['accuracy']:.4f}")
+logger.info(f"  F1 Score (Weighted): {comprehensive_metrics['overall_metrics']['f1_weighted']:.4f}")
+logger.info(f"  F1 Score (Macro): {comprehensive_metrics['overall_metrics']['f1_macro']:.4f}")
+logger.info(f"  Precision (Weighted): {comprehensive_metrics['overall_metrics']['precision_weighted']:.4f}")
+logger.info(f"  Precision (Macro): {comprehensive_metrics['overall_metrics']['precision_macro']:.4f}")
+logger.info(f"  Recall (Weighted): {comprehensive_metrics['overall_metrics']['recall_weighted']:.4f}")
+logger.info(f"  Recall (Macro): {comprehensive_metrics['overall_metrics']['recall_macro']:.4f}")
 
-print(f"\nPER-CLASS METRICS:")
+logger.info(f"\nPER-CLASS METRICS:")
 for class_name in test_dataset.classes:
     metrics = comprehensive_metrics['per_class_metrics'][class_name]
-    print(f"  {class_name}:")
-    print(f"    F1 Score: {metrics['f1_score']:.4f}")
-    print(f"    Precision: {metrics['precision']:.4f}")
-    print(f"    Recall: {metrics['recall']:.4f}")
-    print(f"    Sensitivity: {metrics['sensitivity']:.4f}")
-    print(f"    Specificity: {metrics['specificity']:.4f}")
+    logger.info(f"  {class_name}:")
+    logger.info(f"    F1 Score: {metrics['f1_score']:.4f}")
+    logger.info(f"    Precision: {metrics['precision']:.4f}")
+    logger.info(f"    Recall: {metrics['recall']:.4f}")
+    logger.info(f"    Sensitivity: {metrics['sensitivity']:.4f}")
+    logger.info(f"    Specificity: {metrics['specificity']:.4f}")
 
-print(f"\nCONFUSION MATRIX:")
+logger.info(f"\nCONFUSION MATRIX:")
 conf_matrix = np.array(comprehensive_metrics['confusion_matrix'])
-print("Classes:", test_dataset.classes)
-print(conf_matrix)
+logger.info("Classes:", test_dataset.classes)
+logger.info(conf_matrix)
 
 # Save metrics to files
 timestamp = time.strftime("%Y%m%d_%H%M%S")
@@ -544,23 +558,23 @@ training_summary_file = os.path.join(model_results_dir, f"{model_name}_training_
 with open(training_summary_file, 'w') as f:
     json.dump(training_summary, f, indent=2)
 
-print(f"\n" + "="*80)
-print("RESULTS SAVED")
-print("="*80)
-print(f"Results directory: {model_results_dir}")
-print(f"1. Comprehensive metrics (JSON): {metrics_file}")
-print(f"2. Overall metrics (CSV): {overall_csv}")
-print(f"3. Per-class metrics (CSV): {per_class_csv}")
-print(f"4. Confusion matrix (CSV): {conf_matrix_csv}")
-print(f"5. Training summary (JSON): {training_summary_file}")
-print(f"6. Best model: {model_name}_best.pth")
+logger.info(f"\n" + "="*80)
+logger.info("RESULTS SAVED")
+logger.info("="*80)
+logger.info(f"Results directory: {model_results_dir}")
+logger.info(f"1. Comprehensive metrics (JSON): {metrics_file}")
+logger.info(f"2. Overall metrics (CSV): {overall_csv}")
+logger.info(f"3. Per-class metrics (CSV): {per_class_csv}")
+logger.info(f"4. Confusion matrix (CSV): {conf_matrix_csv}")
+logger.info(f"5. Training summary (JSON): {training_summary_file}")
+logger.info(f"6. Best model: {model_name}_best.pth")
 
 # Clean up memory
 if device.type == 'cuda':
     torch.cuda.empty_cache()
 gc.collect()
 
-print(f"\nTraining completed successfully!")
-print(f"Best model saved as: {model_name}_best.pth")
-print(f"All evaluation metrics saved in: {model_results_dir}")
-print("="*80)
+logger.info(f"\nTraining completed successfully!")
+logger.info(f"Best model saved as: {model_name}_best.pth")
+logger.info(f"All evaluation metrics saved in: {model_results_dir}")
+logger.info("="*80)
