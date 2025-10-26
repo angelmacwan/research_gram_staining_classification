@@ -1,0 +1,16 @@
+{
+  "model_name": "volo_d3_448",
+  "total_training_time": 541.6437342166901,
+  "best_epoch": 6,
+  "best_validation_accuracy": 0.87,
+  "best_validation_f1": 0.8702155739546228,
+  "early_stopped": true,
+  "final_test_accuracy": 0.87,
+  "final_test_f1_weighted": 0.8702155739546228,
+  "timestamp": "20251021_084245",
+  "device_used": "cuda",
+  "batch_size": 47,
+  "epochs_trained": 6,
+  "train_dataset_path": "./Train_4Class",
+  "test_dataset_path": "./Val"
+}
