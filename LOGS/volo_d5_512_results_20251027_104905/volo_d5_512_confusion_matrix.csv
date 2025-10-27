@@ -1,0 +1,5 @@
+,Pred_GNB,Pred_GNC,Pred_GPB,Pred_GPC
+True_GNB,27,0,2,1
+True_GNC,2,23,0,5
+True_GPB,0,0,29,1
+True_GPC,0,0,2,28

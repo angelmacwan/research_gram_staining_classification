@@ -1,0 +1,16 @@
+{
+  "model_name": "volo_d5_512",
+  "total_training_time": 1390.5732033252716,
+  "best_epoch": 13,
+  "best_validation_accuracy": 0.8916666666666667,
+  "best_validation_f1": 0.8913380369408512,
+  "early_stopped": true,
+  "final_test_accuracy": 0.8916666666666667,
+  "final_test_f1_weighted": 0.8913380369408512,
+  "timestamp": "20251027_104905",
+  "device_used": "cuda",
+  "batch_size": 19,
+  "epochs_trained": 13,
+  "train_dataset_path": "./TRAIN",
+  "test_dataset_path": "./TEST"
+}

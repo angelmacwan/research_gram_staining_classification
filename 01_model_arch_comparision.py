@@ -203,7 +203,7 @@ def train_and_eval(model_name):
             model = torch.compile(model)
             logger.info("Model compiled with torch.compile()")
         except Exception as e:
-            logger.warning(f"Could not compile model: {e}")
+            logger.info(f"Could not compile model: {e}")
 
     criterion = FocalLoss()
     optimizer = optim.Adam(model.parameters(), lr=initial_lr)
@@ -292,7 +292,7 @@ def train_and_eval(model_name):
         test_f1 = f1_score(y_true, y_pred, average="macro")
         test_precision = precision_score(y_true, y_pred, average="macro")
         
-        logger.debug(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
+        logger.info(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
         
         # Track best F1 score
         if test_f1 > best_f1 + early_stop_min_delta:
@@ -301,7 +301,7 @@ def train_and_eval(model_name):
             best_precision = test_precision
             best_epoch = epoch + 1
             epochs_without_improvement = 0
-            logger.warning(f"*** New best F1 score: {best_f1:.4f} at epoch {best_epoch} ***")
+            logger.info(f"*** New best F1 score: {best_f1:.4f} at epoch {best_epoch} ***")
         else:
             epochs_without_improvement += 1
             if use_early_stopping:
@@ -309,7 +309,7 @@ def train_and_eval(model_name):
         
         # Check early stopping condition
         if use_early_stopping and epochs_without_improvement >= early_stop_patience:
-            logger.warning(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
+            logger.info(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
             early_stopped = True
             break
         
@@ -322,7 +322,7 @@ def train_and_eval(model_name):
 
     # Save the best metrics
     if early_stopped:
-        logger.warning(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.info(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
     else:
         logger.info(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
     

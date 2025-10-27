@@ -132,7 +132,7 @@ def find_optimal_batch_size(model, input_shape, device, start_batch=1, safety_fa
             logger.info(f"  Calculated optimal batch size: {optimal_batch}")
             logger.info(f"{'='*60}\n")
     except RuntimeError as e:
-        logger.error(f"Error during memory test: {e}")
+        logger.info(f"Error during memory test: {e}")
         optimal_batch = 1
         
     finally:
@@ -301,7 +301,7 @@ def train_and_eval(model_name):
         test_f1 = f1_score(y_true_epoch, y_pred_epoch, average="macro")
         test_precision = precision_score(y_true_epoch, y_pred_epoch, average="macro")
         
-        logger.debug(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
+        logger.info(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
         
         # Track best F1 score
         if test_f1 > best_f1 + early_stop_min_delta:
@@ -315,7 +315,7 @@ def train_and_eval(model_name):
         
         # Check early stopping condition
         if use_early_stopping and epochs_without_improvement >= early_stop_patience:
-            logger.warning(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
+            logger.info(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
             early_stopped = True
             break
 
@@ -337,7 +337,7 @@ def train_and_eval(model_name):
 
     # Save the best metrics
     if early_stopped:
-        logger.warning(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.info(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
     else:
         logger.info(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
 

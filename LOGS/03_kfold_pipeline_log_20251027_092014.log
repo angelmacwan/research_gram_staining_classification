@@ -1,0 +1,221 @@
+2025-10-27 09:20:14,634 - INFO - cuda
+2025-10-27 09:20:14,670 - INFO - Multi-GPU training: False
+2025-10-27 09:20:19,925 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 09:20:20,065 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 09:20:20,307 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 09:20:21,126 - INFO - 
+============================================================
+2025-10-27 09:20:21,126 - INFO - VRAM Analysis:
+2025-10-27 09:20:21,126 - INFO -   Total VRAM: 94.98 GB
+2025-10-27 09:20:21,126 - INFO -   Used for batch=1: 4.33 GB
+2025-10-27 09:20:21,126 - INFO -   Memory per image: 4.326 GB
+2025-10-27 09:20:21,126 - INFO -   Available (with 88% safety): 83.58 GB
+2025-10-27 09:20:21,126 - INFO -   Calculated optimal batch size: 19
+2025-10-27 09:20:21,126 - INFO - ============================================================
+
+2025-10-27 09:20:21,241 - INFO - USING MODEL ARCHITECTURE volo_d5_512 
+2025-10-27 09:20:21,242 - INFO - INPUT SHAPE = (3, 512, 512)
+2025-10-27 09:20:21,242 - INFO -        MEAN = (0.485, 0.456, 0.406)
+2025-10-27 09:20:21,242 - INFO -         STD = (0.229, 0.224, 0.225)
+2025-10-27 09:20:21,242 - INFO -  BATCH SIZE = 19
+2025-10-27 09:20:21,248 - INFO - CLASS MAPPING TRAIN
+2025-10-27 09:20:21,248 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 09:20:21,250 - INFO - 
+--------------------------------
+2025-10-27 09:20:21,250 - INFO - FOLD 1/5
+2025-10-27 09:20:21,250 - INFO - --------------------------------
+2025-10-27 09:20:26,325 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 09:20:26,370 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 09:20:26,610 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 09:20:27,782 - INFO - Model compiled with torch.compile()
+2025-10-27 09:20:27,783 - INFO - Epoch 1/99
+2025-10-27 09:25:18,930 - INFO - Loss: 0.0834, Train Acc: 0.7363, Val Loss: 0.0511, Val Accuracy: 0.8185, Val F1: 0.8086, LR: 0.000100, Time: 291.15s
+2025-10-27 09:25:18,931 - INFO - Epoch 2/99
+2025-10-27 09:26:29,199 - INFO - Loss: 0.0441, Train Acc: 0.8523, Val Loss: 0.0696, Val Accuracy: 0.7728, Val F1: 0.7188, LR: 0.000100, Time: 70.27s
+2025-10-27 09:26:29,199 - INFO - Epoch 3/99
+2025-10-27 09:27:37,937 - INFO - Loss: 0.0363, Train Acc: 0.8672, Val Loss: 0.0361, Val Accuracy: 0.8693, Val F1: 0.8595, LR: 0.000100, Time: 68.74s
+2025-10-27 09:27:37,938 - INFO - Epoch 4/99
+2025-10-27 09:28:46,813 - INFO - Loss: 0.0278, Train Acc: 0.8933, Val Loss: 0.0375, Val Accuracy: 0.8731, Val F1: 0.8721, LR: 0.000100, Time: 68.88s
+2025-10-27 09:28:46,813 - INFO - Epoch 5/99
+2025-10-27 09:29:55,376 - INFO - Loss: 0.0244, Train Acc: 0.9053, Val Loss: 0.0378, Val Accuracy: 0.8807, Val F1: 0.8801, LR: 0.000100, Time: 68.56s
+2025-10-27 09:29:55,376 - INFO - Epoch 6/99
+2025-10-27 09:31:04,864 - INFO - Loss: 0.0202, Train Acc: 0.9171, Val Loss: 0.0313, Val Accuracy: 0.9074, Val F1: 0.9057, LR: 0.000099, Time: 69.49s
+2025-10-27 09:31:04,864 - INFO - Epoch 7/99
+2025-10-27 09:32:13,893 - INFO - Loss: 0.0177, Train Acc: 0.9241, Val Loss: 0.0342, Val Accuracy: 0.8845, Val F1: 0.8836, LR: 0.000099, Time: 69.03s
+2025-10-27 09:32:13,893 - INFO - Epoch 8/99
+2025-10-27 09:33:22,391 - INFO - Loss: 0.0143, Train Acc: 0.9431, Val Loss: 0.0295, Val Accuracy: 0.8883, Val F1: 0.8848, LR: 0.000099, Time: 68.50s
+2025-10-27 09:33:22,391 - INFO - Epoch 9/99
+2025-10-27 09:34:31,179 - INFO - Loss: 0.0144, Train Acc: 0.9384, Val Loss: 0.0314, Val Accuracy: 0.8909, Val F1: 0.8883, LR: 0.000098, Time: 68.79s
+2025-10-27 09:34:31,179 - INFO - Epoch 10/99
+2025-10-27 09:35:40,262 - INFO - Loss: 0.0150, Train Acc: 0.9333, Val Loss: 0.0389, Val Accuracy: 0.8515, Val F1: 0.8523, LR: 0.000098, Time: 69.08s
+2025-10-27 09:35:40,262 - INFO - 
+*** Early stopping triggered after 10 epochs (no improvement for 4 epochs) ***
+2025-10-27 09:35:40,262 - INFO - Best Val Accuracy for fold 1: 0.9074
+2025-10-27 09:35:40,262 - INFO - Best Val F1 for fold 1: 0.9057
+2025-10-27 09:35:40,262 - INFO - Best epoch: 6
+2025-10-27 09:35:40,262 - INFO - Early stopped: True
+2025-10-27 09:35:40,262 - INFO - Fold training time: 912.48s
+2025-10-27 09:35:41,138 - INFO - 
+--------------------------------
+2025-10-27 09:35:41,138 - INFO - FOLD 2/5
+2025-10-27 09:35:41,138 - INFO - --------------------------------
+2025-10-27 09:35:46,635 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 09:35:47,372 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 09:35:47,522 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 09:35:47,732 - INFO - Model compiled with torch.compile()
+2025-10-27 09:35:47,747 - INFO - Epoch 1/99
+2025-10-27 09:36:58,016 - INFO - Loss: 0.0875, Train Acc: 0.7021, Val Loss: 0.0641, Val Accuracy: 0.7853, Val F1: 0.7911, LR: 0.000100, Time: 70.27s
+2025-10-27 09:36:58,016 - INFO - Epoch 2/99
+2025-10-27 09:38:07,089 - INFO - Loss: 0.0502, Train Acc: 0.8203, Val Loss: 0.0423, Val Accuracy: 0.8386, Val F1: 0.8434, LR: 0.000100, Time: 69.07s
+2025-10-27 09:38:07,090 - INFO - Epoch 3/99
+2025-10-27 09:39:16,943 - INFO - Loss: 0.0338, Train Acc: 0.8733, Val Loss: 0.0433, Val Accuracy: 0.8526, Val F1: 0.8537, LR: 0.000100, Time: 69.85s
+2025-10-27 09:39:16,944 - INFO - Epoch 4/99
+2025-10-27 09:40:28,328 - INFO - Loss: 0.0278, Train Acc: 0.8958, Val Loss: 0.0438, Val Accuracy: 0.8755, Val F1: 0.8717, LR: 0.000100, Time: 71.38s
+2025-10-27 09:40:28,329 - INFO - Epoch 5/99
+2025-10-27 09:41:37,753 - INFO - Loss: 0.0269, Train Acc: 0.8981, Val Loss: 0.0459, Val Accuracy: 0.8539, Val F1: 0.8542, LR: 0.000100, Time: 69.42s
+2025-10-27 09:41:37,753 - INFO - Epoch 6/99
+2025-10-27 09:42:46,945 - INFO - Loss: 0.0198, Train Acc: 0.9181, Val Loss: 0.0333, Val Accuracy: 0.8793, Val F1: 0.8782, LR: 0.000099, Time: 69.19s
+2025-10-27 09:42:46,945 - INFO - Epoch 7/99
+2025-10-27 09:43:56,195 - INFO - Loss: 0.0194, Train Acc: 0.9143, Val Loss: 0.0355, Val Accuracy: 0.8869, Val F1: 0.8877, LR: 0.000099, Time: 69.25s
+2025-10-27 09:43:56,195 - INFO - Epoch 8/99
+2025-10-27 09:45:06,364 - INFO - Loss: 0.0147, Train Acc: 0.9368, Val Loss: 0.0496, Val Accuracy: 0.8615, Val F1: 0.8454, LR: 0.000099, Time: 70.17s
+2025-10-27 09:45:06,364 - INFO - Epoch 9/99
+2025-10-27 09:46:15,325 - INFO - Loss: 0.0168, Train Acc: 0.9352, Val Loss: 0.0446, Val Accuracy: 0.8577, Val F1: 0.8583, LR: 0.000098, Time: 68.96s
+2025-10-27 09:46:15,325 - INFO - Epoch 10/99
+2025-10-27 09:47:24,389 - INFO - Loss: 0.0149, Train Acc: 0.9390, Val Loss: 0.0356, Val Accuracy: 0.8882, Val F1: 0.8867, LR: 0.000098, Time: 69.06s
+2025-10-27 09:47:24,389 - INFO - Epoch 11/99
+2025-10-27 09:48:33,722 - INFO - Loss: 0.0127, Train Acc: 0.9457, Val Loss: 0.0368, Val Accuracy: 0.8679, Val F1: 0.8710, LR: 0.000098, Time: 69.33s
+2025-10-27 09:48:33,722 - INFO - 
+*** Early stopping triggered after 11 epochs (no improvement for 4 epochs) ***
+2025-10-27 09:48:33,722 - INFO - Best Val Accuracy for fold 2: 0.8869
+2025-10-27 09:48:33,722 - INFO - Best Val F1 for fold 2: 0.8877
+2025-10-27 09:48:33,722 - INFO - Best epoch: 7
+2025-10-27 09:48:33,722 - INFO - Early stopped: True
+2025-10-27 09:48:33,722 - INFO - Fold training time: 765.98s
+2025-10-27 09:48:34,671 - INFO - 
+--------------------------------
+2025-10-27 09:48:34,671 - INFO - FOLD 3/5
+2025-10-27 09:48:34,671 - INFO - --------------------------------
+2025-10-27 09:48:40,626 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 09:48:41,198 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 09:48:41,324 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 09:48:41,530 - INFO - Model compiled with torch.compile()
+2025-10-27 09:48:41,539 - INFO - Epoch 1/99
+2025-10-27 09:49:48,699 - INFO - Loss: 0.0860, Train Acc: 0.7145, Val Loss: 0.0505, Val Accuracy: 0.8119, Val F1: 0.8120, LR: 0.000100, Time: 67.16s
+2025-10-27 09:49:48,700 - INFO - Epoch 2/99
+2025-10-27 09:50:55,011 - INFO - Loss: 0.0419, Train Acc: 0.8542, Val Loss: 0.0392, Val Accuracy: 0.8856, Val F1: 0.8795, LR: 0.000100, Time: 66.31s
+2025-10-27 09:50:55,011 - INFO - Epoch 3/99
+2025-10-27 09:52:01,143 - INFO - Loss: 0.0307, Train Acc: 0.8854, Val Loss: 0.0400, Val Accuracy: 0.8666, Val F1: 0.8584, LR: 0.000100, Time: 66.13s
+2025-10-27 09:52:01,143 - INFO - Epoch 4/99
+2025-10-27 09:53:08,368 - INFO - Loss: 0.0266, Train Acc: 0.9006, Val Loss: 0.0286, Val Accuracy: 0.8983, Val F1: 0.8970, LR: 0.000100, Time: 67.22s
+2025-10-27 09:53:08,368 - INFO - Epoch 5/99
+2025-10-27 09:54:14,724 - INFO - Loss: 0.0265, Train Acc: 0.8914, Val Loss: 0.0463, Val Accuracy: 0.8653, Val F1: 0.8631, LR: 0.000100, Time: 66.36s
+2025-10-27 09:54:14,725 - INFO - Epoch 6/99
+2025-10-27 09:55:21,041 - INFO - Loss: 0.0258, Train Acc: 0.8955, Val Loss: 0.0387, Val Accuracy: 0.8869, Val F1: 0.8752, LR: 0.000099, Time: 66.32s
+2025-10-27 09:55:21,041 - INFO - Epoch 7/99
+2025-10-27 09:56:27,327 - INFO - Loss: 0.0202, Train Acc: 0.9219, Val Loss: 0.0345, Val Accuracy: 0.8818, Val F1: 0.8801, LR: 0.000099, Time: 66.29s
+2025-10-27 09:56:27,327 - INFO - Epoch 8/99
+2025-10-27 09:57:34,493 - INFO - Loss: 0.0158, Train Acc: 0.9352, Val Loss: 0.0330, Val Accuracy: 0.8958, Val F1: 0.8990, LR: 0.000099, Time: 67.17s
+2025-10-27 09:57:34,493 - INFO - Epoch 9/99
+2025-10-27 09:58:40,568 - INFO - Loss: 0.0140, Train Acc: 0.9374, Val Loss: 0.0424, Val Accuracy: 0.8653, Val F1: 0.8687, LR: 0.000098, Time: 66.08s
+2025-10-27 09:58:40,568 - INFO - Epoch 10/99
+2025-10-27 09:59:46,469 - INFO - Loss: 0.0120, Train Acc: 0.9508, Val Loss: 0.0612, Val Accuracy: 0.8247, Val F1: 0.8179, LR: 0.000098, Time: 65.90s
+2025-10-27 09:59:46,469 - INFO - Epoch 11/99
+2025-10-27 10:00:52,737 - INFO - Loss: 0.0222, Train Acc: 0.9149, Val Loss: 0.0414, Val Accuracy: 0.8691, Val F1: 0.8649, LR: 0.000098, Time: 66.27s
+2025-10-27 10:00:52,737 - INFO - Epoch 12/99
+2025-10-27 10:01:59,512 - INFO - Loss: 0.0122, Train Acc: 0.9546, Val Loss: 0.0424, Val Accuracy: 0.8628, Val F1: 0.8615, LR: 0.000097, Time: 66.78s
+2025-10-27 10:01:59,513 - INFO - 
+*** Early stopping triggered after 12 epochs (no improvement for 4 epochs) ***
+2025-10-27 10:01:59,513 - INFO - Best Val Accuracy for fold 3: 0.8958
+2025-10-27 10:01:59,513 - INFO - Best Val F1 for fold 3: 0.8990
+2025-10-27 10:01:59,513 - INFO - Best epoch: 8
+2025-10-27 10:01:59,513 - INFO - Early stopped: True
+2025-10-27 10:01:59,513 - INFO - Fold training time: 797.97s
+2025-10-27 10:02:00,435 - INFO - 
+--------------------------------
+2025-10-27 10:02:00,435 - INFO - FOLD 4/5
+2025-10-27 10:02:00,435 - INFO - --------------------------------
+2025-10-27 10:02:06,228 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 10:02:06,457 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 10:02:06,624 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 10:02:06,829 - INFO - Model compiled with torch.compile()
+2025-10-27 10:02:06,838 - INFO - Epoch 1/99
+2025-10-27 10:03:14,524 - INFO - Loss: 0.0831, Train Acc: 0.7348, Val Loss: 0.0378, Val Accuracy: 0.8729, Val F1: 0.8690, LR: 0.000100, Time: 67.69s
+2025-10-27 10:03:14,525 - INFO - Epoch 2/99
+2025-10-27 10:04:21,528 - INFO - Loss: 0.0436, Train Acc: 0.8415, Val Loss: 0.0361, Val Accuracy: 0.8729, Val F1: 0.8690, LR: 0.000100, Time: 67.00s
+2025-10-27 10:04:21,529 - INFO - Epoch 3/99
+2025-10-27 10:05:27,972 - INFO - Loss: 0.0319, Train Acc: 0.8809, Val Loss: 0.0436, Val Accuracy: 0.8691, Val F1: 0.8691, LR: 0.000100, Time: 66.44s
+2025-10-27 10:05:27,972 - INFO - Epoch 4/99
+2025-10-27 10:06:35,183 - INFO - Loss: 0.0272, Train Acc: 0.8933, Val Loss: 0.0296, Val Accuracy: 0.9085, Val F1: 0.9076, LR: 0.000100, Time: 67.21s
+2025-10-27 10:06:35,183 - INFO - Epoch 5/99
+2025-10-27 10:07:41,438 - INFO - Loss: 0.0212, Train Acc: 0.9168, Val Loss: 0.0285, Val Accuracy: 0.8882, Val F1: 0.8918, LR: 0.000100, Time: 66.26s
+2025-10-27 10:07:41,439 - INFO - Epoch 6/99
+2025-10-27 10:08:48,140 - INFO - Loss: 0.0275, Train Acc: 0.9012, Val Loss: 0.0240, Val Accuracy: 0.8971, Val F1: 0.8949, LR: 0.000099, Time: 66.70s
+2025-10-27 10:08:48,141 - INFO - Epoch 7/99
+2025-10-27 10:09:54,558 - INFO - Loss: 0.0171, Train Acc: 0.9279, Val Loss: 0.0274, Val Accuracy: 0.8958, Val F1: 0.8935, LR: 0.000099, Time: 66.42s
+2025-10-27 10:09:54,558 - INFO - Epoch 8/99
+2025-10-27 10:11:01,981 - INFO - Loss: 0.0136, Train Acc: 0.9409, Val Loss: 0.0394, Val Accuracy: 0.8818, Val F1: 0.8813, LR: 0.000099, Time: 67.42s
+2025-10-27 10:11:01,981 - INFO - 
+*** Early stopping triggered after 8 epochs (no improvement for 4 epochs) ***
+2025-10-27 10:11:01,981 - INFO - Best Val Accuracy for fold 4: 0.9085
+2025-10-27 10:11:01,981 - INFO - Best Val F1 for fold 4: 0.9076
+2025-10-27 10:11:01,981 - INFO - Best epoch: 4
+2025-10-27 10:11:01,981 - INFO - Early stopped: True
+2025-10-27 10:11:01,981 - INFO - Fold training time: 535.14s
+2025-10-27 10:11:02,872 - INFO - 
+--------------------------------
+2025-10-27 10:11:02,873 - INFO - FOLD 5/5
+2025-10-27 10:11:02,873 - INFO - --------------------------------
+2025-10-27 10:11:08,725 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 10:11:08,960 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 10:11:09,108 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 10:11:09,235 - INFO - Model compiled with torch.compile()
+2025-10-27 10:11:09,242 - INFO - Epoch 1/99
+2025-10-27 10:12:16,724 - INFO - Loss: 0.0798, Train Acc: 0.7332, Val Loss: 0.0637, Val Accuracy: 0.7637, Val F1: 0.7732, LR: 0.000100, Time: 67.48s
+2025-10-27 10:12:16,724 - INFO - Epoch 2/99
+2025-10-27 10:13:22,910 - INFO - Loss: 0.0415, Train Acc: 0.8546, Val Loss: 0.0467, Val Accuracy: 0.8437, Val F1: 0.8299, LR: 0.000100, Time: 66.19s
+2025-10-27 10:13:22,910 - INFO - Epoch 3/99
+2025-10-27 10:14:29,478 - INFO - Loss: 0.0320, Train Acc: 0.8863, Val Loss: 0.0393, Val Accuracy: 0.8717, Val F1: 0.8649, LR: 0.000100, Time: 66.57s
+2025-10-27 10:14:29,478 - INFO - Epoch 4/99
+2025-10-27 10:15:36,663 - INFO - Loss: 0.0259, Train Acc: 0.8968, Val Loss: 0.0425, Val Accuracy: 0.8755, Val F1: 0.8578, LR: 0.000100, Time: 67.18s
+2025-10-27 10:15:36,663 - INFO - Epoch 5/99
+2025-10-27 10:16:42,807 - INFO - Loss: 0.0193, Train Acc: 0.9244, Val Loss: 0.0348, Val Accuracy: 0.8907, Val F1: 0.8886, LR: 0.000100, Time: 66.14s
+2025-10-27 10:16:42,807 - INFO - Epoch 6/99
+2025-10-27 10:17:49,234 - INFO - Loss: 0.0183, Train Acc: 0.9263, Val Loss: 0.0446, Val Accuracy: 0.8691, Val F1: 0.8641, LR: 0.000099, Time: 66.43s
+2025-10-27 10:17:49,234 - INFO - Epoch 7/99
+2025-10-27 10:18:55,490 - INFO - Loss: 0.0199, Train Acc: 0.9174, Val Loss: 0.0292, Val Accuracy: 0.8945, Val F1: 0.8928, LR: 0.000099, Time: 66.26s
+2025-10-27 10:18:55,490 - INFO - Epoch 8/99
+2025-10-27 10:20:02,691 - INFO - Loss: 0.0143, Train Acc: 0.9339, Val Loss: 0.0336, Val Accuracy: 0.8895, Val F1: 0.8897, LR: 0.000099, Time: 67.20s
+2025-10-27 10:20:02,691 - INFO - Epoch 9/99
+2025-10-27 10:21:09,015 - INFO - Loss: 0.0092, Train Acc: 0.9600, Val Loss: 0.0470, Val Accuracy: 0.8691, Val F1: 0.8661, LR: 0.000098, Time: 66.32s
+2025-10-27 10:21:09,015 - INFO - Epoch 10/99
+2025-10-27 10:22:14,924 - INFO - Loss: 0.0105, Train Acc: 0.9540, Val Loss: 0.0349, Val Accuracy: 0.8920, Val F1: 0.8891, LR: 0.000098, Time: 65.91s
+2025-10-27 10:22:14,924 - INFO - Epoch 11/99
+2025-10-27 10:23:20,983 - INFO - Loss: 0.0080, Train Acc: 0.9654, Val Loss: 0.0449, Val Accuracy: 0.8907, Val F1: 0.8875, LR: 0.000098, Time: 66.06s
+2025-10-27 10:23:20,983 - INFO - 
+*** Early stopping triggered after 11 epochs (no improvement for 4 epochs) ***
+2025-10-27 10:23:20,983 - INFO - Best Val Accuracy for fold 5: 0.8945
+2025-10-27 10:23:20,983 - INFO - Best Val F1 for fold 5: 0.8928
+2025-10-27 10:23:20,983 - INFO - Best epoch: 7
+2025-10-27 10:23:20,983 - INFO - Early stopped: True
+2025-10-27 10:23:20,983 - INFO - Fold training time: 731.74s
+2025-10-27 10:23:21,911 - INFO - 
+Fold Training Results:
+2025-10-27 10:23:21,911 - INFO -    fold  best_epoch  best_val_acc  best_val_f1  early_stopped  training_time
+0     1           6      0.907360     0.905659           True     912.478683
+1     2           7      0.886912     0.887735           True     765.975375
+2     3           8      0.895807     0.899005           True     797.974109
+3     4           4      0.908513     0.907649           True     535.143066
+4     5           7      0.894536     0.892832           True     731.741433
+2025-10-27 10:23:21,918 - INFO - 
+K-Fold Cross-Validation Summary (5 folds):
+2025-10-27 10:23:21,918 - INFO - Average Best Validation Accuracy: 0.8986 ± 0.0092
+2025-10-27 10:23:21,918 - INFO - Average Best Validation F1: 0.8986 ± 0.0084
+2025-10-27 10:23:21,918 - INFO - Average Best Epoch: 6.4 ± 1.5
+2025-10-27 10:23:21,919 - INFO - Average Training Time: 748.66s ± 137.34s
+2025-10-27 10:23:21,919 - INFO - Early Stopping Rate: 5/5 folds (100.0%)
+2025-10-27 10:23:21,920 - INFO - 
+K-Fold validation completed successfully!
+2025-10-27 10:23:21,920 - INFO - Results saved to:
+2025-10-27 10:23:21,920 - INFO -   - fold_training_results.csv (detailed results per fold)
+2025-10-27 10:23:21,920 - INFO -   - kfold_summary.csv (overall summary)
