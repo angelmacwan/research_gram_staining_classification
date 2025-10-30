@@ -239,6 +239,8 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
 
     best_acc = 0.0
     best_f1 = 0.0
+    best_precision = 0.0
+    best_recall = 0.0
     best_epoch = 0
     epochs_without_improvement = 0
     early_stopped = False
@@ -312,15 +314,19 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
 
         val_acc = correct / total
         val_f1 = f1_score(all_labels, all_preds, average='weighted')
+        val_precision = precision_score(all_labels, all_preds, average='weighted')
+        val_recall = recall_score(all_labels, all_preds, average='weighted')
         val_loss_avg = val_loss/len(val_loader)
         
         epoch_time = time.time() - epoch_start_time
-        logger.info(f'Loss: {avg_loss:.4f}, Train Acc: {train_acc:.4f}, Val Loss: {val_loss_avg:.4f}, Val Accuracy: {val_acc:.4f}, Val F1: {val_f1:.4f}, LR: {current_lr:.6f}, Time: {epoch_time:.2f}s')
+        logger.info(f'Loss: {avg_loss:.4f}, Train Acc: {train_acc:.4f}, Val Loss: {val_loss_avg:.4f}, Val Accuracy: {val_acc:.4f}, Val Precision: {val_precision:.4f}, Val Recall: {val_recall:.4f}, Val F1: {val_f1:.4f}, LR: {current_lr:.6f}, Time: {epoch_time:.2f}s')
 
         # Check for improvement
         if val_f1 > best_f1 + early_stop_min_delta:
             best_acc = val_acc
             best_f1 = val_f1
+            best_precision = val_precision
+            best_recall = val_recall
             best_epoch = epoch + 1
             epochs_without_improvement = 0
         else:
@@ -342,6 +348,8 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
     fold_time = time.time() - fold_start_time
     
     logger.info(f'Best Val Accuracy for fold {fold+1}: {best_acc:.4f}')
+    logger.info(f'Best Val Precision for fold {fold+1}: {best_precision:.4f}')
+    logger.info(f'Best Val Recall for fold {fold+1}: {best_recall:.4f}')
     logger.info(f'Best Val F1 for fold {fold+1}: {best_f1:.4f}')
     logger.info(f'Best epoch: {best_epoch}')
     logger.info(f'Early stopped: {early_stopped}')
@@ -350,8 +358,10 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
     fold_results.append({
         'fold': fold+1,
         'best_epoch': best_epoch,
-        'best_val_acc': best_acc,
-        'best_val_f1': best_f1,
+        'test_accuracy': best_acc,
+        'test_precision': best_precision,
+        'test_recall': best_recall,
+        'test_f1': best_f1,
         'early_stopped': early_stopped,
         'training_time': fold_time
     })
@@ -364,14 +374,16 @@ for fold, (train_idx, val_idx) in enumerate(kfold.split(dataset, dataset.targets
 
 # Save fold training results
 fold_df = pd.DataFrame(fold_results)
-fold_df.to_csv('fold_training_results.csv', index=False)
+fold_df.to_csv('LOGS/03_kfold_training_results.csv', index=False)
 logger.info("\nFold Training Results:")
 logger.info(fold_df)
 
 # Calculate and print overall K-fold results
 logger.info(f"\nK-Fold Cross-Validation Summary ({k_folds} folds):")
-logger.info(f"Average Best Validation Accuracy: {fold_df['best_val_acc'].mean():.4f} ± {fold_df['best_val_acc'].std():.4f}")
-logger.info(f"Average Best Validation F1: {fold_df['best_val_f1'].mean():.4f} ± {fold_df['best_val_f1'].std():.4f}")
+logger.info(f"Average Best Validation Accuracy: {fold_df['test_accuracy'].mean():.4f} ± {fold_df['test_accuracy'].std():.4f}")
+logger.info(f"Average Best Validation Precision: {fold_df['test_precision'].mean():.4f} ± {fold_df['test_precision'].std():.4f}")
+logger.info(f"Average Best Validation Recall: {fold_df['test_recall'].mean():.4f} ± {fold_df['test_recall'].std():.4f}")
+logger.info(f"Average Best Validation F1: {fold_df['test_f1'].mean():.4f} ± {fold_df['test_f1'].std():.4f}")
 logger.info(f"Average Best Epoch: {fold_df['best_epoch'].mean():.1f} ± {fold_df['best_epoch'].std():.1f}")
 logger.info(f"Average Training Time: {fold_df['training_time'].mean():.2f}s ± {fold_df['training_time'].std():.2f}s")
 logger.info(f"Early Stopping Rate: {fold_df['early_stopped'].sum()}/{k_folds} folds ({100*fold_df['early_stopped'].mean():.1f}%)")
@@ -380,10 +392,14 @@ logger.info(f"Early Stopping Rate: {fold_df['early_stopped'].sum()}/{k_folds} fo
 summary_stats = {
     'k_folds': k_folds,
     'model_name': model_name,
-    'avg_val_accuracy': fold_df['best_val_acc'].mean(),
-    'std_val_accuracy': fold_df['best_val_acc'].std(),
-    'avg_val_f1': fold_df['best_val_f1'].mean(),
-    'std_val_f1': fold_df['best_val_f1'].std(),
+    'avg_test_accuracy': fold_df['test_accuracy'].mean(),
+    'std_test_accuracy': fold_df['test_accuracy'].std(),
+    'avg_test_precision': fold_df['test_precision'].mean(),
+    'std_test_precision': fold_df['test_precision'].std(),
+    'avg_test_recall': fold_df['test_recall'].mean(),
+    'std_test_recall': fold_df['test_recall'].std(),
+    'avg_test_f1': fold_df['test_f1'].mean(),
+    'std_test_f1': fold_df['test_f1'].std(),
     'avg_best_epoch': fold_df['best_epoch'].mean(),
     'avg_training_time': fold_df['training_time'].mean(),
     'early_stopping_rate': fold_df['early_stopped'].mean(),
@@ -392,11 +408,11 @@ summary_stats = {
 
 # Save final summary
 summary_df = pd.DataFrame([summary_stats])
-summary_df.to_csv('kfold_summary.csv', index=False)
-logger.info("\nK-Fold validation completed successfully!")
+summary_df.to_csv('LOGS/03_kfold_summary.csv', index=False)
+logger.info("K-Fold validation completed successfully!")
 logger.info("Results saved to:")
-logger.info("  - fold_training_results.csv (detailed results per fold)")
-logger.info("  - kfold_summary.csv (overall summary)")
+logger.info("  - LOGS/03_kfold_training_results.csv (detailed results per fold)")
+logger.info("  - LOGS/03_kfold_summary.csv (overall summary)")
 
 # Clean up any remaining memory
 if DEVICE == 'cuda':

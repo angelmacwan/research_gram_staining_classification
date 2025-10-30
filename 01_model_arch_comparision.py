@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-from sklearn.metrics import accuracy_score, f1_score, precision_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 import numpy as np
 import pandas as pd
 from torch.amp import autocast, GradScaler
@@ -228,6 +228,7 @@ def train_and_eval(model_name):
     best_f1 = 0.0
     best_accuracy = 0.0
     best_precision = 0.0
+    best_recall = 0.0
     best_epoch = 0
     
     # Early stopping variables
@@ -291,14 +292,16 @@ def train_and_eval(model_name):
         test_acc = accuracy_score(y_true, y_pred)
         test_f1 = f1_score(y_true, y_pred, average="macro")
         test_precision = precision_score(y_true, y_pred, average="macro")
+        test_recall = recall_score(y_true, y_pred, average="macro")
         
-        logger.info(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
+        logger.info(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, Recall: {test_recall:.4f}, F1: {test_f1:.4f}")
         
         # Track best F1 score
         if test_f1 > best_f1 + early_stop_min_delta:
             best_f1 = test_f1
             best_accuracy = test_acc
             best_precision = test_precision
+            best_recall = test_recall
             best_epoch = epoch + 1
             epochs_without_improvement = 0
             logger.info(f"*** New best F1 score: {best_f1:.4f} at epoch {best_epoch} ***")
@@ -322,12 +325,12 @@ def train_and_eval(model_name):
 
     # Save the best metrics
     if early_stopped:
-        logger.info(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.info(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, Recall: {best_recall:.4f}, F1: {best_f1:.4f}\n")
     else:
-        logger.info(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.info(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, Recall: {best_recall:.4f}, F1: {best_f1:.4f}\n")
     
     model_stats.append(
-        {"model_name": model_name, "best_epoch": best_epoch, "accuracy": best_accuracy, "precision": best_precision, "f1": best_f1, "early_stopped": early_stopped}
+        {"model_name": model_name, "best_epoch": best_epoch, "test_accuracy": best_accuracy, "test_precision": best_precision, "test_recall": best_recall, "test_f1": best_f1, "early_stopped": early_stopped}
     )
     
     # Clean up memory
@@ -347,7 +350,8 @@ for i in range(len(model_names)):
 
 # Save to CSV
 df = pd.DataFrame(model_stats)
-df.to_csv("model_comparision_results.csv", index=False)
+csv_filename = "LOGS/01_model_comparision_results.csv"
+df.to_csv(csv_filename, index=False)
 
 logger.info("TRAINING COMPLETED")
 

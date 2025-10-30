@@ -558,6 +558,22 @@ training_summary_file = os.path.join(model_results_dir, f"{model_name}_training_
 with open(training_summary_file, 'w') as f:
     json.dump(training_summary, f, indent=2)
 
+# Save standardized summary CSV (consistent with other scripts)
+standardized_summary = {
+    'model_name': model_name,
+    'best_epoch': best_epoch,
+    'test_accuracy': comprehensive_metrics['overall_metrics']['accuracy'],
+    'test_precision': comprehensive_metrics['overall_metrics']['precision_weighted'],
+    'test_recall': comprehensive_metrics['overall_metrics']['recall_weighted'],
+    'test_f1': comprehensive_metrics['overall_metrics']['f1_weighted'],
+    'training_time': total_training_time,
+    'early_stopped': early_stopped
+}
+
+standardized_summary_df = pd.DataFrame([standardized_summary])
+standardized_summary_csv = "LOGS/04_final_model_results.csv"
+standardized_summary_df.to_csv(standardized_summary_csv, index=False)
+
 logger.info(f"\n" + "="*80)
 logger.info("RESULTS SAVED")
 logger.info("="*80)
@@ -567,7 +583,8 @@ logger.info(f"2. Overall metrics (CSV): {overall_csv}")
 logger.info(f"3. Per-class metrics (CSV): {per_class_csv}")
 logger.info(f"4. Confusion matrix (CSV): {conf_matrix_csv}")
 logger.info(f"5. Training summary (JSON): {training_summary_file}")
-logger.info(f"6. Best model: {model_name}_best.pth")
+logger.info(f"6. Standardized summary (CSV): {standardized_summary_csv}")
+logger.info(f"7. Best model: {model_name}_best.pth")
 
 # Clean up memory
 if device.type == 'cuda':
