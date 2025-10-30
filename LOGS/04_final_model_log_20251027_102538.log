@@ -1,0 +1,155 @@
+2025-10-27 10:25:38,995 - INFO - Using device: cuda
+2025-10-27 10:25:39,030 - INFO - Multi-GPU training: False
+2025-10-27 10:25:44,625 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 10:25:45,117 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 10:25:45,312 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 10:25:46,294 - INFO - 
+============================================================
+2025-10-27 10:25:46,294 - INFO - VRAM Analysis:
+2025-10-27 10:25:46,294 - INFO -   Total VRAM: 94.98 GB
+2025-10-27 10:25:46,294 - INFO -   Used for batch=1: 4.33 GB
+2025-10-27 10:25:46,294 - INFO -   Memory per image: 4.326 GB
+2025-10-27 10:25:46,294 - INFO -   Available (with 88% safety): 83.58 GB
+2025-10-27 10:25:46,294 - INFO -   Calculated optimal batch size: 19
+2025-10-27 10:25:46,294 - INFO - ============================================================
+
+2025-10-27 10:25:46,411 - INFO - USING MODEL ARCHITECTURE volo_d5_512
+2025-10-27 10:25:46,411 - INFO - INPUT SHAPE = (3, 512, 512)
+2025-10-27 10:25:46,411 - INFO -        MEAN = (0.485, 0.456, 0.406)
+2025-10-27 10:25:46,411 - INFO -         STD = (0.229, 0.224, 0.225)
+2025-10-27 10:25:46,411 - INFO -  BATCH SIZE = 19
+2025-10-27 10:25:46,419 - INFO - TRAIN SET CLASS MAPPING
+2025-10-27 10:25:46,419 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 10:25:46,419 - INFO - TEST SET CLASS MAPPING
+2025-10-27 10:25:46,419 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 10:25:51,526 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 10:25:51,606 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 10:25:51,816 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 10:25:53,063 - INFO - Model compiled with torch.compile()
+2025-10-27 10:25:53,064 - INFO - Epoch 1/99
+2025-10-27 10:27:27,129 - INFO - Loss: 0.0948, Train Acc: 0.6921, Val Loss: 0.0862, Val Accuracy: 0.7000, Val F1: 0.6888, LR: 0.000100, Time: 94.06s
+2025-10-27 10:27:27,936 - INFO - *** New best model saved! F1: 0.6888 ***
+2025-10-27 10:27:27,936 - INFO - Epoch 2/99
+2025-10-27 10:28:43,878 - INFO - Loss: 0.0552, Train Acc: 0.8171, Val Loss: 0.0789, Val Accuracy: 0.7583, Val F1: 0.7421, LR: 0.000100, Time: 75.94s
+2025-10-27 10:28:44,987 - INFO - *** New best model saved! F1: 0.7421 ***
+2025-10-27 10:28:44,987 - INFO - Epoch 3/99
+2025-10-27 10:30:00,958 - INFO - Loss: 0.0452, Train Acc: 0.8293, Val Loss: 0.0395, Val Accuracy: 0.8333, Val F1: 0.8318, LR: 0.000100, Time: 75.97s
+2025-10-27 10:30:02,135 - INFO - *** New best model saved! F1: 0.8318 ***
+2025-10-27 10:30:02,136 - INFO - Epoch 4/99
+2025-10-27 10:31:18,233 - INFO - Loss: 0.0411, Train Acc: 0.8511, Val Loss: 0.0417, Val Accuracy: 0.8333, Val F1: 0.8327, LR: 0.000100, Time: 76.10s
+2025-10-27 10:31:18,234 - INFO - Epoch 5/99
+2025-10-27 10:32:33,784 - INFO - Loss: 0.0354, Train Acc: 0.8725, Val Loss: 0.0496, Val Accuracy: 0.7750, Val F1: 0.7726, LR: 0.000100, Time: 75.55s
+2025-10-27 10:32:33,784 - INFO - Epoch 6/99
+2025-10-27 10:33:49,727 - INFO - Loss: 0.0373, Train Acc: 0.8595, Val Loss: 0.0548, Val Accuracy: 0.7583, Val F1: 0.7586, LR: 0.000099, Time: 75.94s
+2025-10-27 10:33:49,727 - INFO - Epoch 7/99
+2025-10-27 10:35:05,640 - INFO - Loss: 0.0353, Train Acc: 0.8681, Val Loss: 0.0471, Val Accuracy: 0.8583, Val F1: 0.8584, LR: 0.000099, Time: 75.91s
+2025-10-27 10:35:06,749 - INFO - *** New best model saved! F1: 0.8584 ***
+2025-10-27 10:35:06,749 - INFO - Epoch 8/99
+2025-10-27 10:36:22,752 - INFO - Loss: 0.0310, Train Acc: 0.8824, Val Loss: 0.0760, Val Accuracy: 0.8000, Val F1: 0.7921, LR: 0.000099, Time: 76.00s
+2025-10-27 10:36:22,752 - INFO - Epoch 9/99
+2025-10-27 10:37:38,458 - INFO - Loss: 0.0312, Train Acc: 0.8796, Val Loss: 0.0499, Val Accuracy: 0.8333, Val F1: 0.8347, LR: 0.000098, Time: 75.71s
+2025-10-27 10:37:38,458 - INFO - Epoch 10/99
+2025-10-27 10:38:54,278 - INFO - Loss: 0.0277, Train Acc: 0.8948, Val Loss: 0.0335, Val Accuracy: 0.8250, Val F1: 0.8237, LR: 0.000098, Time: 75.82s
+2025-10-27 10:38:54,278 - INFO - Epoch 11/99
+2025-10-27 10:40:10,383 - INFO - Loss: 0.0252, Train Acc: 0.9002, Val Loss: 0.0711, Val Accuracy: 0.7500, Val F1: 0.7448, LR: 0.000098, Time: 76.11s
+2025-10-27 10:40:10,384 - INFO - Epoch 12/99
+2025-10-27 10:41:26,053 - INFO - Loss: 0.0270, Train Acc: 0.8935, Val Loss: 0.0457, Val Accuracy: 0.8833, Val F1: 0.8850, LR: 0.000097, Time: 75.67s
+2025-10-27 10:41:27,208 - INFO - *** New best model saved! F1: 0.8850 ***
+2025-10-27 10:41:27,208 - INFO - Epoch 13/99
+2025-10-27 10:42:43,089 - INFO - Loss: 0.0233, Train Acc: 0.9055, Val Loss: 0.0361, Val Accuracy: 0.8917, Val F1: 0.8913, LR: 0.000096, Time: 75.88s
+2025-10-27 10:42:44,230 - INFO - *** New best model saved! F1: 0.8913 ***
+2025-10-27 10:42:44,231 - INFO - Epoch 14/99
+2025-10-27 10:44:00,076 - INFO - Loss: 0.0217, Train Acc: 0.9083, Val Loss: 0.0503, Val Accuracy: 0.8333, Val F1: 0.8297, LR: 0.000096, Time: 75.85s
+2025-10-27 10:44:00,077 - INFO - Epoch 15/99
+2025-10-27 10:45:15,949 - INFO - Loss: 0.0213, Train Acc: 0.9113, Val Loss: 0.0435, Val Accuracy: 0.8750, Val F1: 0.8729, LR: 0.000095, Time: 75.87s
+2025-10-27 10:45:15,949 - INFO - Epoch 16/99
+2025-10-27 10:46:31,683 - INFO - Loss: 0.0197, Train Acc: 0.9182, Val Loss: 0.0935, Val Accuracy: 0.7083, Val F1: 0.6790, LR: 0.000094, Time: 75.73s
+2025-10-27 10:46:31,683 - INFO - Epoch 17/99
+2025-10-27 10:47:47,635 - INFO - Loss: 0.0180, Train Acc: 0.9245, Val Loss: 0.0532, Val Accuracy: 0.8667, Val F1: 0.8673, LR: 0.000094, Time: 75.95s
+2025-10-27 10:47:47,636 - INFO - Epoch 18/99
+2025-10-27 10:49:03,637 - INFO - Loss: 0.0172, Train Acc: 0.9263, Val Loss: 0.0754, Val Accuracy: 0.8167, Val F1: 0.8067, LR: 0.000093, Time: 76.00s
+2025-10-27 10:49:03,638 - INFO - 
+*** Early stopping triggered after 18 epochs (no improvement for 5 epochs) ***
+2025-10-27 10:49:03,638 - INFO - 
+Training completed!
+2025-10-27 10:49:03,638 - INFO - Best Validation Accuracy: 0.8917
+2025-10-27 10:49:03,638 - INFO - Best Validation F1: 0.8913
+2025-10-27 10:49:03,638 - INFO - Best epoch: 13
+2025-10-27 10:49:03,638 - INFO - Early stopped: True
+2025-10-27 10:49:03,638 - INFO - Total training time: 1390.57s
+2025-10-27 10:49:03,879 - INFO - 
+Loaded best model for final evaluation...
+2025-10-27 10:49:05,603 - INFO - 
+Final Test Results:
+2025-10-27 10:49:05,607 - INFO -               precision    recall  f1-score   support
+
+         GNB       0.93      0.90      0.92        30
+         GNC       1.00      0.77      0.87        30
+         GPB       0.88      0.97      0.92        30
+         GPC       0.80      0.93      0.86        30
+
+    accuracy                           0.89       120
+   macro avg       0.90      0.89      0.89       120
+weighted avg       0.90      0.89      0.89       120
+
+2025-10-27 10:49:05,616 - INFO - 
+================================================================================
+2025-10-27 10:49:05,616 - INFO - COMPREHENSIVE EVALUATION METRICS
+2025-10-27 10:49:05,616 - INFO - ================================================================================
+2025-10-27 10:49:05,616 - INFO - 
+OVERALL METRICS:
+2025-10-27 10:49:05,616 - INFO -   Accuracy: 0.8917
+2025-10-27 10:49:05,616 - INFO -   F1 Score (Weighted): 0.8913
+2025-10-27 10:49:05,616 - INFO -   F1 Score (Macro): 0.8913
+2025-10-27 10:49:05,616 - INFO -   Precision (Weighted): 0.9025
+2025-10-27 10:49:05,616 - INFO -   Precision (Macro): 0.9025
+2025-10-27 10:49:05,616 - INFO -   Recall (Weighted): 0.8917
+2025-10-27 10:49:05,616 - INFO -   Recall (Macro): 0.8917
+2025-10-27 10:49:05,616 - INFO - 
+PER-CLASS METRICS:
+2025-10-27 10:49:05,616 - INFO -   GNB:
+2025-10-27 10:49:05,616 - INFO -     F1 Score: 0.9153
+2025-10-27 10:49:05,616 - INFO -     Precision: 0.9310
+2025-10-27 10:49:05,616 - INFO -     Recall: 0.9000
+2025-10-27 10:49:05,616 - INFO -     Sensitivity: 0.9000
+2025-10-27 10:49:05,616 - INFO -     Specificity: 0.9778
+2025-10-27 10:49:05,616 - INFO -   GNC:
+2025-10-27 10:49:05,616 - INFO -     F1 Score: 0.8679
+2025-10-27 10:49:05,616 - INFO -     Precision: 1.0000
+2025-10-27 10:49:05,616 - INFO -     Recall: 0.7667
+2025-10-27 10:49:05,616 - INFO -     Sensitivity: 0.7667
+2025-10-27 10:49:05,616 - INFO -     Specificity: 1.0000
+2025-10-27 10:49:05,616 - INFO -   GPB:
+2025-10-27 10:49:05,617 - INFO -     F1 Score: 0.9206
+2025-10-27 10:49:05,617 - INFO -     Precision: 0.8788
+2025-10-27 10:49:05,617 - INFO -     Recall: 0.9667
+2025-10-27 10:49:05,617 - INFO -     Sensitivity: 0.9667
+2025-10-27 10:49:05,617 - INFO -     Specificity: 0.9556
+2025-10-27 10:49:05,617 - INFO -   GPC:
+2025-10-27 10:49:05,617 - INFO -     F1 Score: 0.8615
+2025-10-27 10:49:05,617 - INFO -     Precision: 0.8000
+2025-10-27 10:49:05,617 - INFO -     Recall: 0.9333
+2025-10-27 10:49:05,617 - INFO -     Sensitivity: 0.9333
+2025-10-27 10:49:05,617 - INFO -     Specificity: 0.9222
+2025-10-27 10:49:05,617 - INFO - 
+CONFUSION MATRIX:
+2025-10-27 10:49:05,618 - INFO - [[27  0  2  1]
+ [ 2 23  0  5]
+ [ 0  0 29  1]
+ [ 0  0  2 28]]
+2025-10-27 10:49:05,623 - INFO - 
+================================================================================
+2025-10-27 10:49:05,623 - INFO - RESULTS SAVED
+2025-10-27 10:49:05,623 - INFO - ================================================================================
+2025-10-27 10:49:05,623 - INFO - Results directory: volo_d5_512_results_20251027_104905
+2025-10-27 10:49:05,624 - INFO - 1. Comprehensive metrics (JSON): volo_d5_512_results_20251027_104905/volo_d5_512_comprehensive_metrics.json
+2025-10-27 10:49:05,624 - INFO - 2. Overall metrics (CSV): volo_d5_512_results_20251027_104905/volo_d5_512_overall_metrics.csv
+2025-10-27 10:49:05,624 - INFO - 3. Per-class metrics (CSV): volo_d5_512_results_20251027_104905/volo_d5_512_per_class_metrics.csv
+2025-10-27 10:49:05,624 - INFO - 4. Confusion matrix (CSV): volo_d5_512_results_20251027_104905/volo_d5_512_confusion_matrix.csv
+2025-10-27 10:49:05,624 - INFO - 5. Training summary (JSON): volo_d5_512_results_20251027_104905/volo_d5_512_training_summary.json
+2025-10-27 10:49:05,624 - INFO - 6. Best model: volo_d5_512_best.pth
+2025-10-27 10:49:06,018 - INFO - 
+Training completed successfully!
+2025-10-27 10:49:06,019 - INFO - Best model saved as: volo_d5_512_best.pth
+2025-10-27 10:49:06,019 - INFO - All evaluation metrics saved in: volo_d5_512_results_20251027_104905
+2025-10-27 10:49:06,019 - INFO - ================================================================================

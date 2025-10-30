@@ -16,7 +16,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-from sklearn.metrics import accuracy_score, f1_score, precision_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from datetime import datetime
 import logging
 
@@ -132,7 +132,7 @@ def find_optimal_batch_size(model, input_shape, device, start_batch=1, safety_fa
             logger.info(f"  Calculated optimal batch size: {optimal_batch}")
             logger.info(f"{'='*60}\n")
     except RuntimeError as e:
-        logger.error(f"Error during memory test: {e}")
+        logger.info(f"Error during memory test: {e}")
         optimal_batch = 1
         
     finally:
@@ -248,6 +248,7 @@ def train_and_eval(model_name):
     best_f1 = 0.0
     best_accuracy = 0.0
     best_precision = 0.0
+    best_recall = 0.0
     best_epoch = 0
     
     # Early stopping variables
@@ -300,14 +301,16 @@ def train_and_eval(model_name):
         test_acc = accuracy_score(y_true_epoch, y_pred_epoch)
         test_f1 = f1_score(y_true_epoch, y_pred_epoch, average="macro")
         test_precision = precision_score(y_true_epoch, y_pred_epoch, average="macro")
+        test_recall = recall_score(y_true_epoch, y_pred_epoch, average="macro")
         
-        logger.debug(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, F1: {test_f1:.4f}")
+        logger.info(f"Test Metrics - Accuracy: {test_acc:.4f}, Precision: {test_precision:.4f}, Recall: {test_recall:.4f}, F1: {test_f1:.4f}")
         
         # Track best F1 score
         if test_f1 > best_f1 + early_stop_min_delta:
             best_f1 = test_f1
             best_accuracy = test_acc
             best_precision = test_precision
+            best_recall = test_recall
             best_epoch = epoch + 1
             epochs_without_improvement = 0
         else:
@@ -315,7 +318,7 @@ def train_and_eval(model_name):
         
         # Check early stopping condition
         if use_early_stopping and epochs_without_improvement >= early_stop_patience:
-            logger.warning(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
+            logger.info(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
             early_stopped = True
             break
 
@@ -337,12 +340,12 @@ def train_and_eval(model_name):
 
     # Save the best metrics
     if early_stopped:
-        logger.warning(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.info(f"Training stopped early. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, Recall: {best_recall:.4f}, F1: {best_f1:.4f}\n")
     else:
-        logger.info(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, F1: {best_f1:.4f}\n")
+        logger.info(f"Training completed all epochs. Best Results - Epoch: {best_epoch}, Accuracy: {best_accuracy:.4f}, Precision: {best_precision:.4f}, Recall: {best_recall:.4f}, F1: {best_f1:.4f}\n")
 
     model_stats.append(
-        {"model_name": model_name, "best_epoch": best_epoch, "accuracy": best_accuracy, "precision": best_precision, "f1": best_f1, "training_time": training_time, "avg_time_per_epoch": avg_time_per_epoch, "early_stopped": early_stopped}
+        {"model_name": model_name, "best_epoch": best_epoch, "test_accuracy": best_accuracy, "test_precision": best_precision, "test_recall": best_recall, "test_f1": best_f1, "training_time": training_time, "avg_time_per_epoch": avg_time_per_epoch, "early_stopped": early_stopped}
     )
 
     # Clean up memory
@@ -357,15 +360,15 @@ for m in model_list:
     train_and_eval(m)
 
 # print output
-logger.info("\n\n\nmodel_name, best_epoch, accuracy, precision, f1, training_time, avg_time_per_epoch, early_stopped")
+logger.info("\n\n\nmodel_name, best_epoch, test_accuracy, test_precision, test_recall, test_f1, training_time, avg_time_per_epoch, early_stopped")
 for i in model_stats:
     logger.info(
-        f"{i['model_name']}, {i['best_epoch']}, {i['accuracy']:.4f}, {i['precision']:.4f}, {i['f1']:.4f}, {i['training_time']:.2f}s, {i['avg_time_per_epoch']:.2f}s, {i['early_stopped']}"
+        f"{i['model_name']}, {i['best_epoch']}, {i['test_accuracy']:.4f}, {i['test_precision']:.4f}, {i['test_recall']:.4f}, {i['test_f1']:.4f}, {i['training_time']:.2f}s, {i['avg_time_per_epoch']:.2f}s, {i['early_stopped']}"
     )
 
 
 # save to CSV
 df = pd.DataFrame(model_stats)
-csv_file = f"02_model_selection.csv"
+csv_file = "LOGS/02_model_selection.csv"
 df.to_csv(csv_file, index=False)
 

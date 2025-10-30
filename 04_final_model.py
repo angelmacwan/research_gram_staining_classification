@@ -43,7 +43,7 @@ logger.info(f"Using device: {device}")
 
 
 # -------------------- CONFIG --------------------
-model_name = 'volo_d3_448'
+model_name = 'volo_d5_512'
 
 # DATA SET PATHS
 train_data_dir = "./TRAIN"
@@ -196,7 +196,7 @@ def find_optimal_batch_size(model, input_shape, device, start_batch=1, safety_fa
             logger.info(f"  Calculated optimal batch size: {optimal_batch}")
             logger.info(f"{'='*60}\n")
     except RuntimeError as e:
-        logger.error(f"Error during memory test: {e}")
+        logger.info(f"Error during memory test: {e}")
         optimal_batch = 1
         
     finally:
@@ -402,7 +402,7 @@ for epoch in range(epochs):
     val_loss_avg = val_loss/len(test_loader)
     
     epoch_time = time.time() - epoch_start_time
-    logger.debug(f'Loss: {avg_loss:.4f}, Train Acc: {train_acc:.4f}, Val Loss: {val_loss_avg:.4f}, Val Accuracy: {val_acc:.4f}, Val F1: {val_f1:.4f}, LR: {current_lr:.6f}, Time: {epoch_time:.2f}s')
+    logger.info(f'Loss: {avg_loss:.4f}, Train Acc: {train_acc:.4f}, Val Loss: {val_loss_avg:.4f}, Val Accuracy: {val_acc:.4f}, Val F1: {val_f1:.4f}, LR: {current_lr:.6f}, Time: {epoch_time:.2f}s')
 
     # Check for improvement and save best model
     if val_f1 > best_f1 + early_stop_min_delta:
@@ -416,13 +416,13 @@ for epoch in range(epochs):
             torch.save(model.module.state_dict(), f'{model_name}_best.pth')
         else:
             torch.save(model.state_dict(), f'{model_name}_best.pth')
-        logger.warning(f"*** New best model saved! F1: {best_f1:.4f} ***")
+        logger.info(f"*** New best model saved! F1: {best_f1:.4f} ***")
     else:
         epochs_without_improvement += 1
 
     # Check early stopping condition
     if use_early_stopping and epochs_without_improvement >= early_stop_patience:
-        logger.warning(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
+        logger.info(f"\n*** Early stopping triggered after {epoch + 1} epochs (no improvement for {early_stop_patience} epochs) ***")
         early_stopped = True
         break
 
@@ -558,6 +558,22 @@ training_summary_file = os.path.join(model_results_dir, f"{model_name}_training_
 with open(training_summary_file, 'w') as f:
     json.dump(training_summary, f, indent=2)
 
+# Save standardized summary CSV (consistent with other scripts)
+standardized_summary = {
+    'model_name': model_name,
+    'best_epoch': best_epoch,
+    'test_accuracy': comprehensive_metrics['overall_metrics']['accuracy'],
+    'test_precision': comprehensive_metrics['overall_metrics']['precision_weighted'],
+    'test_recall': comprehensive_metrics['overall_metrics']['recall_weighted'],
+    'test_f1': comprehensive_metrics['overall_metrics']['f1_weighted'],
+    'training_time': total_training_time,
+    'early_stopped': early_stopped
+}
+
+standardized_summary_df = pd.DataFrame([standardized_summary])
+standardized_summary_csv = "LOGS/04_final_model_results.csv"
+standardized_summary_df.to_csv(standardized_summary_csv, index=False)
+
 logger.info(f"\n" + "="*80)
 logger.info("RESULTS SAVED")
 logger.info("="*80)
@@ -567,7 +583,8 @@ logger.info(f"2. Overall metrics (CSV): {overall_csv}")
 logger.info(f"3. Per-class metrics (CSV): {per_class_csv}")
 logger.info(f"4. Confusion matrix (CSV): {conf_matrix_csv}")
 logger.info(f"5. Training summary (JSON): {training_summary_file}")
-logger.info(f"6. Best model: {model_name}_best.pth")
+logger.info(f"6. Standardized summary (CSV): {standardized_summary_csv}")
+logger.info(f"7. Best model: {model_name}_best.pth")
 
 # Clean up memory
 if device.type == 'cuda':

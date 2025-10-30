@@ -1,0 +1,268 @@
+2025-10-27 06:31:21,674 - INFO - Found 1 GPU(s)
+2025-10-27 06:31:21,674 - INFO - Using device: cuda
+2025-10-27 06:31:21,674 - INFO - Multi-GPU training: False
+2025-10-27 06:31:21,674 - INFO - 
+############################################################
+2025-10-27 06:31:21,674 - INFO - Training volo_d5_512...
+2025-10-27 06:31:21,674 - INFO - ############################################################
+2025-10-27 06:31:27,205 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 06:31:27,281 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 06:31:27,421 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 06:31:27,476 - INFO - Model input shape: (3, 512, 512)
+2025-10-27 06:31:27,476 - INFO - Model mean: (0.485, 0.456, 0.406)
+2025-10-27 06:31:27,476 - INFO - Model std: (0.229, 0.224, 0.225)
+2025-10-27 06:31:28,252 - INFO - 
+============================================================
+2025-10-27 06:31:28,253 - INFO - VRAM Analysis:
+2025-10-27 06:31:28,253 - INFO -   Total VRAM: 94.98 GB
+2025-10-27 06:31:28,253 - INFO -   Used for batch=1: 4.33 GB
+2025-10-27 06:31:28,253 - INFO -   Memory per image: 4.326 GB
+2025-10-27 06:31:28,253 - INFO -   Available (with 88% safety): 83.58 GB
+2025-10-27 06:31:28,253 - INFO -   Calculated optimal batch size: 19
+2025-10-27 06:31:28,253 - INFO - ============================================================
+
+2025-10-27 06:31:28,389 - INFO - TRAIN SET CLASS MAPPING
+2025-10-27 06:31:28,389 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 06:31:28,389 - INFO - TEST SET CLASS MAPPING
+2025-10-27 06:31:28,389 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 06:31:33,616 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d5_512.sail_in1k)
+2025-10-27 06:31:33,653 - INFO - [timm/volo_d5_512.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 06:31:33,816 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 06:31:35,042 - INFO - Model compiled with torch.compile()
+2025-10-27 06:34:35,367 - INFO - Epoch 1/25, Loss: 0.0761, Train Acc: 76.88%, LR: 0.000100
+2025-10-27 06:34:42,860 - INFO - Test Metrics - Accuracy: 0.6750, Precision: 0.7543, F1: 0.6370
+2025-10-27 06:37:35,025 - INFO - Epoch 2/25, Loss: 0.0401, Train Acc: 86.03%, LR: 0.000100
+2025-10-27 06:37:37,519 - INFO - Test Metrics - Accuracy: 0.8167, Precision: 0.8356, F1: 0.8186
+2025-10-27 06:40:29,763 - INFO - Epoch 3/25, Loss: 0.0289, Train Acc: 88.90%, LR: 0.000098
+2025-10-27 06:40:32,277 - INFO - Test Metrics - Accuracy: 0.8333, Precision: 0.8352, F1: 0.8339
+2025-10-27 06:43:24,594 - INFO - Epoch 4/25, Loss: 0.0254, Train Acc: 90.04%, LR: 0.000097
+2025-10-27 06:43:27,106 - INFO - Test Metrics - Accuracy: 0.8833, Precision: 0.8993, F1: 0.8836
+2025-10-27 06:46:19,196 - INFO - Epoch 5/25, Loss: 0.0205, Train Acc: 91.79%, LR: 0.000094
+2025-10-27 06:46:21,675 - INFO - Test Metrics - Accuracy: 0.8333, Precision: 0.8453, F1: 0.8338
+2025-10-27 06:49:13,890 - INFO - Epoch 6/25, Loss: 0.0201, Train Acc: 92.00%, LR: 0.000091
+2025-10-27 06:49:16,403 - INFO - Test Metrics - Accuracy: 0.7917, Precision: 0.8286, F1: 0.7877
+2025-10-27 06:52:08,747 - INFO - Epoch 7/25, Loss: 0.0162, Train Acc: 92.84%, LR: 0.000087
+2025-10-27 06:52:11,223 - INFO - Test Metrics - Accuracy: 0.8667, Precision: 0.8731, F1: 0.8658
+2025-10-27 06:52:11,223 - INFO - 
+*** Early stopping triggered after 7 epochs (no improvement for 3 epochs) ***
+2025-10-27 06:52:11,223 - INFO - Training stopped early. Best Results - Epoch: 4, Accuracy: 0.8833, Precision: 0.8993, F1: 0.8836
+
+2025-10-27 06:52:11,572 - INFO - 
+############################################################
+2025-10-27 06:52:11,572 - INFO - Training volo_d1_384...
+2025-10-27 06:52:11,573 - INFO - ############################################################
+2025-10-27 06:52:12,509 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d1_384.sail_in1k)
+2025-10-27 06:52:16,501 - INFO - [timm/volo_d1_384.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 06:52:16,531 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 06:52:16,543 - INFO - Model input shape: (3, 384, 384)
+2025-10-27 06:52:16,543 - INFO - Model mean: (0.485, 0.456, 0.406)
+2025-10-27 06:52:16,543 - INFO - Model std: (0.229, 0.224, 0.225)
+2025-10-27 06:52:16,700 - INFO - 
+============================================================
+2025-10-27 06:52:16,700 - INFO - VRAM Analysis:
+2025-10-27 06:52:16,700 - INFO -   Total VRAM: 94.98 GB
+2025-10-27 06:52:16,700 - INFO -   Used for batch=1: 0.46 GB
+2025-10-27 06:52:16,700 - INFO -   Memory per image: 0.458 GB
+2025-10-27 06:52:16,700 - INFO -   Available (with 88% safety): 83.58 GB
+2025-10-27 06:52:16,700 - INFO -   Calculated optimal batch size: 182
+2025-10-27 06:52:16,700 - INFO - ============================================================
+
+2025-10-27 06:52:16,971 - INFO - TRAIN SET CLASS MAPPING
+2025-10-27 06:52:16,972 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 06:52:16,972 - INFO - TEST SET CLASS MAPPING
+2025-10-27 06:52:16,972 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 06:52:17,424 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d1_384.sail_in1k)
+2025-10-27 06:52:17,470 - INFO - [timm/volo_d1_384.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 06:52:17,520 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 06:52:17,544 - INFO - Model compiled with torch.compile()
+2025-10-27 07:00:50,942 - INFO - Epoch 1/25, Loss: 0.1185, Train Acc: 61.51%, LR: 0.000100
+2025-10-27 07:03:10,974 - INFO - Test Metrics - Accuracy: 0.4583, Precision: 0.4290, F1: 0.3795
+2025-10-27 07:03:46,017 - INFO - Epoch 2/25, Loss: 0.0597, Train Acc: 80.84%, LR: 0.000100
+2025-10-27 07:03:49,949 - INFO - Test Metrics - Accuracy: 0.6333, Precision: 0.7507, F1: 0.5829
+2025-10-27 07:04:25,074 - INFO - Epoch 3/25, Loss: 0.0398, Train Acc: 86.23%, LR: 0.000098
+2025-10-27 07:04:29,034 - INFO - Test Metrics - Accuracy: 0.8083, Precision: 0.8367, F1: 0.8006
+2025-10-27 07:05:03,297 - INFO - Epoch 4/25, Loss: 0.0306, Train Acc: 88.67%, LR: 0.000097
+2025-10-27 07:05:07,261 - INFO - Test Metrics - Accuracy: 0.8000, Precision: 0.8188, F1: 0.7943
+2025-10-27 07:05:43,190 - INFO - Epoch 5/25, Loss: 0.0236, Train Acc: 91.11%, LR: 0.000094
+2025-10-27 07:05:47,161 - INFO - Test Metrics - Accuracy: 0.8083, Precision: 0.8422, F1: 0.8103
+2025-10-27 07:06:20,293 - INFO - Epoch 6/25, Loss: 0.0179, Train Acc: 92.48%, LR: 0.000091
+2025-10-27 07:06:24,320 - INFO - Test Metrics - Accuracy: 0.8333, Precision: 0.8535, F1: 0.8282
+2025-10-27 07:06:57,465 - INFO - Epoch 7/25, Loss: 0.0153, Train Acc: 93.62%, LR: 0.000087
+2025-10-27 07:07:01,516 - INFO - Test Metrics - Accuracy: 0.8083, Precision: 0.8379, F1: 0.7980
+2025-10-27 07:07:34,832 - INFO - Epoch 8/25, Loss: 0.0145, Train Acc: 93.55%, LR: 0.000082
+2025-10-27 07:07:38,786 - INFO - Test Metrics - Accuracy: 0.8667, Precision: 0.8827, F1: 0.8637
+2025-10-27 07:08:12,360 - INFO - Epoch 9/25, Loss: 0.0104, Train Acc: 94.97%, LR: 0.000077
+2025-10-27 07:08:16,371 - INFO - Test Metrics - Accuracy: 0.8333, Precision: 0.8460, F1: 0.8299
+2025-10-27 07:08:50,043 - INFO - Epoch 10/25, Loss: 0.0097, Train Acc: 95.66%, LR: 0.000072
+2025-10-27 07:08:54,014 - INFO - Test Metrics - Accuracy: 0.8250, Precision: 0.8502, F1: 0.8244
+2025-10-27 07:09:27,511 - INFO - Epoch 11/25, Loss: 0.0065, Train Acc: 96.88%, LR: 0.000066
+2025-10-27 07:09:31,442 - INFO - Test Metrics - Accuracy: 0.8667, Precision: 0.8797, F1: 0.8648
+2025-10-27 07:10:05,751 - INFO - Epoch 12/25, Loss: 0.0046, Train Acc: 97.92%, LR: 0.000060
+2025-10-27 07:10:09,665 - INFO - Test Metrics - Accuracy: 0.8250, Precision: 0.8473, F1: 0.8210
+2025-10-27 07:10:43,250 - INFO - Epoch 13/25, Loss: 0.0038, Train Acc: 98.25%, LR: 0.000054
+2025-10-27 07:10:47,170 - INFO - Test Metrics - Accuracy: 0.8500, Precision: 0.8657, F1: 0.8475
+2025-10-27 07:11:21,261 - INFO - Epoch 14/25, Loss: 0.0032, Train Acc: 98.55%, LR: 0.000047
+2025-10-27 07:11:25,245 - INFO - Test Metrics - Accuracy: 0.8167, Precision: 0.8387, F1: 0.8189
+2025-10-27 07:11:25,246 - INFO - 
+*** Early stopping triggered after 14 epochs (no improvement for 3 epochs) ***
+2025-10-27 07:11:25,246 - INFO - Training stopped early. Best Results - Epoch: 11, Accuracy: 0.8667, Precision: 0.8797, F1: 0.8648
+
+2025-10-27 07:11:25,671 - INFO - 
+############################################################
+2025-10-27 07:11:25,671 - INFO - Training volo_d2_384...
+2025-10-27 07:11:25,671 - INFO - ############################################################
+2025-10-27 07:11:27,206 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d2_384.sail_in1k)
+2025-10-27 07:11:31,361 - INFO - [timm/volo_d2_384.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 07:11:31,409 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 07:11:31,425 - INFO - Model input shape: (3, 384, 384)
+2025-10-27 07:11:31,425 - INFO - Model mean: (0.485, 0.456, 0.406)
+2025-10-27 07:11:31,425 - INFO - Model std: (0.229, 0.224, 0.225)
+2025-10-27 07:11:31,493 - INFO - 
+============================================================
+2025-10-27 07:11:31,493 - INFO - VRAM Analysis:
+2025-10-27 07:11:31,493 - INFO -   Total VRAM: 94.98 GB
+2025-10-27 07:11:31,493 - INFO -   Used for batch=1: 0.82 GB
+2025-10-27 07:11:31,493 - INFO -   Memory per image: 0.822 GB
+2025-10-27 07:11:31,493 - INFO -   Available (with 88% safety): 83.58 GB
+2025-10-27 07:11:31,493 - INFO -   Calculated optimal batch size: 101
+2025-10-27 07:11:31,493 - INFO - ============================================================
+
+2025-10-27 07:11:32,281 - INFO - TRAIN SET CLASS MAPPING
+2025-10-27 07:11:32,281 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 07:11:32,281 - INFO - TEST SET CLASS MAPPING
+2025-10-27 07:11:32,281 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 07:11:33,615 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d2_384.sail_in1k)
+2025-10-27 07:11:33,665 - INFO - [timm/volo_d2_384.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 07:11:33,718 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 07:11:33,778 - INFO - Model compiled with torch.compile()
+2025-10-27 07:22:17,766 - INFO - Epoch 1/25, Loss: 0.0978, Train Acc: 68.88%, LR: 0.000100
+2025-10-27 07:25:10,384 - INFO - Test Metrics - Accuracy: 0.6083, Precision: 0.7349, F1: 0.5410
+2025-10-27 07:25:44,100 - INFO - Epoch 2/25, Loss: 0.0431, Train Acc: 84.91%, LR: 0.000100
+2025-10-27 07:25:47,790 - INFO - Test Metrics - Accuracy: 0.8250, Precision: 0.8388, F1: 0.8286
+2025-10-27 07:26:22,385 - INFO - Epoch 3/25, Loss: 0.0285, Train Acc: 89.00%, LR: 0.000098
+2025-10-27 07:26:26,090 - INFO - Test Metrics - Accuracy: 0.8500, Precision: 0.8718, F1: 0.8514
+2025-10-27 07:26:59,899 - INFO - Epoch 4/25, Loss: 0.0228, Train Acc: 91.13%, LR: 0.000097
+2025-10-27 07:27:03,585 - INFO - Test Metrics - Accuracy: 0.8667, Precision: 0.8742, F1: 0.8676
+2025-10-27 07:27:36,905 - INFO - Epoch 5/25, Loss: 0.0193, Train Acc: 91.77%, LR: 0.000094
+2025-10-27 07:27:40,581 - INFO - Test Metrics - Accuracy: 0.8750, Precision: 0.8896, F1: 0.8774
+2025-10-27 07:28:14,417 - INFO - Epoch 6/25, Loss: 0.0161, Train Acc: 92.91%, LR: 0.000091
+2025-10-27 07:28:18,050 - INFO - Test Metrics - Accuracy: 0.8083, Precision: 0.8478, F1: 0.8104
+2025-10-27 07:28:51,666 - INFO - Epoch 7/25, Loss: 0.0118, Train Acc: 94.41%, LR: 0.000087
+2025-10-27 07:28:55,328 - INFO - Test Metrics - Accuracy: 0.8417, Precision: 0.8595, F1: 0.8419
+2025-10-27 07:29:29,297 - INFO - Epoch 8/25, Loss: 0.0102, Train Acc: 94.99%, LR: 0.000082
+2025-10-27 07:29:32,962 - INFO - Test Metrics - Accuracy: 0.8417, Precision: 0.8703, F1: 0.8414
+2025-10-27 07:29:32,962 - INFO - 
+*** Early stopping triggered after 8 epochs (no improvement for 3 epochs) ***
+2025-10-27 07:29:32,962 - INFO - Training stopped early. Best Results - Epoch: 5, Accuracy: 0.8750, Precision: 0.8896, F1: 0.8774
+
+2025-10-27 07:29:33,519 - INFO - 
+############################################################
+2025-10-27 07:29:33,519 - INFO - Training volo_d3_448...
+2025-10-27 07:29:33,519 - INFO - ############################################################
+2025-10-27 07:29:35,810 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d3_448.sail_in1k)
+2025-10-27 07:29:40,683 - INFO - [timm/volo_d3_448.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 07:29:41,005 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 07:29:41,025 - INFO - Model input shape: (3, 448, 448)
+2025-10-27 07:29:41,025 - INFO - Model mean: (0.485, 0.456, 0.406)
+2025-10-27 07:29:41,025 - INFO - Model std: (0.229, 0.224, 0.225)
+2025-10-27 07:29:41,142 - INFO - 
+============================================================
+2025-10-27 07:29:41,142 - INFO - VRAM Analysis:
+2025-10-27 07:29:41,142 - INFO -   Total VRAM: 94.98 GB
+2025-10-27 07:29:41,142 - INFO -   Used for batch=1: 1.41 GB
+2025-10-27 07:29:41,142 - INFO -   Memory per image: 1.414 GB
+2025-10-27 07:29:41,142 - INFO -   Available (with 88% safety): 83.58 GB
+2025-10-27 07:29:41,142 - INFO -   Calculated optimal batch size: 59
+2025-10-27 07:29:41,142 - INFO - ============================================================
+
+2025-10-27 07:29:42,111 - INFO - TRAIN SET CLASS MAPPING
+2025-10-27 07:29:42,111 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 07:29:42,111 - INFO - TEST SET CLASS MAPPING
+2025-10-27 07:29:42,111 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 07:29:44,221 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d3_448.sail_in1k)
+2025-10-27 07:29:44,256 - INFO - [timm/volo_d3_448.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 07:29:44,419 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 07:29:44,506 - INFO - Model compiled with torch.compile()
+2025-10-27 07:44:59,417 - INFO - Epoch 1/25, Loss: 0.0859, Train Acc: 72.38%, LR: 0.000100
+2025-10-27 07:45:02,555 - INFO - Test Metrics - Accuracy: 0.6667, Precision: 0.5222, F1: 0.5773
+2025-10-27 07:46:11,197 - INFO - Epoch 2/25, Loss: 0.0369, Train Acc: 86.74%, LR: 0.000100
+2025-10-27 07:46:13,884 - INFO - Test Metrics - Accuracy: 0.6583, Precision: 0.7501, F1: 0.5793
+2025-10-27 07:47:22,648 - INFO - Epoch 3/25, Loss: 0.0268, Train Acc: 89.53%, LR: 0.000098
+2025-10-27 07:47:25,396 - INFO - Test Metrics - Accuracy: 0.7917, Precision: 0.8256, F1: 0.7831
+2025-10-27 07:48:34,262 - INFO - Epoch 4/25, Loss: 0.0191, Train Acc: 92.33%, LR: 0.000097
+2025-10-27 07:48:36,999 - INFO - Test Metrics - Accuracy: 0.8250, Precision: 0.8505, F1: 0.8240
+2025-10-27 07:49:45,796 - INFO - Epoch 5/25, Loss: 0.0171, Train Acc: 92.86%, LR: 0.000094
+2025-10-27 07:49:48,519 - INFO - Test Metrics - Accuracy: 0.8417, Precision: 0.8530, F1: 0.8419
+2025-10-27 07:50:57,414 - INFO - Epoch 6/25, Loss: 0.0139, Train Acc: 94.11%, LR: 0.000091
+2025-10-27 07:51:00,200 - INFO - Test Metrics - Accuracy: 0.8083, Precision: 0.8238, F1: 0.8111
+2025-10-27 07:52:09,178 - INFO - Epoch 7/25, Loss: 0.0112, Train Acc: 94.74%, LR: 0.000087
+2025-10-27 07:52:12,009 - INFO - Test Metrics - Accuracy: 0.8417, Precision: 0.8646, F1: 0.8386
+2025-10-27 07:53:20,757 - INFO - Epoch 8/25, Loss: 0.0099, Train Acc: 95.71%, LR: 0.000082
+2025-10-27 07:53:23,566 - INFO - Test Metrics - Accuracy: 0.8167, Precision: 0.8314, F1: 0.8168
+2025-10-27 07:53:23,567 - INFO - 
+*** Early stopping triggered after 8 epochs (no improvement for 3 epochs) ***
+2025-10-27 07:53:23,567 - INFO - Training stopped early. Best Results - Epoch: 5, Accuracy: 0.8417, Precision: 0.8530, F1: 0.8419
+
+2025-10-27 07:53:24,246 - INFO - 
+############################################################
+2025-10-27 07:53:24,247 - INFO - Training volo_d4_448...
+2025-10-27 07:53:24,247 - INFO - ############################################################
+2025-10-27 07:53:28,517 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d4_448.sail_in1k)
+2025-10-27 07:53:37,256 - INFO - [timm/volo_d4_448.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 07:53:37,416 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 07:53:37,479 - INFO - Model input shape: (3, 448, 448)
+2025-10-27 07:53:37,479 - INFO - Model mean: (0.485, 0.456, 0.406)
+2025-10-27 07:53:37,479 - INFO - Model std: (0.229, 0.224, 0.225)
+2025-10-27 07:53:37,635 - INFO - 
+============================================================
+2025-10-27 07:53:37,635 - INFO - VRAM Analysis:
+2025-10-27 07:53:37,635 - INFO -   Total VRAM: 94.98 GB
+2025-10-27 07:53:37,635 - INFO -   Used for batch=1: 2.32 GB
+2025-10-27 07:53:37,635 - INFO -   Memory per image: 2.324 GB
+2025-10-27 07:53:37,635 - INFO -   Available (with 88% safety): 83.58 GB
+2025-10-27 07:53:37,635 - INFO -   Calculated optimal batch size: 35
+2025-10-27 07:53:37,635 - INFO - ============================================================
+
+2025-10-27 07:53:39,654 - INFO - TRAIN SET CLASS MAPPING
+2025-10-27 07:53:39,654 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 07:53:39,654 - INFO - TEST SET CLASS MAPPING
+2025-10-27 07:53:39,654 - INFO - {'GNB': 0, 'GNC': 1, 'GPB': 2, 'GPC': 3}
+2025-10-27 07:53:43,331 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d4_448.sail_in1k)
+2025-10-27 07:53:43,375 - INFO - [timm/volo_d4_448.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-27 07:53:43,608 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-27 07:53:43,777 - INFO - Model compiled with torch.compile()
+2025-10-27 07:55:20,996 - INFO - Epoch 1/25, Loss: 0.0788, Train Acc: 74.34%, LR: 0.000100
+2025-10-27 07:55:23,658 - INFO - Test Metrics - Accuracy: 0.7583, Precision: 0.8114, F1: 0.7469
+2025-10-27 07:57:00,370 - INFO - Epoch 2/25, Loss: 0.0403, Train Acc: 86.18%, LR: 0.000100
+2025-10-27 07:57:02,525 - INFO - Test Metrics - Accuracy: 0.8167, Precision: 0.8389, F1: 0.8122
+2025-10-27 07:58:39,290 - INFO - Epoch 3/25, Loss: 0.0289, Train Acc: 89.35%, LR: 0.000098
+2025-10-27 07:58:41,446 - INFO - Test Metrics - Accuracy: 0.7667, Precision: 0.8168, F1: 0.7590
+2025-10-27 08:00:18,051 - INFO - Epoch 4/25, Loss: 0.0219, Train Acc: 91.08%, LR: 0.000097
+2025-10-27 08:00:20,223 - INFO - Test Metrics - Accuracy: 0.8167, Precision: 0.8390, F1: 0.8158
+2025-10-27 08:01:56,858 - INFO - Epoch 5/25, Loss: 0.0169, Train Acc: 93.39%, LR: 0.000094
+2025-10-27 08:01:59,079 - INFO - Test Metrics - Accuracy: 0.7667, Precision: 0.7939, F1: 0.7651
+2025-10-27 08:03:35,700 - INFO - Epoch 6/25, Loss: 0.0162, Train Acc: 93.14%, LR: 0.000091
+2025-10-27 08:03:37,825 - INFO - Test Metrics - Accuracy: 0.8333, Precision: 0.8570, F1: 0.8259
+2025-10-27 08:05:14,670 - INFO - Epoch 7/25, Loss: 0.0126, Train Acc: 94.44%, LR: 0.000087
+2025-10-27 08:05:16,826 - INFO - Test Metrics - Accuracy: 0.8083, Precision: 0.8455, F1: 0.8006
+2025-10-27 08:06:53,411 - INFO - Epoch 8/25, Loss: 0.0075, Train Acc: 96.82%, LR: 0.000082
+2025-10-27 08:06:55,572 - INFO - Test Metrics - Accuracy: 0.8583, Precision: 0.8730, F1: 0.8586
+2025-10-27 08:08:32,310 - INFO - Epoch 9/25, Loss: 0.0098, Train Acc: 95.60%, LR: 0.000077
+2025-10-27 08:08:34,475 - INFO - Test Metrics - Accuracy: 0.7833, Precision: 0.8168, F1: 0.7810
+2025-10-27 08:10:11,175 - INFO - Epoch 10/25, Loss: 0.0057, Train Acc: 97.46%, LR: 0.000072
+2025-10-27 08:10:13,339 - INFO - Test Metrics - Accuracy: 0.8333, Precision: 0.8566, F1: 0.8316
+2025-10-27 08:11:49,987 - INFO - Epoch 11/25, Loss: 0.0039, Train Acc: 98.12%, LR: 0.000066
+2025-10-27 08:11:52,147 - INFO - Test Metrics - Accuracy: 0.8333, Precision: 0.8584, F1: 0.8268
+2025-10-27 08:11:52,148 - INFO - 
+*** Early stopping triggered after 11 epochs (no improvement for 3 epochs) ***
+2025-10-27 08:11:52,148 - INFO - Training stopped early. Best Results - Epoch: 8, Accuracy: 0.8583, Precision: 0.8730, F1: 0.8586
+
+2025-10-27 08:11:52,836 - INFO - 
+
+
+model_name, best_epoch, accuracy, precision, f1, training_time, avg_time_per_epoch, early_stopped
+2025-10-27 08:11:52,837 - INFO - volo_d5_512, 4, 0.8833, 0.8993, 0.8836, 1236.18s, 176.89s, True
+2025-10-27 08:11:52,837 - INFO - volo_d1_384, 11, 0.8667, 0.8797, 0.8648, 1147.70s, 85.36s, True
+2025-10-27 08:11:52,837 - INFO - volo_d2_384, 5, 0.8750, 0.8896, 0.8774, 1079.18s, 148.79s, True
+2025-10-27 08:11:52,837 - INFO - volo_d3_448, 5, 0.8417, 0.8530, 0.8419, 1419.06s, 192.50s, True
+2025-10-27 08:11:52,837 - INFO - volo_d4_448, 8, 0.8583, 0.8730, 0.8586, 1088.37s, 98.96s, True

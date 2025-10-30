@@ -1,0 +1,784 @@
+2025-10-26 11:08:04,416 - INFO - Found 1 GPU(s)
+2025-10-26 11:08:04,417 - INFO - Using device: cuda
+2025-10-26 11:08:04,417 - INFO - Multi-GPU training: False
+2025-10-26 11:08:04,417 - INFO - Mixed Precision: True
+2025-10-26 11:08:04,427 - INFO - Limited training set to 9999 samples per class (or all available if fewer)
+2025-10-26 11:08:04,428 - INFO - Train set size: 3936
+2025-10-26 11:08:04,428 - INFO - Test set size: 120
+2025-10-26 11:08:04,428 - INFO - Number of classes: 4
+2025-10-26 11:08:04,428 - INFO - Classes: ['GNB', 'GNC', 'GPB', 'GPC']
+2025-10-26 11:08:04,428 - INFO - Training model 1 of 24
+2025-10-26 11:08:04,428 - INFO - tiny_vit_5m_224
+2025-10-26 11:08:04,651 - INFO - Loading pretrained weights from Hugging Face hub (timm/tiny_vit_5m_224.dist_in22k)
+2025-10-26 11:08:12,804 - INFO - [timm/tiny_vit_5m_224.dist_in22k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 11:08:12,837 - INFO - Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 11:08:16,035 - INFO - Model compiled with torch.compile()
+2025-10-26 11:08:16,036 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 11:11:36,253 - INFO - Epoch 1/25, Loss: 0.1360, Train Acc: 53.63%, LR: 0.000100
+2025-10-26 11:12:25,756 - WARNING - *** New best F1 score: 0.4248 at epoch 1 ***
+2025-10-26 11:13:21,983 - INFO - Epoch 2/25, Loss: 0.0885, Train Acc: 72.31%, LR: 0.000100
+2025-10-26 11:13:24,859 - WARNING - *** New best F1 score: 0.5058 at epoch 2 ***
+2025-10-26 11:14:22,117 - INFO - Epoch 3/25, Loss: 0.0562, Train Acc: 80.87%, LR: 0.000098
+2025-10-26 11:14:24,970 - WARNING - *** New best F1 score: 0.5758 at epoch 3 ***
+2025-10-26 11:15:22,209 - INFO - Epoch 4/25, Loss: 0.0356, Train Acc: 87.86%, LR: 0.000097
+2025-10-26 11:15:25,065 - WARNING - *** New best F1 score: 0.5843 at epoch 4 ***
+2025-10-26 11:16:22,508 - INFO - Epoch 5/25, Loss: 0.0220, Train Acc: 92.45%, LR: 0.000094
+2025-10-26 11:16:25,373 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:17:25,684 - INFO - Epoch 6/25, Loss: 0.0137, Train Acc: 95.38%, LR: 0.000091
+2025-10-26 11:17:28,645 - WARNING - *** New best F1 score: 0.5912 at epoch 6 ***
+2025-10-26 11:18:28,457 - INFO - Epoch 7/25, Loss: 0.0089, Train Acc: 97.21%, LR: 0.000087
+2025-10-26 11:18:31,449 - WARNING - *** New best F1 score: 0.6001 at epoch 7 ***
+2025-10-26 11:19:30,539 - INFO - Epoch 8/25, Loss: 0.0057, Train Acc: 98.17%, LR: 0.000082
+2025-10-26 11:19:33,487 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:20:32,021 - INFO - Epoch 9/25, Loss: 0.0035, Train Acc: 99.34%, LR: 0.000077
+2025-10-26 11:20:34,976 - WARNING - *** New best F1 score: 0.6060 at epoch 9 ***
+2025-10-26 11:21:34,969 - INFO - Epoch 10/25, Loss: 0.0024, Train Acc: 99.49%, LR: 0.000072
+2025-10-26 11:21:37,913 - WARNING - *** New best F1 score: 0.6088 at epoch 10 ***
+2025-10-26 11:22:35,933 - INFO - Epoch 11/25, Loss: 0.0023, Train Acc: 99.31%, LR: 0.000066
+2025-10-26 11:22:38,908 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:23:36,906 - INFO - Epoch 12/25, Loss: 0.0023, Train Acc: 99.44%, LR: 0.000060
+2025-10-26 11:23:39,888 - INFO - No improvement for 2 epoch(s)
+2025-10-26 11:24:39,243 - INFO - Epoch 13/25, Loss: 0.0016, Train Acc: 99.62%, LR: 0.000054
+2025-10-26 11:24:42,205 - INFO - No improvement for 3 epoch(s)
+2025-10-26 11:24:42,205 - WARNING - 
+*** Early stopping triggered after 13 epochs (no improvement for 3 epochs) ***
+2025-10-26 11:24:42,205 - WARNING - Training stopped early. Best Results - Epoch: 10, Accuracy: 0.6333, Precision: 0.6694, F1: 0.6088
+
+2025-10-26 11:24:43,458 - INFO - Training model 2 of 24
+2025-10-26 11:24:43,459 - INFO - volo_d1_224
+2025-10-26 11:24:44,862 - INFO - Loading pretrained weights from Hugging Face hub (timm/volo_d1_224.sail_in1k)
+2025-10-26 11:24:56,918 - INFO - [timm/volo_d1_224.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 11:24:56,951 - INFO - Missing keys (aux_head.weight, aux_head.bias, head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 11:24:56,991 - INFO - Model compiled with torch.compile()
+2025-10-26 11:24:56,993 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 11:28:20,625 - INFO - Epoch 1/25, Loss: 0.1131, Train Acc: 62.47%, LR: 0.000100
+2025-10-26 11:28:50,848 - WARNING - *** New best F1 score: 0.4916 at epoch 1 ***
+2025-10-26 11:29:48,105 - INFO - Epoch 2/25, Loss: 0.0576, Train Acc: 80.64%, LR: 0.000100
+2025-10-26 11:29:51,115 - WARNING - *** New best F1 score: 0.6089 at epoch 2 ***
+2025-10-26 11:30:49,237 - INFO - Epoch 3/25, Loss: 0.0341, Train Acc: 87.80%, LR: 0.000098
+2025-10-26 11:30:52,207 - WARNING - *** New best F1 score: 0.6737 at epoch 3 ***
+2025-10-26 11:31:50,470 - INFO - Epoch 4/25, Loss: 0.0200, Train Acc: 92.17%, LR: 0.000097
+2025-10-26 11:31:53,478 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:32:52,526 - INFO - Epoch 5/25, Loss: 0.0123, Train Acc: 94.94%, LR: 0.000094
+2025-10-26 11:32:55,523 - WARNING - *** New best F1 score: 0.8137 at epoch 5 ***
+2025-10-26 11:33:53,101 - INFO - Epoch 6/25, Loss: 0.0078, Train Acc: 96.70%, LR: 0.000091
+2025-10-26 11:33:56,028 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:34:54,290 - INFO - Epoch 7/25, Loss: 0.0039, Train Acc: 98.27%, LR: 0.000087
+2025-10-26 11:34:57,255 - INFO - No improvement for 2 epoch(s)
+2025-10-26 11:35:55,002 - INFO - Epoch 8/25, Loss: 0.0051, Train Acc: 97.74%, LR: 0.000082
+2025-10-26 11:35:57,977 - INFO - No improvement for 3 epoch(s)
+2025-10-26 11:35:57,977 - WARNING - 
+*** Early stopping triggered after 8 epochs (no improvement for 3 epochs) ***
+2025-10-26 11:35:57,977 - WARNING - Training stopped early. Best Results - Epoch: 5, Accuracy: 0.8167, Precision: 0.8453, F1: 0.8137
+
+2025-10-26 11:36:01,438 - INFO - Training model 3 of 24
+2025-10-26 11:36:01,439 - INFO - convformer_s36
+2025-10-26 11:36:02,762 - INFO - Loading pretrained weights from Hugging Face hub (timm/convformer_s36.sail_in1k)
+2025-10-26 11:36:05,742 - INFO - [timm/convformer_s36.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 11:36:05,861 - INFO - Missing keys (head.fc.fc2.weight, head.fc.fc2.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 11:36:05,934 - INFO - Model compiled with torch.compile()
+2025-10-26 11:36:05,937 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 11:40:06,647 - INFO - Epoch 1/25, Loss: 0.1029, Train Acc: 65.93%, LR: 0.000100
+2025-10-26 11:40:43,011 - WARNING - *** New best F1 score: 0.3966 at epoch 1 ***
+2025-10-26 11:41:42,315 - INFO - Epoch 2/25, Loss: 0.0556, Train Acc: 80.95%, LR: 0.000100
+2025-10-26 11:41:45,285 - WARNING - *** New best F1 score: 0.6337 at epoch 2 ***
+2025-10-26 11:42:44,358 - INFO - Epoch 3/25, Loss: 0.0317, Train Acc: 88.34%, LR: 0.000098
+2025-10-26 11:42:47,380 - WARNING - *** New best F1 score: 0.6365 at epoch 3 ***
+2025-10-26 11:43:45,867 - INFO - Epoch 4/25, Loss: 0.0149, Train Acc: 93.78%, LR: 0.000097
+2025-10-26 11:43:48,807 - WARNING - *** New best F1 score: 0.7079 at epoch 4 ***
+2025-10-26 11:44:49,624 - INFO - Epoch 5/25, Loss: 0.0053, Train Acc: 98.07%, LR: 0.000094
+2025-10-26 11:44:52,612 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:45:51,668 - INFO - Epoch 6/25, Loss: 0.0024, Train Acc: 99.06%, LR: 0.000091
+2025-10-26 11:45:54,637 - INFO - No improvement for 2 epoch(s)
+2025-10-26 11:46:52,440 - INFO - Epoch 7/25, Loss: 0.0047, Train Acc: 97.99%, LR: 0.000087
+2025-10-26 11:46:55,411 - INFO - No improvement for 3 epoch(s)
+2025-10-26 11:46:55,411 - WARNING - 
+*** Early stopping triggered after 7 epochs (no improvement for 3 epochs) ***
+2025-10-26 11:46:55,411 - WARNING - Training stopped early. Best Results - Epoch: 4, Accuracy: 0.7333, Precision: 0.8057, F1: 0.7079
+
+2025-10-26 11:46:57,945 - INFO - Training model 4 of 24
+2025-10-26 11:46:57,945 - INFO - convnextv2_tiny
+2025-10-26 11:46:58,656 - INFO - Loading pretrained weights from Hugging Face hub (timm/convnextv2_tiny.fcmae_ft_in22k_in1k)
+2025-10-26 11:47:06,966 - INFO - [timm/convnextv2_tiny.fcmae_ft_in22k_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 11:47:06,997 - INFO - Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 11:47:07,093 - INFO - Model compiled with torch.compile()
+2025-10-26 11:47:07,096 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 11:49:46,370 - INFO - Epoch 1/25, Loss: 0.1390, Train Acc: 50.89%, LR: 0.000100
+2025-10-26 11:50:10,702 - WARNING - *** New best F1 score: 0.4594 at epoch 1 ***
+2025-10-26 11:51:08,081 - INFO - Epoch 2/25, Loss: 0.0785, Train Acc: 73.07%, LR: 0.000100
+2025-10-26 11:51:10,904 - WARNING - *** New best F1 score: 0.5471 at epoch 2 ***
+2025-10-26 11:52:09,955 - INFO - Epoch 3/25, Loss: 0.0440, Train Acc: 83.82%, LR: 0.000098
+2025-10-26 11:52:12,897 - WARNING - *** New best F1 score: 0.6508 at epoch 3 ***
+2025-10-26 11:53:12,948 - INFO - Epoch 4/25, Loss: 0.0216, Train Acc: 91.67%, LR: 0.000097
+2025-10-26 11:53:15,855 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:54:14,235 - INFO - Epoch 5/25, Loss: 0.0093, Train Acc: 95.88%, LR: 0.000094
+2025-10-26 11:54:17,175 - WARNING - *** New best F1 score: 0.7210 at epoch 5 ***
+2025-10-26 11:55:17,291 - INFO - Epoch 6/25, Loss: 0.0037, Train Acc: 98.42%, LR: 0.000091
+2025-10-26 11:55:20,189 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:56:17,768 - INFO - Epoch 7/25, Loss: 0.0033, Train Acc: 98.48%, LR: 0.000087
+2025-10-26 11:56:20,732 - WARNING - *** New best F1 score: 0.7524 at epoch 7 ***
+2025-10-26 11:57:22,433 - INFO - Epoch 8/25, Loss: 0.0039, Train Acc: 98.53%, LR: 0.000082
+2025-10-26 11:57:25,382 - INFO - No improvement for 1 epoch(s)
+2025-10-26 11:58:23,788 - INFO - Epoch 9/25, Loss: 0.0012, Train Acc: 99.57%, LR: 0.000077
+2025-10-26 11:58:26,765 - INFO - No improvement for 2 epoch(s)
+2025-10-26 11:59:26,763 - INFO - Epoch 10/25, Loss: 0.0010, Train Acc: 99.59%, LR: 0.000072
+2025-10-26 11:59:29,568 - INFO - No improvement for 3 epoch(s)
+2025-10-26 11:59:29,568 - WARNING - 
+*** Early stopping triggered after 10 epochs (no improvement for 3 epochs) ***
+2025-10-26 11:59:29,568 - WARNING - Training stopped early. Best Results - Epoch: 7, Accuracy: 0.7583, Precision: 0.7852, F1: 0.7524
+
+2025-10-26 11:59:32,567 - INFO - Training model 5 of 24
+2025-10-26 11:59:32,568 - INFO - tiny_vit_11m_224
+2025-10-26 11:59:33,051 - INFO - Loading pretrained weights from Hugging Face hub (timm/tiny_vit_11m_224.dist_in22k)
+2025-10-26 11:59:35,574 - INFO - [timm/tiny_vit_11m_224.dist_in22k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 11:59:35,609 - INFO - Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 11:59:35,641 - INFO - Model compiled with torch.compile()
+2025-10-26 11:59:35,643 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 12:02:06,864 - INFO - Epoch 1/25, Loss: 0.1543, Train Acc: 46.77%, LR: 0.000100
+2025-10-26 12:02:54,370 - WARNING - *** New best F1 score: 0.2822 at epoch 1 ***
+2025-10-26 12:03:51,483 - INFO - Epoch 2/25, Loss: 0.1238, Train Acc: 60.57%, LR: 0.000100
+2025-10-26 12:03:54,449 - WARNING - *** New best F1 score: 0.4980 at epoch 2 ***
+2025-10-26 12:04:52,646 - INFO - Epoch 3/25, Loss: 0.0975, Train Acc: 70.27%, LR: 0.000098
+2025-10-26 12:04:55,553 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:05:53,857 - INFO - Epoch 4/25, Loss: 0.0836, Train Acc: 74.57%, LR: 0.000097
+2025-10-26 12:05:56,848 - WARNING - *** New best F1 score: 0.5667 at epoch 4 ***
+2025-10-26 12:06:56,797 - INFO - Epoch 5/25, Loss: 0.0668, Train Acc: 78.23%, LR: 0.000094
+2025-10-26 12:06:59,786 - WARNING - *** New best F1 score: 0.6562 at epoch 5 ***
+2025-10-26 12:07:59,503 - INFO - Epoch 6/25, Loss: 0.0545, Train Acc: 82.42%, LR: 0.000091
+2025-10-26 12:08:02,445 - WARNING - *** New best F1 score: 0.6810 at epoch 6 ***
+2025-10-26 12:09:00,033 - INFO - Epoch 7/25, Loss: 0.0476, Train Acc: 83.89%, LR: 0.000087
+2025-10-26 12:09:02,985 - WARNING - *** New best F1 score: 0.6852 at epoch 7 ***
+2025-10-26 12:10:01,808 - INFO - Epoch 8/25, Loss: 0.0414, Train Acc: 86.61%, LR: 0.000082
+2025-10-26 12:10:04,741 - WARNING - *** New best F1 score: 0.7169 at epoch 8 ***
+2025-10-26 12:11:03,471 - INFO - Epoch 9/25, Loss: 0.0351, Train Acc: 87.96%, LR: 0.000077
+2025-10-26 12:11:06,435 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:12:05,754 - INFO - Epoch 10/25, Loss: 0.0302, Train Acc: 90.07%, LR: 0.000072
+2025-10-26 12:12:08,722 - INFO - No improvement for 2 epoch(s)
+2025-10-26 12:13:06,720 - INFO - Epoch 11/25, Loss: 0.0282, Train Acc: 90.57%, LR: 0.000066
+2025-10-26 12:13:09,656 - INFO - No improvement for 3 epoch(s)
+2025-10-26 12:13:09,657 - WARNING - 
+*** Early stopping triggered after 11 epochs (no improvement for 3 epochs) ***
+2025-10-26 12:13:09,657 - WARNING - Training stopped early. Best Results - Epoch: 8, Accuracy: 0.7250, Precision: 0.7556, F1: 0.7169
+
+2025-10-26 12:13:13,272 - INFO - Training model 6 of 24
+2025-10-26 12:13:13,272 - INFO - convit_base
+2025-10-26 12:13:15,460 - INFO - Loading pretrained weights from Hugging Face hub (timm/convit_base.fb_in1k)
+2025-10-26 12:13:26,973 - INFO - [timm/convit_base.fb_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 12:13:27,051 - INFO - Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 12:13:27,162 - INFO - Model compiled with torch.compile()
+2025-10-26 12:13:27,164 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 12:17:11,077 - INFO - Epoch 1/25, Loss: 0.1083, Train Acc: 63.87%, LR: 0.000100
+2025-10-26 12:17:36,180 - WARNING - *** New best F1 score: 0.3028 at epoch 1 ***
+2025-10-26 12:18:35,493 - INFO - Epoch 2/25, Loss: 0.0650, Train Acc: 77.92%, LR: 0.000100
+2025-10-26 12:18:38,385 - WARNING - *** New best F1 score: 0.4884 at epoch 2 ***
+2025-10-26 12:19:37,055 - INFO - Epoch 3/25, Loss: 0.0394, Train Acc: 85.47%, LR: 0.000098
+2025-10-26 12:19:39,952 - WARNING - *** New best F1 score: 0.6144 at epoch 3 ***
+2025-10-26 12:20:37,780 - INFO - Epoch 4/25, Loss: 0.0253, Train Acc: 90.22%, LR: 0.000097
+2025-10-26 12:20:40,744 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:21:38,934 - INFO - Epoch 5/25, Loss: 0.0125, Train Acc: 94.64%, LR: 0.000094
+2025-10-26 12:21:41,867 - INFO - No improvement for 2 epoch(s)
+2025-10-26 12:22:40,783 - INFO - Epoch 6/25, Loss: 0.0085, Train Acc: 96.54%, LR: 0.000091
+2025-10-26 12:22:43,726 - WARNING - *** New best F1 score: 0.6342 at epoch 6 ***
+2025-10-26 12:23:42,125 - INFO - Epoch 7/25, Loss: 0.0037, Train Acc: 98.07%, LR: 0.000087
+2025-10-26 12:23:45,030 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:24:43,291 - INFO - Epoch 8/25, Loss: 0.0052, Train Acc: 97.59%, LR: 0.000082
+2025-10-26 12:24:46,240 - INFO - No improvement for 2 epoch(s)
+2025-10-26 12:25:44,157 - INFO - Epoch 9/25, Loss: 0.0027, Train Acc: 98.93%, LR: 0.000077
+2025-10-26 12:25:47,103 - WARNING - *** New best F1 score: 0.6444 at epoch 9 ***
+2025-10-26 12:26:45,779 - INFO - Epoch 10/25, Loss: 0.0018, Train Acc: 99.24%, LR: 0.000072
+2025-10-26 12:26:48,663 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:27:49,503 - INFO - Epoch 11/25, Loss: 0.0006, Train Acc: 99.87%, LR: 0.000066
+2025-10-26 12:27:52,474 - INFO - No improvement for 2 epoch(s)
+2025-10-26 12:28:50,820 - INFO - Epoch 12/25, Loss: 0.0001, Train Acc: 99.90%, LR: 0.000060
+2025-10-26 12:28:53,783 - INFO - No improvement for 3 epoch(s)
+2025-10-26 12:28:53,783 - WARNING - 
+*** Early stopping triggered after 12 epochs (no improvement for 3 epochs) ***
+2025-10-26 12:28:53,783 - WARNING - Training stopped early. Best Results - Epoch: 9, Accuracy: 0.6667, Precision: 0.7173, F1: 0.6444
+
+2025-10-26 12:28:58,010 - INFO - Training model 7 of 24
+2025-10-26 12:28:58,012 - INFO - inception_next_small
+2025-10-26 12:28:59,451 - INFO - Loading pretrained weights from Hugging Face hub (timm/inception_next_small.sail_in1k)
+2025-10-26 12:29:07,571 - INFO - [timm/inception_next_small.sail_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 12:29:07,752 - INFO - Missing keys (head.fc2.weight, head.fc2.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 12:29:07,838 - INFO - Model compiled with torch.compile()
+2025-10-26 12:29:07,841 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 12:32:53,892 - INFO - Epoch 1/25, Loss: 0.1318, Train Acc: 55.92%, LR: 0.000100
+2025-10-26 12:33:33,639 - WARNING - *** New best F1 score: 0.3814 at epoch 1 ***
+2025-10-26 12:34:32,462 - INFO - Epoch 2/25, Loss: 0.0653, Train Acc: 78.63%, LR: 0.000100
+2025-10-26 12:34:35,419 - WARNING - *** New best F1 score: 0.5220 at epoch 2 ***
+2025-10-26 12:35:34,207 - INFO - Epoch 3/25, Loss: 0.0217, Train Acc: 93.22%, LR: 0.000098
+2025-10-26 12:35:37,257 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:36:36,099 - INFO - Epoch 4/25, Loss: 0.0051, Train Acc: 99.09%, LR: 0.000097
+2025-10-26 12:36:39,065 - WARNING - *** New best F1 score: 0.5406 at epoch 4 ***
+2025-10-26 12:37:39,170 - INFO - Epoch 5/25, Loss: 0.0017, Train Acc: 99.90%, LR: 0.000094
+2025-10-26 12:37:42,149 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:38:41,678 - INFO - Epoch 6/25, Loss: 0.0009, Train Acc: 99.92%, LR: 0.000091
+2025-10-26 12:38:44,639 - INFO - No improvement for 2 epoch(s)
+2025-10-26 12:39:43,449 - INFO - Epoch 7/25, Loss: 0.0006, Train Acc: 99.90%, LR: 0.000087
+2025-10-26 12:39:46,431 - INFO - No improvement for 3 epoch(s)
+2025-10-26 12:39:46,431 - WARNING - 
+*** Early stopping triggered after 7 epochs (no improvement for 3 epochs) ***
+2025-10-26 12:39:46,431 - WARNING - Training stopped early. Best Results - Epoch: 4, Accuracy: 0.6000, Precision: 0.7213, F1: 0.5406
+
+2025-10-26 12:39:50,956 - INFO - Training model 8 of 24
+2025-10-26 12:39:50,957 - INFO - visformer_small
+2025-10-26 12:39:51,408 - INFO - Loading pretrained weights from Hugging Face hub (timm/visformer_small.in1k)
+2025-10-26 12:39:53,796 - INFO - [timm/visformer_small.in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 12:39:53,853 - INFO - Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 12:39:53,912 - INFO - Model compiled with torch.compile()
+2025-10-26 12:39:53,914 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 12:42:08,630 - INFO - Epoch 1/25, Loss: 0.1308, Train Acc: 61.79%, LR: 0.000100
+2025-10-26 12:42:25,706 - WARNING - *** New best F1 score: 0.4492 at epoch 1 ***
+2025-10-26 12:43:23,860 - INFO - Epoch 2/25, Loss: 0.0755, Train Acc: 74.47%, LR: 0.000100
+2025-10-26 12:43:26,738 - WARNING - *** New best F1 score: 0.5864 at epoch 2 ***
+2025-10-26 12:44:26,254 - INFO - Epoch 3/25, Loss: 0.0411, Train Acc: 84.50%, LR: 0.000098
+2025-10-26 12:44:29,154 - WARNING - *** New best F1 score: 0.5890 at epoch 3 ***
+2025-10-26 12:45:28,071 - INFO - Epoch 4/25, Loss: 0.0215, Train Acc: 90.96%, LR: 0.000097
+2025-10-26 12:45:30,979 - WARNING - *** New best F1 score: 0.6211 at epoch 4 ***
+2025-10-26 12:46:29,099 - INFO - Epoch 5/25, Loss: 0.0102, Train Acc: 95.43%, LR: 0.000094
+2025-10-26 12:46:32,007 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:47:29,830 - INFO - Epoch 6/25, Loss: 0.0081, Train Acc: 96.54%, LR: 0.000091
+2025-10-26 12:47:32,711 - INFO - No improvement for 2 epoch(s)
+2025-10-26 12:48:31,139 - INFO - Epoch 7/25, Loss: 0.0066, Train Acc: 96.93%, LR: 0.000087
+2025-10-26 12:48:34,098 - INFO - No improvement for 3 epoch(s)
+2025-10-26 12:48:34,098 - WARNING - 
+*** Early stopping triggered after 7 epochs (no improvement for 3 epochs) ***
+2025-10-26 12:48:34,098 - WARNING - Training stopped early. Best Results - Epoch: 4, Accuracy: 0.6417, Precision: 0.7297, F1: 0.6211
+
+2025-10-26 12:48:38,717 - INFO - Training model 9 of 24
+2025-10-26 12:48:38,720 - INFO - convmixer_768_32
+2025-10-26 12:48:38,855 - INFO - Loading pretrained weights from Hugging Face hub (timm/convmixer_768_32.in1k)
+2025-10-26 12:48:43,327 - INFO - [timm/convmixer_768_32.in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 12:48:43,457 - INFO - Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 12:48:43,515 - INFO - Model compiled with torch.compile()
+2025-10-26 12:48:43,517 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 12:51:05,027 - INFO - Epoch 1/25, Loss: 0.1713, Train Acc: 45.96%, LR: 0.000100
+2025-10-26 12:51:25,080 - WARNING - *** New best F1 score: 0.3545 at epoch 1 ***
+2025-10-26 12:52:23,814 - INFO - Epoch 2/25, Loss: 0.1110, Train Acc: 67.76%, LR: 0.000100
+2025-10-26 12:52:26,719 - WARNING - *** New best F1 score: 0.4374 at epoch 2 ***
+2025-10-26 12:53:24,989 - INFO - Epoch 3/25, Loss: 0.0726, Train Acc: 78.07%, LR: 0.000098
+2025-10-26 12:53:27,957 - WARNING - *** New best F1 score: 0.4578 at epoch 3 ***
+2025-10-26 12:54:25,936 - INFO - Epoch 4/25, Loss: 0.0475, Train Acc: 84.10%, LR: 0.000097
+2025-10-26 12:54:28,830 - WARNING - *** New best F1 score: 0.5171 at epoch 4 ***
+2025-10-26 12:55:29,100 - INFO - Epoch 5/25, Loss: 0.0299, Train Acc: 89.89%, LR: 0.000094
+2025-10-26 12:55:32,105 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:56:30,195 - INFO - Epoch 6/25, Loss: 0.0198, Train Acc: 92.53%, LR: 0.000091
+2025-10-26 12:56:33,164 - WARNING - *** New best F1 score: 0.5454 at epoch 6 ***
+2025-10-26 12:57:32,131 - INFO - Epoch 7/25, Loss: 0.0136, Train Acc: 95.05%, LR: 0.000087
+2025-10-26 12:57:35,135 - WARNING - *** New best F1 score: 0.5505 at epoch 7 ***
+2025-10-26 12:58:34,159 - INFO - Epoch 8/25, Loss: 0.0106, Train Acc: 95.99%, LR: 0.000082
+2025-10-26 12:58:37,147 - INFO - No improvement for 1 epoch(s)
+2025-10-26 12:59:36,027 - INFO - Epoch 9/25, Loss: 0.0080, Train Acc: 97.15%, LR: 0.000077
+2025-10-26 12:59:39,030 - WARNING - *** New best F1 score: 0.5777 at epoch 9 ***
+2025-10-26 13:00:39,594 - INFO - Epoch 10/25, Loss: 0.0073, Train Acc: 97.21%, LR: 0.000072
+2025-10-26 13:00:42,516 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:01:42,016 - INFO - Epoch 11/25, Loss: 0.0058, Train Acc: 97.71%, LR: 0.000066
+2025-10-26 13:01:45,004 - INFO - No improvement for 2 epoch(s)
+2025-10-26 13:02:44,246 - INFO - Epoch 12/25, Loss: 0.0048, Train Acc: 98.65%, LR: 0.000060
+2025-10-26 13:02:47,245 - INFO - No improvement for 3 epoch(s)
+2025-10-26 13:02:47,245 - WARNING - 
+*** Early stopping triggered after 12 epochs (no improvement for 3 epochs) ***
+2025-10-26 13:02:47,245 - WARNING - Training stopped early. Best Results - Epoch: 9, Accuracy: 0.5917, Precision: 0.6287, F1: 0.5777
+
+2025-10-26 13:02:51,430 - INFO - Training model 10 of 24
+2025-10-26 13:02:51,431 - INFO - crossvit_small_240
+2025-10-26 13:02:52,262 - INFO - Loading pretrained weights from Hugging Face hub (timm/crossvit_small_240.in1k)
+2025-10-26 13:02:54,609 - INFO - [timm/crossvit_small_240.in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 13:02:54,652 - INFO - Missing keys (head.0.weight, head.0.bias, head.1.weight, head.1.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 13:02:54,698 - INFO - Model compiled with torch.compile()
+2025-10-26 13:02:54,700 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 13:06:02,019 - INFO - Epoch 1/25, Loss: 0.1109, Train Acc: 62.37%, LR: 0.000100
+2025-10-26 13:06:35,151 - WARNING - *** New best F1 score: 0.4187 at epoch 1 ***
+2025-10-26 13:07:32,063 - INFO - Epoch 2/25, Loss: 0.0640, Train Acc: 77.31%, LR: 0.000100
+2025-10-26 13:07:34,987 - WARNING - *** New best F1 score: 0.5870 at epoch 2 ***
+2025-10-26 13:08:36,318 - INFO - Epoch 3/25, Loss: 0.0367, Train Acc: 86.66%, LR: 0.000098
+2025-10-26 13:08:39,233 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:09:37,699 - INFO - Epoch 4/25, Loss: 0.0151, Train Acc: 94.23%, LR: 0.000097
+2025-10-26 13:09:40,620 - INFO - No improvement for 2 epoch(s)
+2025-10-26 13:10:38,400 - INFO - Epoch 5/25, Loss: 0.0063, Train Acc: 97.79%, LR: 0.000094
+2025-10-26 13:10:41,352 - INFO - No improvement for 3 epoch(s)
+2025-10-26 13:10:41,352 - WARNING - 
+*** Early stopping triggered after 5 epochs (no improvement for 3 epochs) ***
+2025-10-26 13:10:41,352 - WARNING - Training stopped early. Best Results - Epoch: 2, Accuracy: 0.6250, Precision: 0.7186, F1: 0.5870
+
+2025-10-26 13:10:45,494 - INFO - Training model 11 of 24
+2025-10-26 13:10:45,494 - INFO - visformer_tiny
+2025-10-26 13:10:45,621 - INFO - Loading pretrained weights from Hugging Face hub (timm/visformer_tiny.in1k)
+2025-10-26 13:10:50,416 - INFO - [timm/visformer_tiny.in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 13:10:50,456 - INFO - Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 13:10:50,486 - INFO - Model compiled with torch.compile()
+2025-10-26 13:10:50,487 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 13:12:37,919 - INFO - Epoch 1/25, Loss: 0.1384, Train Acc: 59.50%, LR: 0.000100
+2025-10-26 13:12:54,919 - WARNING - *** New best F1 score: 0.4590 at epoch 1 ***
+2025-10-26 13:13:53,648 - INFO - Epoch 2/25, Loss: 0.0870, Train Acc: 71.47%, LR: 0.000100
+2025-10-26 13:13:56,540 - WARNING - *** New best F1 score: 0.4832 at epoch 2 ***
+2025-10-26 13:14:54,813 - INFO - Epoch 3/25, Loss: 0.0526, Train Acc: 80.82%, LR: 0.000098
+2025-10-26 13:14:57,748 - WARNING - *** New best F1 score: 0.6587 at epoch 3 ***
+2025-10-26 13:15:57,346 - INFO - Epoch 4/25, Loss: 0.0312, Train Acc: 87.58%, LR: 0.000097
+2025-10-26 13:16:00,280 - WARNING - *** New best F1 score: 0.6621 at epoch 4 ***
+2025-10-26 13:16:58,644 - INFO - Epoch 5/25, Loss: 0.0195, Train Acc: 91.26%, LR: 0.000094
+2025-10-26 13:17:01,544 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:18:00,124 - INFO - Epoch 6/25, Loss: 0.0185, Train Acc: 92.71%, LR: 0.000091
+2025-10-26 13:18:03,027 - WARNING - *** New best F1 score: 0.6738 at epoch 6 ***
+2025-10-26 13:19:01,917 - INFO - Epoch 7/25, Loss: 0.0175, Train Acc: 92.81%, LR: 0.000087
+2025-10-26 13:19:04,856 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:20:03,883 - INFO - Epoch 8/25, Loss: 0.0074, Train Acc: 97.21%, LR: 0.000082
+2025-10-26 13:20:06,833 - INFO - No improvement for 2 epoch(s)
+2025-10-26 13:21:06,104 - INFO - Epoch 9/25, Loss: 0.0038, Train Acc: 98.42%, LR: 0.000077
+2025-10-26 13:21:09,044 - INFO - No improvement for 3 epoch(s)
+2025-10-26 13:21:09,044 - WARNING - 
+*** Early stopping triggered after 9 epochs (no improvement for 3 epochs) ***
+2025-10-26 13:21:09,044 - WARNING - Training stopped early. Best Results - Epoch: 6, Accuracy: 0.6917, Precision: 0.7614, F1: 0.6738
+
+2025-10-26 13:21:14,061 - INFO - Training model 12 of 24
+2025-10-26 13:21:14,063 - INFO - vgg19
+2025-10-26 13:21:15,579 - INFO - Loading pretrained weights from Hugging Face hub (timm/vgg19.tv_in1k)
+2025-10-26 13:21:24,719 - INFO - [timm/vgg19.tv_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 13:21:24,754 - INFO - Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 13:21:24,940 - INFO - Model compiled with torch.compile()
+2025-10-26 13:21:24,940 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 13:22:44,064 - INFO - Epoch 1/25, Loss: 0.1149, Train Acc: 60.24%, LR: 0.000100
+2025-10-26 13:22:51,643 - WARNING - *** New best F1 score: 0.3063 at epoch 1 ***
+2025-10-26 13:23:50,289 - INFO - Epoch 2/25, Loss: 0.0789, Train Acc: 72.28%, LR: 0.000100
+2025-10-26 13:23:53,201 - WARNING - *** New best F1 score: 0.4706 at epoch 2 ***
+2025-10-26 13:24:51,449 - INFO - Epoch 3/25, Loss: 0.0623, Train Acc: 77.87%, LR: 0.000098
+2025-10-26 13:24:54,366 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:25:53,025 - INFO - Epoch 4/25, Loss: 0.0517, Train Acc: 79.70%, LR: 0.000097
+2025-10-26 13:25:55,939 - INFO - No improvement for 2 epoch(s)
+2025-10-26 13:26:55,768 - INFO - Epoch 5/25, Loss: 0.0415, Train Acc: 83.51%, LR: 0.000094
+2025-10-26 13:26:58,693 - WARNING - *** New best F1 score: 0.4937 at epoch 5 ***
+2025-10-26 13:27:56,423 - INFO - Epoch 6/25, Loss: 0.0355, Train Acc: 84.10%, LR: 0.000091
+2025-10-26 13:27:59,319 - WARNING - *** New best F1 score: 0.5038 at epoch 6 ***
+2025-10-26 13:28:57,373 - INFO - Epoch 7/25, Loss: 0.0231, Train Acc: 89.23%, LR: 0.000087
+2025-10-26 13:29:00,290 - WARNING - *** New best F1 score: 0.7004 at epoch 7 ***
+2025-10-26 13:29:59,209 - INFO - Epoch 8/25, Loss: 0.0167, Train Acc: 91.06%, LR: 0.000082
+2025-10-26 13:30:02,098 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:30:59,375 - INFO - Epoch 9/25, Loss: 0.0152, Train Acc: 92.61%, LR: 0.000077
+2025-10-26 13:31:02,411 - INFO - No improvement for 2 epoch(s)
+2025-10-26 13:32:01,503 - INFO - Epoch 10/25, Loss: 0.0085, Train Acc: 95.30%, LR: 0.000072
+2025-10-26 13:32:04,402 - INFO - No improvement for 3 epoch(s)
+2025-10-26 13:32:04,402 - WARNING - 
+*** Early stopping triggered after 10 epochs (no improvement for 3 epochs) ***
+2025-10-26 13:32:04,402 - WARNING - Training stopped early. Best Results - Epoch: 7, Accuracy: 0.7000, Precision: 0.7658, F1: 0.7004
+
+2025-10-26 13:32:08,928 - INFO - Training model 13 of 24
+2025-10-26 13:32:08,929 - INFO - efficientformerv2_s0
+2025-10-26 13:32:08,972 - INFO - Loading pretrained weights from Hugging Face hub (timm/efficientformerv2_s0.snap_dist_in1k)
+2025-10-26 13:32:12,457 - INFO - [timm/efficientformerv2_s0.snap_dist_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 13:32:12,511 - INFO - Missing keys (head.weight, head.bias, head_dist.weight, head_dist.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 13:32:12,576 - INFO - Model compiled with torch.compile()
+2025-10-26 13:32:12,578 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 13:36:23,585 - INFO - Epoch 1/25, Loss: 0.1777, Train Acc: 41.79%, LR: 0.000100
+2025-10-26 13:37:16,179 - WARNING - *** New best F1 score: 0.3375 at epoch 1 ***
+2025-10-26 13:38:18,922 - INFO - Epoch 2/25, Loss: 0.1298, Train Acc: 62.83%, LR: 0.000100
+2025-10-26 13:38:21,841 - WARNING - *** New best F1 score: 0.4419 at epoch 2 ***
+2025-10-26 13:39:20,566 - INFO - Epoch 3/25, Loss: 0.0918, Train Acc: 73.50%, LR: 0.000098
+2025-10-26 13:39:23,384 - WARNING - *** New best F1 score: 0.5188 at epoch 3 ***
+2025-10-26 13:40:23,306 - INFO - Epoch 4/25, Loss: 0.0647, Train Acc: 79.78%, LR: 0.000097
+2025-10-26 13:40:26,260 - WARNING - *** New best F1 score: 0.5287 at epoch 4 ***
+2025-10-26 13:41:25,386 - INFO - Epoch 5/25, Loss: 0.0477, Train Acc: 84.20%, LR: 0.000094
+2025-10-26 13:41:28,316 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:42:26,951 - INFO - Epoch 6/25, Loss: 0.0316, Train Acc: 89.48%, LR: 0.000091
+2025-10-26 13:42:29,919 - WARNING - *** New best F1 score: 0.5335 at epoch 6 ***
+2025-10-26 13:43:28,021 - INFO - Epoch 7/25, Loss: 0.0220, Train Acc: 91.95%, LR: 0.000087
+2025-10-26 13:43:31,023 - WARNING - *** New best F1 score: 0.5818 at epoch 7 ***
+2025-10-26 13:44:29,954 - INFO - Epoch 8/25, Loss: 0.0139, Train Acc: 94.74%, LR: 0.000082
+2025-10-26 13:44:32,884 - WARNING - *** New best F1 score: 0.5891 at epoch 8 ***
+2025-10-26 13:45:31,813 - INFO - Epoch 9/25, Loss: 0.0109, Train Acc: 96.49%, LR: 0.000077
+2025-10-26 13:45:34,763 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:46:33,045 - INFO - Epoch 10/25, Loss: 0.0082, Train Acc: 97.56%, LR: 0.000072
+2025-10-26 13:46:36,028 - WARNING - *** New best F1 score: 0.5975 at epoch 10 ***
+2025-10-26 13:47:35,275 - INFO - Epoch 11/25, Loss: 0.0068, Train Acc: 98.12%, LR: 0.000066
+2025-10-26 13:47:38,195 - WARNING - *** New best F1 score: 0.6090 at epoch 11 ***
+2025-10-26 13:48:37,099 - INFO - Epoch 12/25, Loss: 0.0047, Train Acc: 98.70%, LR: 0.000060
+2025-10-26 13:48:40,060 - WARNING - *** New best F1 score: 0.6267 at epoch 12 ***
+2025-10-26 13:49:39,028 - INFO - Epoch 13/25, Loss: 0.0049, Train Acc: 98.40%, LR: 0.000054
+2025-10-26 13:49:42,007 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:50:39,620 - INFO - Epoch 14/25, Loss: 0.0041, Train Acc: 98.60%, LR: 0.000047
+2025-10-26 13:50:42,678 - INFO - No improvement for 2 epoch(s)
+2025-10-26 13:51:40,894 - INFO - Epoch 15/25, Loss: 0.0032, Train Acc: 99.26%, LR: 0.000041
+2025-10-26 13:51:43,917 - INFO - No improvement for 3 epoch(s)
+2025-10-26 13:51:43,917 - WARNING - 
+*** Early stopping triggered after 15 epochs (no improvement for 3 epochs) ***
+2025-10-26 13:51:43,917 - WARNING - Training stopped early. Best Results - Epoch: 12, Accuracy: 0.6417, Precision: 0.7329, F1: 0.6267
+
+2025-10-26 13:51:48,789 - INFO - Training model 14 of 24
+2025-10-26 13:51:48,790 - INFO - beitv2_base_patch16_224
+2025-10-26 13:51:51,458 - INFO - Loading pretrained weights from Hugging Face hub (timm/beitv2_base_patch16_224.in1k_ft_in22k_in1k)
+2025-10-26 13:52:02,326 - INFO - [timm/beitv2_base_patch16_224.in1k_ft_in22k_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 13:52:02,367 - INFO - Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 13:52:02,551 - INFO - Model compiled with torch.compile()
+2025-10-26 13:52:02,552 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 13:54:00,284 - INFO - Epoch 1/25, Loss: 0.1156, Train Acc: 64.02%, LR: 0.000100
+2025-10-26 13:54:16,854 - WARNING - *** New best F1 score: 0.4516 at epoch 1 ***
+2025-10-26 13:55:15,624 - INFO - Epoch 2/25, Loss: 0.0784, Train Acc: 74.19%, LR: 0.000100
+2025-10-26 13:55:18,589 - INFO - No improvement for 1 epoch(s)
+2025-10-26 13:56:17,885 - INFO - Epoch 3/25, Loss: 0.0544, Train Acc: 81.99%, LR: 0.000098
+2025-10-26 13:56:20,790 - WARNING - *** New best F1 score: 0.4626 at epoch 3 ***
+2025-10-26 13:57:20,294 - INFO - Epoch 4/25, Loss: 0.0413, Train Acc: 85.62%, LR: 0.000097
+2025-10-26 13:57:23,251 - WARNING - *** New best F1 score: 0.5142 at epoch 4 ***
+2025-10-26 13:58:21,245 - INFO - Epoch 5/25, Loss: 0.0322, Train Acc: 88.57%, LR: 0.000094
+2025-10-26 13:58:24,186 - WARNING - *** New best F1 score: 0.5207 at epoch 5 ***
+2025-10-26 13:59:22,014 - INFO - Epoch 6/25, Loss: 0.0174, Train Acc: 93.67%, LR: 0.000091
+2025-10-26 13:59:24,921 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:00:23,755 - INFO - Epoch 7/25, Loss: 0.0170, Train Acc: 93.55%, LR: 0.000087
+2025-10-26 14:00:26,716 - INFO - No improvement for 2 epoch(s)
+2025-10-26 14:01:25,978 - INFO - Epoch 8/25, Loss: 0.0121, Train Acc: 95.73%, LR: 0.000082
+2025-10-26 14:01:28,952 - WARNING - *** New best F1 score: 0.5221 at epoch 8 ***
+2025-10-26 14:02:27,181 - INFO - Epoch 9/25, Loss: 0.0107, Train Acc: 96.16%, LR: 0.000077
+2025-10-26 14:02:30,120 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:03:28,186 - INFO - Epoch 10/25, Loss: 0.0045, Train Acc: 98.30%, LR: 0.000072
+2025-10-26 14:03:31,086 - WARNING - *** New best F1 score: 0.5944 at epoch 10 ***
+2025-10-26 14:04:29,279 - INFO - Epoch 11/25, Loss: 0.0043, Train Acc: 98.22%, LR: 0.000066
+2025-10-26 14:04:32,233 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:05:30,877 - INFO - Epoch 12/25, Loss: 0.0024, Train Acc: 99.24%, LR: 0.000060
+2025-10-26 14:05:33,742 - INFO - No improvement for 2 epoch(s)
+2025-10-26 14:06:33,071 - INFO - Epoch 13/25, Loss: 0.0014, Train Acc: 99.57%, LR: 0.000054
+2025-10-26 14:06:35,969 - INFO - No improvement for 3 epoch(s)
+2025-10-26 14:06:35,969 - WARNING - 
+*** Early stopping triggered after 13 epochs (no improvement for 3 epochs) ***
+2025-10-26 14:06:35,970 - WARNING - Training stopped early. Best Results - Epoch: 10, Accuracy: 0.6167, Precision: 0.7229, F1: 0.5944
+
+2025-10-26 14:06:41,924 - INFO - Training model 15 of 24
+2025-10-26 14:06:41,925 - INFO - efficientvit_b0
+2025-10-26 14:06:41,949 - INFO - Loading pretrained weights from Hugging Face hub (timm/efficientvit_b0.r224_in1k)
+2025-10-26 14:06:42,876 - INFO - [timm/efficientvit_b0.r224_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 14:06:42,900 - INFO - Missing keys (head.classifier.4.weight, head.classifier.4.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 14:06:42,914 - INFO - Model compiled with torch.compile()
+2025-10-26 14:06:42,916 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 14:09:14,754 - INFO - Epoch 1/25, Loss: 0.1405, Train Acc: 53.53%, LR: 0.000100
+2025-10-26 14:09:40,096 - WARNING - *** New best F1 score: 0.3400 at epoch 1 ***
+2025-10-26 14:10:37,326 - INFO - Epoch 2/25, Loss: 0.0780, Train Acc: 73.32%, LR: 0.000100
+2025-10-26 14:10:40,264 - WARNING - *** New best F1 score: 0.4155 at epoch 2 ***
+2025-10-26 14:11:37,752 - INFO - Epoch 3/25, Loss: 0.0491, Train Acc: 82.52%, LR: 0.000098
+2025-10-26 14:11:40,725 - WARNING - *** New best F1 score: 0.4785 at epoch 3 ***
+2025-10-26 14:12:39,910 - INFO - Epoch 4/25, Loss: 0.0289, Train Acc: 90.07%, LR: 0.000097
+2025-10-26 14:12:42,894 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:13:42,071 - INFO - Epoch 5/25, Loss: 0.0160, Train Acc: 95.50%, LR: 0.000094
+2025-10-26 14:13:45,026 - INFO - No improvement for 2 epoch(s)
+2025-10-26 14:14:42,783 - INFO - Epoch 6/25, Loss: 0.0085, Train Acc: 98.45%, LR: 0.000091
+2025-10-26 14:14:45,708 - WARNING - *** New best F1 score: 0.5045 at epoch 6 ***
+2025-10-26 14:15:43,732 - INFO - Epoch 7/25, Loss: 0.0060, Train Acc: 98.70%, LR: 0.000087
+2025-10-26 14:15:46,566 - WARNING - *** New best F1 score: 0.5302 at epoch 7 ***
+2025-10-26 14:16:45,805 - INFO - Epoch 8/25, Loss: 0.0041, Train Acc: 99.42%, LR: 0.000082
+2025-10-26 14:16:48,738 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:17:48,794 - INFO - Epoch 9/25, Loss: 0.0029, Train Acc: 99.64%, LR: 0.000077
+2025-10-26 14:17:51,690 - WARNING - *** New best F1 score: 0.5636 at epoch 9 ***
+2025-10-26 14:18:49,984 - INFO - Epoch 10/25, Loss: 0.0022, Train Acc: 99.64%, LR: 0.000072
+2025-10-26 14:18:52,928 - WARNING - *** New best F1 score: 0.5737 at epoch 10 ***
+2025-10-26 14:19:51,019 - INFO - Epoch 11/25, Loss: 0.0015, Train Acc: 99.80%, LR: 0.000066
+2025-10-26 14:19:53,998 - WARNING - *** New best F1 score: 0.5850 at epoch 11 ***
+2025-10-26 14:20:52,694 - INFO - Epoch 12/25, Loss: 0.0014, Train Acc: 99.87%, LR: 0.000060
+2025-10-26 14:20:55,597 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:21:54,797 - INFO - Epoch 13/25, Loss: 0.0014, Train Acc: 99.85%, LR: 0.000054
+2025-10-26 14:21:57,624 - INFO - No improvement for 2 epoch(s)
+2025-10-26 14:22:56,947 - INFO - Epoch 14/25, Loss: 0.0012, Train Acc: 99.85%, LR: 0.000047
+2025-10-26 14:22:59,911 - INFO - No improvement for 3 epoch(s)
+2025-10-26 14:22:59,911 - WARNING - 
+*** Early stopping triggered after 14 epochs (no improvement for 3 epochs) ***
+2025-10-26 14:22:59,912 - WARNING - Training stopped early. Best Results - Epoch: 11, Accuracy: 0.6250, Precision: 0.7163, F1: 0.5850
+
+2025-10-26 14:23:05,327 - INFO - Training model 16 of 24
+2025-10-26 14:23:05,328 - INFO - deit3_base_patch16_224
+2025-10-26 14:23:07,374 - INFO - Loading pretrained weights from Hugging Face hub (timm/deit3_base_patch16_224.fb_in1k)
+2025-10-26 14:23:20,753 - INFO - [timm/deit3_base_patch16_224.fb_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 14:23:20,783 - INFO - Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 14:23:20,930 - INFO - Model compiled with torch.compile()
+2025-10-26 14:23:20,931 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 14:25:12,879 - INFO - Epoch 1/25, Loss: 0.1114, Train Acc: 62.20%, LR: 0.000100
+2025-10-26 14:25:26,969 - WARNING - *** New best F1 score: 0.3505 at epoch 1 ***
+2025-10-26 14:26:24,236 - INFO - Epoch 2/25, Loss: 0.0682, Train Acc: 76.88%, LR: 0.000100
+2025-10-26 14:26:27,181 - WARNING - *** New best F1 score: 0.4870 at epoch 2 ***
+2025-10-26 14:27:25,956 - INFO - Epoch 3/25, Loss: 0.0393, Train Acc: 87.04%, LR: 0.000098
+2025-10-26 14:27:28,851 - WARNING - *** New best F1 score: 0.5025 at epoch 3 ***
+2025-10-26 14:28:27,513 - INFO - Epoch 4/25, Loss: 0.0205, Train Acc: 91.95%, LR: 0.000097
+2025-10-26 14:28:30,415 - WARNING - *** New best F1 score: 0.6097 at epoch 4 ***
+2025-10-26 14:29:29,974 - INFO - Epoch 5/25, Loss: 0.0104, Train Acc: 95.78%, LR: 0.000094
+2025-10-26 14:29:32,824 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:30:31,370 - INFO - Epoch 6/25, Loss: 0.0093, Train Acc: 96.75%, LR: 0.000091
+2025-10-26 14:30:34,300 - INFO - No improvement for 2 epoch(s)
+2025-10-26 14:31:33,649 - INFO - Epoch 7/25, Loss: 0.0085, Train Acc: 96.85%, LR: 0.000087
+2025-10-26 14:31:36,529 - INFO - No improvement for 3 epoch(s)
+2025-10-26 14:31:36,529 - WARNING - 
+*** Early stopping triggered after 7 epochs (no improvement for 3 epochs) ***
+2025-10-26 14:31:36,529 - WARNING - Training stopped early. Best Results - Epoch: 4, Accuracy: 0.6167, Precision: 0.6830, F1: 0.6097
+
+2025-10-26 14:31:42,341 - INFO - Training model 17 of 24
+2025-10-26 14:31:42,342 - INFO - densenet121
+2025-10-26 14:31:42,443 - INFO - Loading pretrained weights from Hugging Face hub (timm/densenet121.ra_in1k)
+2025-10-26 14:31:43,676 - INFO - [timm/densenet121.ra_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 14:31:43,753 - INFO - Missing keys (classifier.weight, classifier.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 14:31:43,801 - INFO - Model compiled with torch.compile()
+2025-10-26 14:31:43,804 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 14:37:36,885 - INFO - Epoch 1/25, Loss: 0.1364, Train Acc: 54.37%, LR: 0.000100
+2025-10-26 14:38:36,965 - WARNING - *** New best F1 score: 0.4048 at epoch 1 ***
+2025-10-26 14:39:33,571 - INFO - Epoch 2/25, Loss: 0.0739, Train Acc: 76.02%, LR: 0.000100
+2025-10-26 14:39:36,512 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:40:34,515 - INFO - Epoch 3/25, Loss: 0.0429, Train Acc: 87.35%, LR: 0.000098
+2025-10-26 14:40:37,450 - INFO - No improvement for 2 epoch(s)
+2025-10-26 14:41:35,990 - INFO - Epoch 4/25, Loss: 0.0228, Train Acc: 94.13%, LR: 0.000097
+2025-10-26 14:41:38,910 - WARNING - *** New best F1 score: 0.4086 at epoch 4 ***
+2025-10-26 14:42:37,214 - INFO - Epoch 5/25, Loss: 0.0122, Train Acc: 97.69%, LR: 0.000094
+2025-10-26 14:42:40,178 - WARNING - *** New best F1 score: 0.4468 at epoch 5 ***
+2025-10-26 14:43:38,865 - INFO - Epoch 6/25, Loss: 0.0068, Train Acc: 98.93%, LR: 0.000091
+2025-10-26 14:43:41,825 - WARNING - *** New best F1 score: 0.4810 at epoch 6 ***
+2025-10-26 14:44:40,383 - INFO - Epoch 7/25, Loss: 0.0044, Train Acc: 99.39%, LR: 0.000087
+2025-10-26 14:44:43,344 - INFO - No improvement for 1 epoch(s)
+2025-10-26 14:45:41,678 - INFO - Epoch 8/25, Loss: 0.0034, Train Acc: 99.39%, LR: 0.000082
+2025-10-26 14:45:44,635 - INFO - No improvement for 2 epoch(s)
+2025-10-26 14:46:42,712 - INFO - Epoch 9/25, Loss: 0.0024, Train Acc: 99.59%, LR: 0.000077
+2025-10-26 14:46:45,697 - INFO - No improvement for 3 epoch(s)
+2025-10-26 14:46:45,697 - WARNING - 
+*** Early stopping triggered after 9 epochs (no improvement for 3 epochs) ***
+2025-10-26 14:46:45,697 - WARNING - Training stopped early. Best Results - Epoch: 6, Accuracy: 0.5250, Precision: 0.6530, F1: 0.4810
+
+2025-10-26 14:46:52,658 - INFO - Training model 18 of 24
+2025-10-26 14:46:52,658 - INFO - inception_resnet_v2
+2025-10-26 14:46:53,043 - INFO - Loading pretrained weights from Hugging Face hub (timm/inception_resnet_v2.tf_in1k)
+2025-10-26 14:46:58,175 - INFO - [timm/inception_resnet_v2.tf_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 14:46:58,452 - INFO - Missing keys (classif.weight, classif.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 14:46:58,542 - INFO - Model compiled with torch.compile()
+2025-10-26 14:46:58,546 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 14:54:10,787 - INFO - Epoch 1/25, Loss: 0.1261, Train Acc: 59.63%, LR: 0.000100
+2025-10-26 14:55:03,605 - WARNING - *** New best F1 score: 0.3924 at epoch 1 ***
+2025-10-26 14:56:02,786 - INFO - Epoch 2/25, Loss: 0.0590, Train Acc: 79.88%, LR: 0.000100
+2025-10-26 14:56:05,805 - WARNING - *** New best F1 score: 0.4362 at epoch 2 ***
+2025-10-26 14:57:05,685 - INFO - Epoch 3/25, Loss: 0.0199, Train Acc: 92.45%, LR: 0.000098
+2025-10-26 14:57:08,693 - WARNING - *** New best F1 score: 0.4967 at epoch 3 ***
+2025-10-26 14:58:08,392 - INFO - Epoch 4/25, Loss: 0.0083, Train Acc: 96.93%, LR: 0.000097
+2025-10-26 14:58:11,340 - WARNING - *** New best F1 score: 0.5134 at epoch 4 ***
+2025-10-26 14:59:10,568 - INFO - Epoch 5/25, Loss: 0.0051, Train Acc: 97.97%, LR: 0.000094
+2025-10-26 14:59:13,593 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:00:12,209 - INFO - Epoch 6/25, Loss: 0.0047, Train Acc: 98.09%, LR: 0.000091
+2025-10-26 15:00:15,196 - WARNING - *** New best F1 score: 0.5342 at epoch 6 ***
+2025-10-26 15:01:13,925 - INFO - Epoch 7/25, Loss: 0.0048, Train Acc: 98.12%, LR: 0.000087
+2025-10-26 15:01:17,032 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:02:16,253 - INFO - Epoch 8/25, Loss: 0.0033, Train Acc: 98.76%, LR: 0.000082
+2025-10-26 15:02:19,276 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:03:18,393 - INFO - Epoch 9/25, Loss: 0.0028, Train Acc: 98.65%, LR: 0.000077
+2025-10-26 15:03:21,426 - INFO - No improvement for 3 epoch(s)
+2025-10-26 15:03:21,427 - WARNING - 
+*** Early stopping triggered after 9 epochs (no improvement for 3 epochs) ***
+2025-10-26 15:03:21,427 - WARNING - Training stopped early. Best Results - Epoch: 6, Accuracy: 0.5667, Precision: 0.6409, F1: 0.5342
+
+2025-10-26 15:03:30,107 - INFO - Training model 19 of 24
+2025-10-26 15:03:30,108 - INFO - deit_tiny_patch16_224
+2025-10-26 15:03:30,354 - INFO - Loading pretrained weights from Hugging Face hub (timm/deit_tiny_patch16_224.fb_in1k)
+2025-10-26 15:03:41,256 - INFO - [timm/deit_tiny_patch16_224.fb_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 15:03:41,274 - INFO - Missing keys (head.weight, head.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 15:03:41,293 - INFO - Model compiled with torch.compile()
+2025-10-26 15:03:41,294 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 15:05:05,770 - INFO - Epoch 1/25, Loss: 0.1084, Train Acc: 63.77%, LR: 0.000100
+2025-10-26 15:05:19,433 - WARNING - *** New best F1 score: 0.4368 at epoch 1 ***
+2025-10-26 15:06:18,037 - INFO - Epoch 2/25, Loss: 0.0707, Train Acc: 75.58%, LR: 0.000100
+2025-10-26 15:06:20,998 - WARNING - *** New best F1 score: 0.5696 at epoch 2 ***
+2025-10-26 15:07:19,859 - INFO - Epoch 3/25, Loss: 0.0470, Train Acc: 82.98%, LR: 0.000098
+2025-10-26 15:07:22,850 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:08:22,371 - INFO - Epoch 4/25, Loss: 0.0275, Train Acc: 89.13%, LR: 0.000097
+2025-10-26 15:08:25,342 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:09:24,237 - INFO - Epoch 5/25, Loss: 0.0176, Train Acc: 92.15%, LR: 0.000094
+2025-10-26 15:09:27,221 - INFO - No improvement for 3 epoch(s)
+2025-10-26 15:09:27,222 - WARNING - 
+*** Early stopping triggered after 5 epochs (no improvement for 3 epochs) ***
+2025-10-26 15:09:27,222 - WARNING - Training stopped early. Best Results - Epoch: 2, Accuracy: 0.5750, Precision: 0.6341, F1: 0.5696
+
+2025-10-26 15:09:35,560 - INFO - Training model 20 of 24
+2025-10-26 15:09:35,562 - INFO - resnext50_32x4d
+2025-10-26 15:09:35,817 - INFO - Loading pretrained weights from Hugging Face hub (timm/resnext50_32x4d.a1h_in1k)
+2025-10-26 15:09:38,232 - INFO - [timm/resnext50_32x4d.a1h_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 15:09:38,278 - INFO - Missing keys (fc.weight, fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 15:09:38,395 - INFO - Model compiled with torch.compile()
+2025-10-26 15:09:38,397 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 15:11:58,797 - INFO - Epoch 1/25, Loss: 0.1551, Train Acc: 48.98%, LR: 0.000100
+2025-10-26 15:12:12,752 - WARNING - *** New best F1 score: 0.2348 at epoch 1 ***
+2025-10-26 15:13:11,640 - INFO - Epoch 2/25, Loss: 0.1203, Train Acc: 61.64%, LR: 0.000100
+2025-10-26 15:13:14,657 - WARNING - *** New best F1 score: 0.3487 at epoch 2 ***
+2025-10-26 15:14:13,286 - INFO - Epoch 3/25, Loss: 0.0899, Train Acc: 71.93%, LR: 0.000098
+2025-10-26 15:14:16,263 - WARNING - *** New best F1 score: 0.3995 at epoch 3 ***
+2025-10-26 15:15:15,826 - INFO - Epoch 4/25, Loss: 0.0624, Train Acc: 78.53%, LR: 0.000097
+2025-10-26 15:15:18,784 - WARNING - *** New best F1 score: 0.4308 at epoch 4 ***
+2025-10-26 15:16:18,931 - INFO - Epoch 5/25, Loss: 0.0419, Train Acc: 85.65%, LR: 0.000094
+2025-10-26 15:16:21,906 - WARNING - *** New best F1 score: 0.4842 at epoch 5 ***
+2025-10-26 15:17:20,094 - INFO - Epoch 6/25, Loss: 0.0275, Train Acc: 90.45%, LR: 0.000091
+2025-10-26 15:17:23,019 - WARNING - *** New best F1 score: 0.5437 at epoch 6 ***
+2025-10-26 15:18:22,160 - INFO - Epoch 7/25, Loss: 0.0160, Train Acc: 95.02%, LR: 0.000087
+2025-10-26 15:18:25,111 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:19:23,050 - INFO - Epoch 8/25, Loss: 0.0115, Train Acc: 96.82%, LR: 0.000082
+2025-10-26 15:19:26,007 - WARNING - *** New best F1 score: 0.5475 at epoch 8 ***
+2025-10-26 15:20:25,657 - INFO - Epoch 9/25, Loss: 0.0076, Train Acc: 97.51%, LR: 0.000077
+2025-10-26 15:20:28,625 - WARNING - *** New best F1 score: 0.5549 at epoch 9 ***
+2025-10-26 15:21:27,104 - INFO - Epoch 10/25, Loss: 0.0062, Train Acc: 98.07%, LR: 0.000072
+2025-10-26 15:21:30,074 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:22:28,973 - INFO - Epoch 11/25, Loss: 0.0046, Train Acc: 98.65%, LR: 0.000066
+2025-10-26 15:22:31,908 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:23:31,025 - INFO - Epoch 12/25, Loss: 0.0025, Train Acc: 99.21%, LR: 0.000060
+2025-10-26 15:23:34,000 - WARNING - *** New best F1 score: 0.5786 at epoch 12 ***
+2025-10-26 15:24:32,606 - INFO - Epoch 13/25, Loss: 0.0035, Train Acc: 98.91%, LR: 0.000054
+2025-10-26 15:24:35,608 - WARNING - *** New best F1 score: 0.5829 at epoch 13 ***
+2025-10-26 15:25:33,930 - INFO - Epoch 14/25, Loss: 0.0021, Train Acc: 99.57%, LR: 0.000047
+2025-10-26 15:25:36,877 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:26:35,926 - INFO - Epoch 15/25, Loss: 0.0020, Train Acc: 99.39%, LR: 0.000041
+2025-10-26 15:26:38,917 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:27:37,010 - INFO - Epoch 16/25, Loss: 0.0023, Train Acc: 99.39%, LR: 0.000035
+2025-10-26 15:27:39,962 - WARNING - *** New best F1 score: 0.6014 at epoch 16 ***
+2025-10-26 15:28:39,021 - INFO - Epoch 17/25, Loss: 0.0018, Train Acc: 99.36%, LR: 0.000029
+2025-10-26 15:28:42,020 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:29:40,439 - INFO - Epoch 18/25, Loss: 0.0013, Train Acc: 99.72%, LR: 0.000024
+2025-10-26 15:29:43,388 - WARNING - *** New best F1 score: 0.6241 at epoch 18 ***
+2025-10-26 15:30:43,992 - INFO - Epoch 19/25, Loss: 0.0014, Train Acc: 99.57%, LR: 0.000019
+2025-10-26 15:30:46,998 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:31:46,493 - INFO - Epoch 20/25, Loss: 0.0011, Train Acc: 99.70%, LR: 0.000014
+2025-10-26 15:31:49,437 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:32:48,921 - INFO - Epoch 21/25, Loss: 0.0013, Train Acc: 99.52%, LR: 0.000010
+2025-10-26 15:32:51,921 - INFO - No improvement for 3 epoch(s)
+2025-10-26 15:32:51,921 - WARNING - 
+*** Early stopping triggered after 21 epochs (no improvement for 3 epochs) ***
+2025-10-26 15:32:51,921 - WARNING - Training stopped early. Best Results - Epoch: 18, Accuracy: 0.6583, Precision: 0.7501, F1: 0.6241
+
+2025-10-26 15:33:00,660 - INFO - Training model 21 of 24
+2025-10-26 15:33:00,660 - INFO - crossvit_9_240
+2025-10-26 15:33:00,956 - INFO - Loading pretrained weights from Hugging Face hub (timm/crossvit_9_240.in1k)
+2025-10-26 15:33:06,754 - INFO - [timm/crossvit_9_240.in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 15:33:06,781 - INFO - Missing keys (head.0.weight, head.0.bias, head.1.weight, head.1.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 15:33:06,807 - INFO - Model compiled with torch.compile()
+2025-10-26 15:33:06,809 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 15:35:07,070 - INFO - Epoch 1/25, Loss: 0.1089, Train Acc: 63.62%, LR: 0.000100
+2025-10-26 15:35:47,381 - WARNING - *** New best F1 score: 0.4840 at epoch 1 ***
+2025-10-26 15:36:46,476 - INFO - Epoch 2/25, Loss: 0.0678, Train Acc: 76.27%, LR: 0.000100
+2025-10-26 15:36:49,467 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:37:48,187 - INFO - Epoch 3/25, Loss: 0.0416, Train Acc: 85.06%, LR: 0.000098
+2025-10-26 15:37:51,220 - WARNING - *** New best F1 score: 0.4853 at epoch 3 ***
+2025-10-26 15:38:49,587 - INFO - Epoch 4/25, Loss: 0.0238, Train Acc: 90.88%, LR: 0.000097
+2025-10-26 15:38:52,448 - WARNING - *** New best F1 score: 0.5642 at epoch 4 ***
+2025-10-26 15:39:50,686 - INFO - Epoch 5/25, Loss: 0.0098, Train Acc: 95.73%, LR: 0.000094
+2025-10-26 15:39:53,667 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:40:52,283 - INFO - Epoch 6/25, Loss: 0.0071, Train Acc: 97.18%, LR: 0.000091
+2025-10-26 15:40:55,348 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:41:54,803 - INFO - Epoch 7/25, Loss: 0.0031, Train Acc: 98.88%, LR: 0.000087
+2025-10-26 15:41:57,797 - WARNING - *** New best F1 score: 0.6182 at epoch 7 ***
+2025-10-26 15:42:56,269 - INFO - Epoch 8/25, Loss: 0.0011, Train Acc: 99.62%, LR: 0.000082
+2025-10-26 15:42:59,297 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:43:57,494 - INFO - Epoch 9/25, Loss: 0.0004, Train Acc: 99.92%, LR: 0.000077
+2025-10-26 15:44:00,495 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:44:59,215 - INFO - Epoch 10/25, Loss: 0.0003, Train Acc: 99.95%, LR: 0.000072
+2025-10-26 15:45:02,179 - INFO - No improvement for 3 epoch(s)
+2025-10-26 15:45:02,180 - WARNING - 
+*** Early stopping triggered after 10 epochs (no improvement for 3 epochs) ***
+2025-10-26 15:45:02,180 - WARNING - Training stopped early. Best Results - Epoch: 7, Accuracy: 0.6417, Precision: 0.7233, F1: 0.6182
+
+2025-10-26 15:45:09,727 - INFO - Training model 22 of 24
+2025-10-26 15:45:09,727 - INFO - tinynet_a
+2025-10-26 15:45:09,801 - INFO - Loading pretrained weights from Hugging Face hub (timm/tinynet_a.in1k)
+2025-10-26 15:45:12,190 - INFO - [timm/tinynet_a.in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 15:45:12,231 - INFO - Missing keys (classifier.weight, classifier.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 15:45:12,270 - INFO - Model compiled with torch.compile()
+2025-10-26 15:45:12,272 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 15:48:49,896 - INFO - Epoch 1/25, Loss: 0.4166, Train Acc: 46.44%, LR: 0.000100
+2025-10-26 15:49:15,030 - WARNING - *** New best F1 score: 0.3617 at epoch 1 ***
+2025-10-26 15:50:13,666 - INFO - Epoch 2/25, Loss: 0.1091, Train Acc: 74.29%, LR: 0.000100
+2025-10-26 15:50:16,695 - WARNING - *** New best F1 score: 0.4028 at epoch 2 ***
+2025-10-26 15:51:15,591 - INFO - Epoch 3/25, Loss: 0.0395, Train Acc: 88.19%, LR: 0.000098
+2025-10-26 15:51:18,617 - WARNING - *** New best F1 score: 0.4337 at epoch 3 ***
+2025-10-26 15:52:18,044 - INFO - Epoch 4/25, Loss: 0.0188, Train Acc: 93.22%, LR: 0.000097
+2025-10-26 15:52:21,022 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:53:19,430 - INFO - Epoch 5/25, Loss: 0.0127, Train Acc: 95.40%, LR: 0.000094
+2025-10-26 15:53:22,451 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:54:21,258 - INFO - Epoch 6/25, Loss: 0.0098, Train Acc: 95.93%, LR: 0.000091
+2025-10-26 15:54:24,249 - WARNING - *** New best F1 score: 0.4433 at epoch 6 ***
+2025-10-26 15:55:22,909 - INFO - Epoch 7/25, Loss: 0.0070, Train Acc: 97.38%, LR: 0.000087
+2025-10-26 15:55:25,870 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:56:23,971 - INFO - Epoch 8/25, Loss: 0.0073, Train Acc: 97.18%, LR: 0.000082
+2025-10-26 15:56:26,965 - WARNING - *** New best F1 score: 0.4649 at epoch 8 ***
+2025-10-26 15:57:25,714 - INFO - Epoch 9/25, Loss: 0.0048, Train Acc: 97.99%, LR: 0.000077
+2025-10-26 15:57:28,735 - INFO - No improvement for 1 epoch(s)
+2025-10-26 15:58:27,563 - INFO - Epoch 10/25, Loss: 0.0043, Train Acc: 98.48%, LR: 0.000072
+2025-10-26 15:58:30,612 - INFO - No improvement for 2 epoch(s)
+2025-10-26 15:59:29,411 - INFO - Epoch 11/25, Loss: 0.0037, Train Acc: 98.63%, LR: 0.000066
+2025-10-26 15:59:32,426 - INFO - No improvement for 3 epoch(s)
+2025-10-26 15:59:32,426 - WARNING - 
+*** Early stopping triggered after 11 epochs (no improvement for 3 epochs) ***
+2025-10-26 15:59:32,427 - WARNING - Training stopped early. Best Results - Epoch: 8, Accuracy: 0.4833, Precision: 0.5381, F1: 0.4649
+
+2025-10-26 15:59:40,771 - INFO - Training model 23 of 24
+2025-10-26 15:59:40,771 - INFO - fastvit_s12
+2025-10-26 15:59:41,262 - INFO - Loading pretrained weights from Hugging Face hub (timm/fastvit_s12.apple_in1k)
+2025-10-26 15:59:49,148 - INFO - [timm/fastvit_s12.apple_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 15:59:49,201 - INFO - Missing keys (head.fc.weight, head.fc.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 15:59:49,277 - INFO - Model compiled with torch.compile()
+2025-10-26 15:59:49,279 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 16:03:20,041 - INFO - Epoch 1/25, Loss: 0.1426, Train Acc: 52.62%, LR: 0.000100
+2025-10-26 16:03:53,548 - WARNING - *** New best F1 score: 0.3486 at epoch 1 ***
+2025-10-26 16:04:50,538 - INFO - Epoch 2/25, Loss: 0.0845, Train Acc: 71.70%, LR: 0.000100
+2025-10-26 16:04:53,540 - WARNING - *** New best F1 score: 0.3935 at epoch 2 ***
+2025-10-26 16:05:51,823 - INFO - Epoch 3/25, Loss: 0.0482, Train Acc: 83.03%, LR: 0.000098
+2025-10-26 16:05:54,878 - WARNING - *** New best F1 score: 0.4186 at epoch 3 ***
+2025-10-26 16:06:53,477 - INFO - Epoch 4/25, Loss: 0.0196, Train Acc: 93.98%, LR: 0.000097
+2025-10-26 16:06:56,475 - WARNING - *** New best F1 score: 0.4856 at epoch 4 ***
+2025-10-26 16:07:55,865 - INFO - Epoch 5/25, Loss: 0.0084, Train Acc: 98.25%, LR: 0.000094
+2025-10-26 16:07:58,861 - WARNING - *** New best F1 score: 0.5074 at epoch 5 ***
+2025-10-26 16:08:57,559 - INFO - Epoch 6/25, Loss: 0.0044, Train Acc: 99.03%, LR: 0.000091
+2025-10-26 16:09:00,559 - WARNING - *** New best F1 score: 0.5099 at epoch 6 ***
+2025-10-26 16:09:59,034 - INFO - Epoch 7/25, Loss: 0.0023, Train Acc: 99.67%, LR: 0.000087
+2025-10-26 16:10:02,030 - WARNING - *** New best F1 score: 0.5550 at epoch 7 ***
+2025-10-26 16:11:02,737 - INFO - Epoch 8/25, Loss: 0.0013, Train Acc: 99.90%, LR: 0.000082
+2025-10-26 16:11:05,787 - INFO - No improvement for 1 epoch(s)
+2025-10-26 16:12:04,829 - INFO - Epoch 9/25, Loss: 0.0010, Train Acc: 99.90%, LR: 0.000077
+2025-10-26 16:12:07,806 - WARNING - *** New best F1 score: 0.5708 at epoch 9 ***
+2025-10-26 16:13:05,966 - INFO - Epoch 10/25, Loss: 0.0010, Train Acc: 99.82%, LR: 0.000072
+2025-10-26 16:13:08,977 - WARNING - *** New best F1 score: 0.5722 at epoch 10 ***
+2025-10-26 16:14:07,100 - INFO - Epoch 11/25, Loss: 0.0007, Train Acc: 99.95%, LR: 0.000066
+2025-10-26 16:14:10,095 - INFO - No improvement for 1 epoch(s)
+2025-10-26 16:15:08,496 - INFO - Epoch 12/25, Loss: 0.0005, Train Acc: 99.92%, LR: 0.000060
+2025-10-26 16:15:11,540 - INFO - No improvement for 2 epoch(s)
+2025-10-26 16:16:10,474 - INFO - Epoch 13/25, Loss: 0.0004, Train Acc: 99.90%, LR: 0.000054
+2025-10-26 16:16:13,476 - INFO - No improvement for 3 epoch(s)
+2025-10-26 16:16:13,477 - WARNING - 
+*** Early stopping triggered after 13 epochs (no improvement for 3 epochs) ***
+2025-10-26 16:16:13,477 - WARNING - Training stopped early. Best Results - Epoch: 10, Accuracy: 0.6000, Precision: 0.7077, F1: 0.5722
+
+2025-10-26 16:16:21,605 - INFO - Training model 24 of 24
+2025-10-26 16:16:21,605 - INFO - efficientnet_b0
+2025-10-26 16:16:21,659 - INFO - Loading pretrained weights from Hugging Face hub (timm/efficientnet_b0.ra_in1k)
+2025-10-26 16:16:29,992 - INFO - [timm/efficientnet_b0.ra_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-10-26 16:16:30,024 - INFO - Missing keys (classifier.weight, classifier.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-10-26 16:16:30,043 - INFO - Model compiled with torch.compile()
+2025-10-26 16:16:30,044 - INFO - Using CosineAnnealingLR scheduler (min_lr=1e-06)
+2025-10-26 16:18:37,053 - INFO - Epoch 1/25, Loss: 0.5305, Train Acc: 41.72%, LR: 0.000100
+2025-10-26 16:19:03,575 - WARNING - *** New best F1 score: 0.4111 at epoch 1 ***
+2025-10-26 16:20:03,112 - INFO - Epoch 2/25, Loss: 0.1426, Train Acc: 70.55%, LR: 0.000100
+2025-10-26 16:20:06,190 - INFO - No improvement for 1 epoch(s)
+2025-10-26 16:21:05,233 - INFO - Epoch 3/25, Loss: 0.0572, Train Acc: 83.56%, LR: 0.000098
+2025-10-26 16:21:08,246 - INFO - No improvement for 2 epoch(s)
+2025-10-26 16:22:06,435 - INFO - Epoch 4/25, Loss: 0.0314, Train Acc: 90.27%, LR: 0.000097
+2025-10-26 16:22:09,372 - INFO - No improvement for 3 epoch(s)
+2025-10-26 16:22:09,373 - WARNING - 
+*** Early stopping triggered after 4 epochs (no improvement for 3 epochs) ***
+2025-10-26 16:22:09,373 - WARNING - Training stopped early. Best Results - Epoch: 1, Accuracy: 0.4250, Precision: 0.4658, F1: 0.4111
+
+2025-10-26 16:22:17,425 - INFO - TRAINING COMPLETED
+2025-10-26 16:22:17,433 - INFO - Final Results:
+                 model_name  best_epoch  accuracy  precision        f1  early_stopped
+0           tiny_vit_5m_224          10  0.633333   0.669358  0.608831           True
+1               volo_d1_224           5  0.816667   0.845290  0.813668           True
+2            convformer_s36           4  0.733333   0.805745  0.707950           True
+3           convnextv2_tiny           7  0.758333   0.785172  0.752352           True
+4          tiny_vit_11m_224           8  0.725000   0.755628  0.716865           True
+5               convit_base           9  0.666667   0.717304  0.644435           True
+6      inception_next_small           4  0.600000   0.721341  0.540619           True
+7           visformer_small           4  0.641667   0.729672  0.621098           True
+8          convmixer_768_32           9  0.591667   0.628704  0.577749           True
+9        crossvit_small_240           2  0.625000   0.718562  0.586989           True
+10           visformer_tiny           6  0.691667   0.761380  0.673830           True
+11                    vgg19           7  0.700000   0.765759  0.700351           True
+12     efficientformerv2_s0          12  0.641667   0.732903  0.626714           True
+13  beitv2_base_patch16_224          10  0.616667   0.722857  0.594430           True
+14          efficientvit_b0          11  0.625000   0.716294  0.585040           True
+15   deit3_base_patch16_224           4  0.616667   0.682988  0.609678           True
+16              densenet121           6  0.525000   0.653022  0.481026           True
+17      inception_resnet_v2           6  0.566667   0.640884  0.534166           True
+18    deit_tiny_patch16_224           2  0.575000   0.634063  0.569585           True
+19          resnext50_32x4d          18  0.658333   0.750120  0.624074           True
+20           crossvit_9_240           7  0.641667   0.723259  0.618163           True
+21                tinynet_a           8  0.483333   0.538119  0.464892           True
+22              fastvit_s12          10  0.600000   0.707676  0.572169           True
+23          efficientnet_b0           1  0.425000   0.465761  0.411111           True
