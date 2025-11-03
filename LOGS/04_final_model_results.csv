@@ -1,0 +1,2 @@
+model_name,best_epoch,test_accuracy,test_precision,test_recall,test_f1,training_time,early_stopped
+volo_d5_512,13,0.8916666666666667,0.8983803552769071,0.8916666666666667,0.8876300253418897,1339.3905205726624,True
