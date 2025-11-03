@@ -1,9 +1,3 @@
-"""
-Copy files from SET01 and SET 02 over to a train set folder
-Picks 50 random images from each folder to make a test set
-"""
-
-
 import os
 import random
 import shutil

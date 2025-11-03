@@ -1,0 +1,2 @@
+k_folds,model_name,avg_test_accuracy,std_test_accuracy,avg_test_precision,std_test_precision,avg_test_recall,std_test_recall,avg_test_f1,std_test_f1,avg_best_epoch,avg_training_time,early_stopping_rate,total_training_time
+5,volo_d5_512,0.8927805261901843,0.012441205964845197,0.8939172154172443,0.011577858055854122,0.8927805261901843,0.012441205964845197,0.8921952175439956,0.011712200092032863,5.2,654.5592118263245,1.0,3272.7960591316223
